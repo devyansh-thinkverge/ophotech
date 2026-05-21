@@ -3,10 +3,27 @@ import { NextResponse } from 'next/server';
 import { convertTo24Hour, formatTime12Hour } from '@/lib/date-utils';
 import { fileTypeFromBuffer } from 'file-type';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+
+  if (!apiKey || apiKey === 'your_resend_api_key_here') {
+    return null;
+  }
+
+  return new Resend(apiKey);
+}
 
 export async function POST(request: Request) {
   try {
+    const resend = getResendClient();
+
+    if (!resend) {
+      return NextResponse.json(
+        { success: false, error: 'Email service is not configured yet' },
+        { status: 503 }
+      );
+    }
+
     // 1. Parse FormData instead of JSON
     const formData = await request.formData();
 
@@ -95,7 +112,7 @@ export async function POST(request: Request) {
       subject: `New Inquiry from ${name}`,
       attachments: attachments,
       template: {
-        id: 'admin-1', // Admin template ID from Resend Dashboard
+        id: 'admin-1',
         variables: {
           NAME: name,
           ORGANIZATION: organization,
@@ -107,7 +124,7 @@ export async function POST(request: Request) {
           DATE: date || 'Not specified',
           TIME: timeSlot,
           BRIEF: brief || 'No message provided',
-          FILE_NAME: fileNameForTemplate, // <--- New Variable for template
+          FILE_NAME: fileNameForTemplate,
         },
       },
     });
@@ -118,7 +135,7 @@ export async function POST(request: Request) {
       to: email,
       subject: 'Thank you for your inquiry',
       template: {
-        id: 'lead', // Lead template ID from Resend Dashboard
+        id: 'lead',
         variables: {
           NAME: name,
         },
