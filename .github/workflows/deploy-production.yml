@@ -1,0 +1,54 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ophotech-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@v1.2.5
+        env:
+          SUDO_PASSWORD: ${{ secrets.PROD_SUDO_PASSWORD }}
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          envs: SUDO_PASSWORD
+          command_timeout: 15m
+          script: |
+            set -e
+            APP_DIR=/home/ophotech/apps/ophotech-landing-page
+
+            echo "==> Pulling latest code..."
+            echo "$SUDO_PASSWORD" | sudo -S -u ophotech git -C "$APP_DIR" pull origin main
+
+            echo "==> Installing dependencies..."
+            echo "$SUDO_PASSWORD" | sudo -S -u ophotech bash -c "cd $APP_DIR && npm ci"
+
+            echo "==> Building for production..."
+            echo "$SUDO_PASSWORD" | sudo -S -u ophotech bash -c "cd $APP_DIR && NODE_ENV=production npm run build"
+
+            echo "==> Restarting service..."
+            echo "$SUDO_PASSWORD" | sudo -S systemctl restart ophotech-landing-page
+
+            echo "==> Waiting for service to come up..."
+            sleep 5
+            STATUS=$(echo "$SUDO_PASSWORD" | sudo -S systemctl is-active ophotech-landing-page)
+            if [ "$STATUS" = "active" ]; then
+              echo "Service is running successfully."
+            else
+              echo "Service failed to start! Status: $STATUS"
+              echo "$SUDO_PASSWORD" | sudo -S journalctl -u ophotech-landing-page --no-pager -n 30
+              exit 1
+            fi
