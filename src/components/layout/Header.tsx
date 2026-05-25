@@ -33,7 +33,7 @@ const NAV_SECTIONS = [
       "Cloud Integration",
       "AI Solutions & Services",
       "AI Agent Development",
-      "Cyber Security Solutions",
+      "Predictive Analysis",
     ],
   },
   {
@@ -218,6 +218,14 @@ export function Header() {
             >
               Home
             </Link>
+            <Link
+              href="/products"
+              className={`${navLinkBase} ${
+                pathname?.startsWith("/products") ? navLinkActive : ""
+              }`}
+            >
+              Products
+            </Link>
             {dropdowns.map((dropdown) => {
               const isActive = dropdown.items.some((item) =>
                 pathname?.startsWith(item.href),
@@ -287,6 +295,17 @@ export function Header() {
               }`}
             >
               Home
+            </Link>
+            <Link
+              href="/products"
+              onClick={() => setMobileOpen(false)}
+              className={`block text-base font-semibold ${
+                pathname?.startsWith("/products")
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+              }`}
+            >
+              Products
             </Link>
             {dropdowns.map((dropdown) => {
               const isExpanded = expandedSection === dropdown.key;

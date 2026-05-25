@@ -47,17 +47,17 @@ export function HeroSection() {
         <div className="max-w-xl space-y-8">
           <div className="space-y-3">
             <p className="text-4xl text-orange-400 sm:text-5xl">
-              You Lead
+              Governed AI
             </p>
             <p className="text-4xl font-semibold text-white sm:text-5xl">
-              We Power Your Tech
+              Digital Transformation
             </p>
           </div>
           <p className="max-w-lg text-base leading-relaxed text-blue-100 sm:text-lg">
-            Partnering In Your Journey To AI Enablement.
+            The trusted partner for complex enterprises — turning fragmented data into secure, auditable AI execution.
           </p>
           <PrimaryButton onClick={handleOpenContact}>
-            Let&apos;s Start
+            Request AI Audit
           </PrimaryButton>
         </div>
 

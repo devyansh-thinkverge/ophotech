@@ -13,6 +13,7 @@ import { HIDE_RESOURCES } from "@/lib/featureFlags";
 
 const COMPANY_LINKS = [
   "About Us",
+  "Products",
   "Careers",
   "Contact",
   "Privacy Policy",
@@ -28,7 +29,7 @@ const SOLUTION_LINKS = [
   "Cloud Integration",
   "AI Solutions & Services",
   "AI Agent Development",
-  "Cyber Security Solutions",
+  "Predictive Analysis",
 ];
 
 const LinkedInIcon = () => (
@@ -142,10 +143,9 @@ export function Footer() {
                 </div>
               </Link>
               <p className="max-w-md text-sm leading-relaxed text-gray-100">
-                OphoTech is a research and technology partner for enterprises,
-                delivering business audits, AI-driven insights, and scalable
-                SaaS/PaaS solutions. We help leaders make confident decisions,
-                stay compliant, and prepare for future growth.
+                OphoTech is the trusted partner for complex enterprises,
+                delivering governed AI transformation — turning fragmented data
+                into secure, auditable AI execution that drives measurable ROI.
               </p>
             </div>
             
@@ -181,6 +181,7 @@ export function Footer() {
             hrefMapper={(link) => {
               if (link === "About Us") return "/company/about-us";
               if (link === "Careers") return "/company/careers";
+              if (link === "Products") return "/products";
               return slugify(link);
             }}
           />

@@ -106,7 +106,7 @@ export const JOURNEY_STOPS = [
         }
       },
       {
-        id: "stop-cyber",
+        id: "stop-predictive",
         progress: {
           md: 0.98,
           lg: 0.90,
@@ -114,8 +114,8 @@ export const JOURNEY_STOPS = [
           "2xl": 0.85
         },
         position: "bottom",
-        title: "Cybersecurity Implementation",
-        description: "AI-Driven monitoring, threat detection, and response for all cybersecurity solutions.",
+        title: "Predictive Analysis",
+        description: "Generative ML models evaluating historical enterprise data to uncover hidden operational patterns and hyper-optimize digital workflows for maximum cost efficiency.",
         icon: "/images/journey/cyber-connector.svg",
         iconMobile: "/images/icons/cyber-security.svg",
         left: "76%",

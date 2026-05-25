@@ -7,6 +7,10 @@ import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { LazyCTASection } from "@/components/sections/LazyCTASection";
 import { LazyValuePropositionSection } from "@/components/sections/LazyValuePropositionSection";
+import { StatsSection } from "@/components/sections/StatsSection";
+import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
+import { IndustriesSection } from "@/components/sections/IndustriesSection";
+import { ProductsSection } from "@/components/sections/ProductsSection";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { HIDE_RESOURCES } from "@/lib/featureFlags";
 
@@ -16,6 +20,7 @@ export default function Home() {
       <Header />
       <main className="flex flex-col">
         <HeroSection />
+        <StatsSection />
         <AnimatedSection delay={100}>
           <YourJourney />
         </AnimatedSection>
@@ -24,6 +29,15 @@ export default function Home() {
         </AnimatedSection>
         <AnimatedSection delay={100}>
           <LazyValuePropositionSection />
+        </AnimatedSection>
+        <AnimatedSection delay={100}>
+          <HowWeWorkSection />
+        </AnimatedSection>
+        <AnimatedSection delay={100}>
+          <IndustriesSection />
+        </AnimatedSection>
+        <AnimatedSection delay={100}>
+          <ProductsSection />
         </AnimatedSection>
         <AnimatedSection delay={100}>
           <LazyCTASection variant="gradient" />

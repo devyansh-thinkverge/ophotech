@@ -22,7 +22,7 @@ export default function AISolutionsAndServices() {
           { label: "AI Solutions & Services" },
         ]}
         title="AI Solutions & Services"
-        subtitle="Intelligent Automation and Predictive Advantage"
+        subtitle="Driving ROI Through Applied Artificial Intelligence"
         video="/videos/AI-Solutions.mp4"
       />
 
@@ -35,11 +35,10 @@ export default function AISolutionsAndServices() {
           copy={
             <>
               <p className="mb-6">
-              AI and Machine Learning are established, transformative tools for driving competitive differentiation and operational scalability. We move beyond pilot programs to integrate AI that consistently delivers measurable ROI from your existing data and cloud investments.
+                Stop experimenting with fragmented tools and stalled pilot programs. We transition enterprises from isolated AI experiments to production-ready solutions that deliver immediate, measurable financial returns — designed, trained, and deployed with custom AI models seamlessly embedded in your operational workflows.
               </p>
-
               <p>
-              For businesses, we develop robust, scalable, and ethical AI models that are seamlessly deployed into production. This enables real-time decision-making and drives measurable business value.
+                Every solution prioritizes fairness, transparency, and uncompromising data privacy — meeting stringent global regulatory standards, building institutional trust, and eliminating corporate risk. Elite machine learning that enables complex reasoning, real-time decision-making, and strategic forecasting.
               </p>
             </>
           }
@@ -201,17 +200,17 @@ export default function AISolutionsAndServices() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                 {[{
-                  title: 'Business Problem Translation',
-                  desc: 'Defining a clear business goal (e.g., reduce churn substantially).'
+                  title: 'Strategic Problem Translation',
+                  desc: 'We align engineering strictly with business objectives. Every algorithm is designed to target churn reduction, operational yield optimization, or revenue expansion — not generalized intelligence that generates no measurable return.'
                 }, {
-                  title: 'Model Development & Training',
-                  desc: 'Our data scientists build and train machine learning models—including deep learning, NLP, and computer vision—using your validated data.'
+                  title: 'Custom Model Development & Training',
+                  desc: 'Senior data scientists engineer and rigorously train custom models utilizing your validated, proprietary data structures — highly contextualized to your industry nuances, not off-the-shelf tools applied generically.'
                 }, {
-                  title: 'Deployment & Integration',
-                  desc: 'Our architects and integration experts deploy the model seamlessly into your cloud using APIs and MLOps pipelines, enabling real-time decisions.'
+                  title: 'Seamless Business AI Integration',
+                  desc: 'Highly secure APIs and robust MLOps pipelines deploy advanced models directly into your existing cloud environments — bridging the gap between theoretical data science and live production deployment.'
                 }, {
-                  title: 'Monitoring & Governance',
-                  desc: "Continuous monitoring tracks performance, ensures compliance, and enables retraining to prevent 'drift' and maintain accuracy."
+                  title: 'Continuous MLOps Monitoring',
+                  desc: 'We monitor deployment health, detect data drift, ensure algorithmic accuracy, and rapidly retrain models as markets evolve — guaranteeing continuous reliability and permanent enterprise performance.'
                 }].map((item, i) => (
                   <div
                     key={i}
@@ -250,17 +249,17 @@ export default function AISolutionsAndServices() {
               {/* Three Cards Section */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 {[{
-                  title: 'Intelligent Automation',
-                  impact: 'Automate complex, rule-based, high-volume processes such as invoice processing and customer routing.',
-                  outcome: 'Cut operational costs, speed processing, and reallocate human resources for strategic work.'
+                  title: 'Intelligent Process Automation',
+                  impact: 'Structurally fuse deep ML with robotic process automation to autonomously manage high-volume, complex workflows including invoice processing, compliance checks, and document analysis.',
+                  outcome: 'Drastically cut operational overhead, accelerate processing cycles, and free human capital for high-value strategic growth.'
                 }, {
-                  title: 'Predictive Forecasting',
-                  impact: 'Use advanced models to predict market shifts, customer behavior, and equipment failures.',
-                  outcome: 'Minimize inventory risk, optimize pricing, and enable proactive maintenance.'
+                  title: 'Predictive Analytics Services',
+                  impact: 'Forecast market shifts, customer behavior, and equipment failures — enabling executive teams to optimize dynamic pricing and proactively minimize global inventory risks.',
+                  outcome: 'Replace reactive decision-making with proactive, data-driven foresight that compounds competitive advantage over time.'
                 }, {
-                  title: 'Personalized Engagement',
-                  impact: 'Deploy AI to personalize every customer interaction, from marketing to recommendations.',
-                  outcome: 'Increase customer loyalty, conversion rates, and Customer Lifetime Value (CLV).'
+                  title: 'NLP for Enterprise',
+                  impact: 'Sophisticated Natural Language Processing architectures that comprehend, analyze, and generate human language at industrial scale for intelligent document processing, contract analysis, and personalized customer engagement.',
+                  outcome: 'Increased Customer Lifetime Value (CLV), lower churn, and measurable revenue expansion from personalization at scale.'
                 }].map((item, i) => (
                   <div
                     key={i}

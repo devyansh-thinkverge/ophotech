@@ -22,7 +22,7 @@ export default function CloudIntegrationPage() {
           { label: "Cloud Integration & Architecture" },
         ]}
         title="Cloud Integration & Architecture"
-        subtitle="Building the Digital Backbone"
+        subtitle="Purpose-Built Infrastructure for Enterprise AI Workloads"
         video="/videos/Cloud-Integration.mp4"
       />
 
@@ -35,11 +35,10 @@ export default function CloudIntegrationPage() {
         copy={
           <>
             <p className="mb-6">
-            For Business Leaders, the cloud is the platform for innovation, agility, and scale. Cloud Integration & Architecture services ensure technology strategy directly supports business goals, minimizes risk, and maximizes competitive speed.
+              Moving to the cloud is not enough. Traditional lift-and-shift approaches leave enterprises overpaying for basic cloud storage, lacking the low-latency compute architecture required for advanced AI, and unable to process real-time data at scale.
             </p>
-
             <p>
-            For the Chief Cloud Architect and Integration Expert, we focus on modern, scalable, and secure system design—breaking down data silos and enabling real-time analytics across your enterprise.
+              We architect secure, highly available, cost-optimized environments specifically designed for the massive compute and data demands of AI models and legacy system integrations — bridging on-premise legacy IT with cutting-edge cloud-native AI services without systemic disruption or costly data leaks.
             </p>
           </>
         }
@@ -117,17 +116,17 @@ export default function CloudIntegrationPage() {
               {/* Three Challenge Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6  w-full">
                 {[{
-                  title: 'Siloed Data Across Various Systems And Platforms',
-                  solution: 'Unified Data Fabric/Mesh architecture.',
-                  outcome: 'Single source of truth for reliable decision-making and AI.'
+                  title: "Legacy Systems Cannot Support Modern AI Agents",
+                  solution: 'Secure hybrid & multi-cloud bridging with advanced networking layers.',
+                  outcome: 'Legacy on-premise databases communicate securely with cloud-hosted LLMs — without exposing proprietary corporate data to the public internet.'
                 }, {
-                  title: 'Slow Scaling To Meet Peak Demand Or New Markets',
-                  solution: 'Hyper-Scalable Cloud Infrastructure (AWS, Azure, GCP and local partners).',
-                  outcome: 'Agility to enter new markets or handle massive growth instantly.'
+                  title: 'Unpredictable Cloud Bills Exceeding Budget',
+                  solution: 'Dynamic auto-scaling protocols and predictive FinOps controls.',
+                  outcome: 'Only pay for GPU/CPU when actively processing. Eliminate cloud bill shock while maintaining peak performance capacity.'
                 }, {
-                  title: 'High Maintenance Costs And Security Complexity',
-                  solution: 'Managed Services & Infrastructure-as-Code (IaC).',
-                  outcome: 'Reduced operational overhead and enhanced compliance/security posture.'
+                  title: 'Security And Compliance Gaps Blocking AI Deployment',
+                  solution: 'Zero-trust security framework with strict end-to-end encryption and IAM.',
+                  outcome: 'Protect sensitive training data, meet global compliance mandates, and enable continuous threat monitoring without operational disruption.'
                 }].map((item, i) => (
                   <div
                     key={i}
@@ -251,18 +250,14 @@ export default function CloudIntegrationPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 {[{
-                  title: 'Optimal Architecture Design',
-                  desc: (
-                    <>
-                      We focus on cost-optimization and governance from the start, ensuring your cloud expenditure (FinOps) is efficient and aligned with business value. We select the right services (IaaS, PaaS, or SaaS) for your needs.
-                    </>
-                  )
+                  title: 'Infrastructure Audit & Topology Mapping',
+                  desc: 'Comprehensive evaluation of server loads, API limitations, and legacy technical debt. We design a migration roadmap that eliminates operational risk and prevents structural performance bottlenecks before they compound.'
                 }, {
-                  title: 'Seamless Integration Expertise',
-                  desc: 'We specialize in modernizing legacy systems, migrating applications, and establishing robust data pipelines that ensure secure, reliable data flow across your entire ecosystem.'
+                  title: 'Containerization & Microservices',
+                  desc: 'Kubernetes and Docker-based decomposition of monolithic legacy systems into agile, scalable microservices. Enables rapid AI updates and completely isolates potential system failures from the rest of your infrastructure.'
                 }, {
-                  title: 'Security By Design',
-                  desc: 'We implement enterprise-grade security controls, identity and access management (IAM), and compliance frameworks to protect your assets in the cloud environment.'
+                  title: 'Comprehensive CI/CD Pipelines',
+                  desc: 'Highly automated testing, continuous integration, and continuous delivery pipelines that allow you to roll out new AI capabilities rapidly, safely, and predictably — with zero operational downtime.'
                 }].map((item, i) => (
                   <div
                     key={i}
@@ -335,10 +330,10 @@ export default function CloudIntegrationPage() {
     {/* Left: Text */}
     <div>
       <h2 className=" text-3xl md:text-4xl font-medium text-[#0B1B2B] ">
-        Cloud Integration & Architecture
+        99.99% Uptime. Zero Trust. Full AI Readiness.
       </h2>
       <p className="mt-5 text-lg text-[#3A4A5F]">
-        Enable and transform complex business challenges into clear technology opportunities, driving stability, security, and speed.
+        High-availability environments with fully automated disaster recovery. Advanced identity and access management. Seamless API gateways that let internal teams plug in new AI models and integrate external SaaS tools without disrupting existing operations.
       </p>
     </div>
 

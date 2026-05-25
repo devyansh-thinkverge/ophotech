@@ -23,7 +23,7 @@ export default function DataMonetizationPage() {
           { label: "Data Structuring & Monetization" },
         ]}
         title="Data Structuring & Monetization"
-        subtitle="Turning Your Information into Revenue"
+        subtitle="Turn Fragmented Information into Investment-Grade Assets"
         video="/videos/Data-Structuring.mp4"
       />
 
@@ -35,15 +35,11 @@ export default function DataMonetizationPage() {
         imageAlt="Data monetization illustration"
         copy={
           <>
-            <p>
-              As a business leader, you know your data is a critical asset. Data Monetization is the strategy for unlocking its financial potential, shifting it from a cost center to a profit center.
+            <p className="mb-6">
+              Most enterprise data initiatives fail because they attempt to apply advanced ML to fragmented, unverified, siloed databases. That is fundamentally broken. We engineer scalable data architectures that shift your data from an operational cost center to a high-margin revenue stream.
             </p>
-
-            <p className="mt-4">
-              We help executives convert complex data infrastructure into clear,
-              measurable business returns. This is not just a technology
-              project; it is a fundamental shift in how your company creates
-              value and secures a competitive edge.
+            <p>
+              Before data drives high-impact AI models or generates direct revenue, it must be strictly reliable and ethically governed. Our Senior Data Architects and Data Scientists convert chaotic legacy databases into secure, compliant data products using a comprehensive engineering framework.
             </p>
           </>
         }
@@ -134,19 +130,19 @@ export default function DataMonetizationPage() {
               <div className="grid gap-6 md:grid-cols-3 w-full">
                 {[
                   {
-                    title: "Structure, secure & standardise",
+                    title: "Architectural Unification",
                     text:
-                      "We architect a modern data environment (like a Data Lake or Fabric) to make all your information easily accessible and ready for rapid analysis.",
+                      "We architect modern data environments (Data Lakes, Data Fabrics) and extract and unify siloed information across legacy systems, cloud, and third-party applications. Data is standardized and made instantly accessible across the enterprise.",
                   },
                   {
-                    title: "Cleanse & Validate",
+                    title: "Rigorous Cleansing & Validation",
                     text:
-                      "We enforce strict data quality rules to remove errors and inconsistencies. This is the critical step that ensures your AI models are accurate and your business decisions are trustworthy.",
+                      "We enforce strict, automated data quality rules — identifying and removing anomalies, redundancies, and inaccuracies. AI models trained on this foundation operate with absolute accuracy. Leadership decisions built on absolute trust.",
                   },
                   {
-                    title: "Label & Enrich",
+                    title: "Semantic Enrichment",
                     text:
-                      "We prepare the data for advanced use by adding context and connecting it to secure internal and external sources, making it immediately valuable for machine learning.",
+                      "We prepare data for advanced ML with deep contextual layers. Standardizing internal taxonomies, securely connecting proprietary data to external enrichment sources, maximizing predictive power for every model trained on this foundation.",
                   },
                 ].map((c) => (
                   <div
@@ -378,12 +374,10 @@ export default function DataMonetizationPage() {
     {/* Left: Text */}
     <div>
       <h2 className=" text-3xl md:text-4xl font-medium text-[#0B1B2B] ">
-        Data Monetization – Goal
+        From Cost Center to Revenue Engine
       </h2>
       <p className="mt-5 text-lg text-[#3A4A5F]">
-        To help you realize the maximum financial value of your enterprise data
-        while ensuring governance, security, and ethical compliance are built
-        into the foundation.
+        Our goal is to help you realize the maximum financial value of your enterprise data while ensuring governance, security, and ethical compliance are built into the foundation — enabling Data-as-a-Service products, prescriptive analytics dashboards, and automated quality pipelines that permanently protect your AI investments.
       </p>
     </div>
 

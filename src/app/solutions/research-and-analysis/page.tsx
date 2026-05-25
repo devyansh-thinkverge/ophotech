@@ -23,7 +23,7 @@ export default function RAARPage() {
           { label: "Research & Analysis" },
         ]}
         title="Research & Analysis"
-        subtitle="Your AI Journey Begins with Diligent and In-depth Research."
+        subtitle="The Enterprise AI Readiness Assessment"
         video="/videos/Research-and-Analysis.mp4"
       />
 
@@ -34,13 +34,14 @@ export default function RAARPage() {
         imageSrc="/images/raar/research.png"
         imageAlt="RAAR illustration"
         copy={
-          <p className="mt-3">
-            An intelligence framework, driven by a team of Senior Data
-            Scientists and AI/ML Engineers, to get real-time operational insights
-            and market opportunities. Our expert and precise reports address the
-            critical gaps and enable enterprises structure their path to AI
-            enablement.
-          </p>
+          <>
+            <p className="mb-6">
+              We strictly refuse to deploy AI into disorganized, unmapped enterprise environments. Most large-scale AI initiatives fail rapidly — built on fragmented data silos and unsecured legacy systems. Our AI Readiness Assessment ensures you never make that mistake.
+            </p>
+            <p>
+              A rigorous, proprietary intelligence framework driven by Senior Data Scientists, Cloud Architects, and AI/ML Engineers. We extract real-time operational insights, evaluate technical feasibility, and deliver fully auditable pathways that establish a strict, regulator-approved roadmap to custom AI adoption.
+            </p>
+          </>
         }
         techStack={[
           { 
@@ -89,24 +90,24 @@ export default function RAARPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 xl:gap-12 w-full">
   {[
     {
-      title: "Research",
+      title: "Structural Data Profiling",
       text:
-        "Pulls data from vendor contracts, licensing records, usage logs, cost reports, and integration documentation. Cleans, standardizes and validates data for analysis.",
+        "Deep architectural extraction — pulling sample structures from legacy databases, modern cloud, and active security protocols. We validate the cleanliness, consistency, and accessibility of your core data assets before any AI model touches them.",
     },
     {
-      title: "Analysis",
+      title: "Capability Benchmarking",
       text:
-        "AI agents evaluate tools across features, security, integration, cost efficiency, performance, and market position. They build SWOT profiles, identify capability gaps, and benchmark against industry standards.",
+        "Evaluate existing network topologies against industry-leading enterprise standards. Conduct stress tests on baseline data quality, test zero-trust security frameworks, assess IT cost efficiency, and identify deep structural gaps.",
     },
     {
-      title: "Adoption",
+      title: "Operational Readiness Analysis",
       text:
-        "Tracks user adoption rates, identifies underutilized tools, and measures organizational readiness for new technology implementations.",
+        "Measure hard infrastructural limits and assess human organizational readiness. Ensure existing systems and workforce can seamlessly handle autonomous AI agents without operational disruption.",
     },
     {
-      title: "Reporting",
+      title: "Persona-Specific Reporting",
       text:
-        "Delivers persona-specific insights. Strategic dashboards for executives, integration scores for architects, vendor intelligence for procurement, compliance reports for regulators, and usability metrics for end users.",
+        "Customized, highly targeted intelligence for specific decision-makers: ROI dashboards for executives, technical integration blueprints for IT architects, and strict governance documentation for legal and compliance teams.",
     },
   ].map((item) => (
     <div key={item.title} className="h-full">
@@ -134,30 +135,31 @@ export default function RAARPage() {
           {
             title: "Full Visibility",
             description:
-              "Complete view of your software portfolio with usage patterns and spend analysis",
+              "Complete, 360-degree view of your enterprise data architecture with a definitive score on your true AI integration readiness.",
             icon: "/images/icons/tailored.svg",
           },
           {
             title: "Strategic Benchmarks",
             description:
-              "Industry comparisons on cost, performance, features, and security",
+              "Direct, uncompromising industry comparisons showing exactly where your organization stands in AI maturity, operational performance, and security compliance versus competitors.",
             icon: "/images/icons/settings-load.svg",
           },
           {
             title: "Smart Recommendations",
             description:
-              "Data-driven guidance on which tools to adopt, retain, consolidate, or retire",
+              "Hard, data-driven guidance on which specific AI models to deploy, which legacy systems to modernize immediately, and which internal workflows yield the highest ROI when automated.",
             icon: "/images/icons/search-notes.svg",
           },
           {
             title: "Stakeholder-Specific Insights",
-            description: "Customized reports for C-Suite business leaders",
+            description:
+              "Customized, risk-adjusted reporting packages designed for C-Suite leaders — empowering confident multi-million dollar AI infrastructure investment decisions.",
             icon: "/images/icons/people.svg",
           },
           {
             title: "Audit-Ready Documentation",
             description:
-              "Compliance trails and governance reports for regulators and boards",
+              "Airtight compliance trails, security vulnerability disclosures, and data governance reports prepared for internal regulators, external auditors, and executive boards.",
             icon: "/images/icons/take-notes.svg",
           },
         ]}

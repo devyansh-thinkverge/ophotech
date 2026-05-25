@@ -71,19 +71,19 @@ export default function AIAgentDevelopment() {
 
   const governancePillars = [
     {
-      title: ["Safety &", "Alignment"],
+      title: ["Strict Safety &", "Alignment Protocols"],
       body:
-        "We implement strict safety protocols to ensure agents operate within defined business constraints and ethical guidelines, preventing unintended or harmful actions.",
+        "Rigorous operational boundaries ensure agents act strictly within corporate constraints, financial limits, and ethical guidelines. Every boundary is enforced at the system level — preventing unintended errors that could cause compliance violations or financial exposure.",
     },
     {
-      title: ["Transparency &", "Auditability"],
+      title: ["Full Transparency &", "Auditability"],
       body:
-        "Every agent action is logged and auditable, providing clarity on the agent's decision-making process and simplifying compliance efforts.",
+        "Every computational decision is logged in real time. Absolute clarity for internal stakeholders. Simplified external compliance for regulators and auditors. Your agents operate as fully transparent systems, not black boxes.",
     },
     {
-      title: ["Scalable", "Architecture"],
+      title: ["Scalable Cloud-Native", "Architecture"],
       body:
-        "Agents are architected on your secure cloud environment, ensuring they can handle peak loads and integrate cleanly with your MLOps pipeline for continuous improvement.",
+        "Agents are engineered to handle massive peak loads, cleanly integrate with your existing MLOps pipelines, and continuously improve over time — ensuring your AI workforce scales with your business without architectural rework.",
     },
   ];
 
@@ -98,7 +98,7 @@ export default function AIAgentDevelopment() {
           { label: "AI Agent Development" },
         ]}
         title="AI Agent Development"
-        subtitle="The Future of Autonomous Business Operations"
+        subtitle="Shift From Static Software to a Dynamic AI Digital Workforce"
         video="/videos/AI-Agent.mp4"
       />
 
@@ -110,12 +110,11 @@ export default function AIAgentDevelopment() {
           imageAlt="AI agents illustration"
           copy={
             <>
-              <p>
-              AI Agents are advanced digital workers performing complex, multi-step tasks autonomously. Investing in AI Agents means gaining a scalable, efficient workforce that drives operational speed and efficiency with minimal oversight.
+              <p className="mb-6">
+                We engineer intelligent systems that execute multi-step reasoning, manage complex tools, and seamlessly drive autonomous business processes. Unlike traditional automation that handles single, rigid actions, our agents understand high-level operational goals and execute complete workflow automation with real-time planning, execution, and course-correction.
               </p>
-
-              <p className="mt-4">
-              Business leaders can use next-generation AI systems—leveraging LLMs with planning and memory—to automate entire workflows and drive organizational transformation. 
+              <p>
+                Beyond basic task automation, our agents continuously monitor real-time data, identify market opportunities, model financial impact, and execute strategic decisions autonomously — generating net-new revenue while securely connecting to your ERP systems, CRMs, and proprietary databases.
               </p>
             </>
           }
@@ -342,8 +341,8 @@ export default function AIAgentDevelopment() {
          previousHref="/solutions/ai-solutions-and-services"
          title="Discover Next Step of Your AI Journey"
          cta={{
-           href: "/solutions/cyber-security-solutions",
-           label: "Cyber Security Solutions",
+           href: "/solutions/predictive-analysis",
+           label: "Predictive Analysis",
          }}
        />
       </main>

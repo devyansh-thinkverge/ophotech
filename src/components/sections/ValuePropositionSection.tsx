@@ -12,25 +12,25 @@ const features = [
   {
     id: 'connect',
     title: 'Connect',
-    subtitle: 'Executive Strategy Call',
+    subtitle: 'Evaluate & Establish Foundation',
     description:
-      'Our experts align leadership vision with enterprise realities, diagnosing structural gaps and growth constraints to establish a precise, data-driven foundation for scalable AI-powered transformation.',
+      'We evaluate your business objectives and technical environments before building anything. Our AI Readiness Audit maps infrastructure, identifies operational bottlenecks, and forecasts predictable ROI — establishing a secure, governed foundation before a single model is deployed.',
     icon: '/images/valuesection/connect.svg',
   },
   {
     id: 'create',
     title: 'Create',
-    subtitle: 'AI Discovery Workshop',
+    subtitle: 'Engineer Custom Intelligence',
     description:
-      'Our intelligent workshops uncover profitability gaps, operational risks, and innovation opportunities, generating actionable roadmaps that accelerate organizational readiness and maximize competitive advantage.',
+      'We engineer custom ML models and autonomous agents using your localized data as a competitive advantage. Every algorithm is strictly aligned with business objectives — churn reduction, operational yield optimization, or revenue expansion — not generalized intelligence.',
     icon: '/images/valuesection/create.svg',
   },
   {
     id: 'evolve',
     title: 'Evolve',
-    subtitle: 'Build & Deploy',
+    subtitle: 'Scale, Adapt & Govern',
     description:
-      'We deploy enterprise-grade SaaS, AI agents, and secure platforms that scale efficiently, improve profitability, and help organizations transition into resilient, future-ready, AI-enabled enterprises.',
+      'Our architecture dynamically adapts, scales securely, and grows increasingly accurate through continuous MLOps. Automated retraining pipelines, real-time drift detection, and full auditability ensure your AI investment compounds over time rather than degrading.',
     icon: '/images/valuesection/evolve.svg',
   },
 ];
@@ -70,11 +70,11 @@ export function ValuePropositionSection() {
           {/* Heading */}
           <div className="mb-8 sm:mb-9 md:mb-10 text-center">
           <h2 className="font-poppins text-4xl font-medium leading-tight text-[#111111] px-2">
-            How We Work<br />
-            <span className="text-black text-4xl">From Idea To Impact</span>
+            The Governed AI Lifecycle<br />
+            <span className="text-black text-4xl">Connect · Create · Evolve</span>
           </h2>
           <p className="mx-auto mt-4 sm:mt-5 w-full max-w-[860px] font-poppins text-base leading-normal text-[#454545] px-2">
-            End-to-End Support: From Discovery to Deployment, Designed for Measurable Impact.
+            A three-phase framework ensuring every AI initiative is built on a secure foundation, aligned with business objectives, and designed for continuous improvement.
           </p>
         </div>
 {/* Main Content */}
