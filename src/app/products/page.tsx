@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/ui/HeroSection";
@@ -37,6 +38,7 @@ const PRODUCTS = [
     badge: "Decision Intelligence",
     color: "#E45412",
     audience: "C-Suite, Chief Data Officers, Compliance Teams",
+    href: "/products/roaar",
   },
   {
     name: "Data Fabric AI",
@@ -68,6 +70,7 @@ const PRODUCTS = [
     badge: "Data Platform",
     color: "#2A73B5",
     audience: "Data Engineering Teams, IT Architects, Data Scientists",
+    href: "/products/data-fabric-ai",
   },
   {
     name: "Shoout AI",
@@ -99,6 +102,7 @@ const PRODUCTS = [
     badge: "Marketing Intelligence",
     color: "#059669",
     audience: "CMOs, Marketing Operations, Revenue Teams",
+    href: "/products/shoout-ai",
   },
 ];
 
@@ -175,6 +179,18 @@ export default function ProductsPage() {
                       ))}
                     </div>
                   </BackgroundDots>
+
+                  <div className="flex justify-end">
+                    <Link
+                      href={product.href}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-orange-500 transition-colors hover:text-orange-600"
+                    >
+                      View Full Details
+                      <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Link>
+                  </div>
 
                   {index < PRODUCTS.length - 1 && (
                     <div className="h-px w-full bg-[#F0F0F0]" />

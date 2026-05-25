@@ -25,6 +25,11 @@ const NAV_SECTIONS = [
     items: ["About Us", "Team", "Careers"],
   },
   {
+    label: "Products",
+    key: "products",
+    items: ["All Products", "ROAAR", "Data Fabric AI", "Shoout AI"],
+  },
+  {
     label: "Solutions",
     key: "solutions",
     items: [
@@ -119,7 +124,11 @@ export function Header() {
         key: section.key,
         items: section.items.map((item) => ({
           label: item,
-          href: section.key === "solutions" ? `/solutions${slugify(item)}` : section.key === "company" ? `/company${slugify(item)}` : slugify(item),
+          href: section.key === "products"
+            ? (item === "All Products" ? "/products" : `/products${slugify(item)}`)
+            : section.key === "solutions" ? `/solutions${slugify(item)}`
+            : section.key === "company" ? `/company${slugify(item)}`
+            : slugify(item),
         })),
       })),
     [],
@@ -218,14 +227,6 @@ export function Header() {
             >
               Home
             </Link>
-            <Link
-              href="/products"
-              className={`${navLinkBase} ${
-                pathname?.startsWith("/products") ? navLinkActive : ""
-              }`}
-            >
-              Products
-            </Link>
             {dropdowns.map((dropdown) => {
               const isActive = dropdown.items.some((item) =>
                 pathname?.startsWith(item.href),
@@ -295,17 +296,6 @@ export function Header() {
               }`}
             >
               Home
-            </Link>
-            <Link
-              href="/products"
-              onClick={() => setMobileOpen(false)}
-              className={`block text-base font-semibold ${
-                pathname?.startsWith("/products")
-                  ? "text-white"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              Products
             </Link>
             {dropdowns.map((dropdown) => {
               const isExpanded = expandedSection === dropdown.key;

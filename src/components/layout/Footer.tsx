@@ -13,13 +13,14 @@ import { HIDE_RESOURCES } from "@/lib/featureFlags";
 
 const COMPANY_LINKS = [
   "About Us",
-  "Products",
   "Careers",
   "Contact",
   "Privacy Policy",
   "Terms of Service",
   "Cookie settings",
 ];
+
+const PRODUCT_LINKS = ["All Products", "ROAAR", "Data Fabric AI", "Shoout AI"];
 
 const RESOURCE_LINKS = HIDE_RESOURCES ? [] : ["Blogs", "Newsletters", "Case Studies"];
 
@@ -127,7 +128,7 @@ export function Footer() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl  pb-8 pt-24 px-3 xl:px-0">
         {/* Main grid */}
-        <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr] md:gap-8 lg:gap-16">
+        <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] md:gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="flex flex-col justify-between space-y-8">
             <div className="space-y-6">
@@ -181,11 +182,23 @@ export function Footer() {
             hrefMapper={(link) => {
               if (link === "About Us") return "/company/about-us";
               if (link === "Careers") return "/company/careers";
-              if (link === "Products") return "/products";
               return slugify(link);
             }}
           />
-          
+
+          {/* Products Links */}
+          <FooterColumn
+            title="Products"
+            links={PRODUCT_LINKS}
+            hrefMapper={(link) => {
+              if (link === "All Products") return "/products";
+              if (link === "ROAAR") return "/products/roaar";
+              if (link === "Data Fabric AI") return "/products/data-fabric-ai";
+              if (link === "Shoout AI") return "/products/shoout-ai";
+              return "/products";
+            }}
+          />
+
           {/* Resources Links */}
           {RESOURCE_LINKS.length ? (
             <FooterColumn
