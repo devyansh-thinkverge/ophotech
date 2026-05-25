@@ -31,6 +31,8 @@ jobs:
             APP_DIR=/home/ophotech/apps/ophotech-landing-page
 
             echo "==> Pulling latest code..."
+            echo "$SUDO_PASSWORD" | sudo -S -u ophotech git -C "$APP_DIR" reset --hard HEAD
+            echo "$SUDO_PASSWORD" | sudo -S -u ophotech git -C "$APP_DIR" clean -fd
             echo "$SUDO_PASSWORD" | sudo -S -u ophotech git -C "$APP_DIR" pull origin main
 
             echo "==> Installing dependencies..."

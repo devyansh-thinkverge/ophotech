@@ -6,6 +6,8 @@ APP_DIR="/home/ophotech/apps/ophotech-landing-page"
 SERVICE="ophotech-landing-page"
 
 echo "==> Pulling latest code..."
+sudo -u ophotech git -C "$APP_DIR" reset --hard HEAD
+sudo -u ophotech git -C "$APP_DIR" clean -fd
 sudo -u ophotech git -C "$APP_DIR" pull origin main
 
 echo "==> Installing dependencies..."
