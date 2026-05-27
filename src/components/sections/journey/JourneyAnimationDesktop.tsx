@@ -182,12 +182,12 @@ export function JourneyAnimationDesktop() {
         >
           <defs>
             <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#F97316" />
-              <stop offset="20%" stopColor="#FB923C" />
-              <stop offset="40%" stopColor="#FDBA74" />
-              <stop offset="60%" stopColor="#FED7AA" />
-              <stop offset="80%" stopColor="#F3F4F6" />
-              <stop offset="100%" stopColor="#E5E7EB" />
+              <stop offset="0%" stopColor="#22c55e" />
+              <stop offset="20%" stopColor="#4ade80" />
+              <stop offset="40%" stopColor="#86efac" />
+              <stop offset="60%" stopColor="#bbf7d0" />
+              <stop offset="80%" stopColor="#d1fae5" />
+              <stop offset="100%" stopColor="#f0fdf4" />
             </linearGradient>
           </defs>
 
@@ -254,10 +254,10 @@ export function JourneyAnimationDesktop() {
               initial={{ opacity: 0, y: 10 }}
               className={`text-left flex-1 ${stop.position === 'bottom' ? 'mt-20' : 'mt-16'}`}
             >
-              <h3 className="text-lg font-bold text-gray-900 leading-tight mb-2">
+              <h3 className="text-lg font-bold text-white leading-tight mb-2">
                 {stop.title}
               </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
                 {stop.description}
               </p>
             </motion.div>

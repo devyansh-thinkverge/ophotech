@@ -1,34 +1,21 @@
 "use client";
 
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { PrimaryButton } from "@/components/ui/Button";
 import { SecondaryButton } from "@/components/ui/SecondaryButton";
-import {
-  buildContactModalOpenUrl,
-  markContactModalOpenedFromUi,
-} from "@/lib/contact-modal";
-
-const CTA_BACKGROUND = "/images/hero/hero-background.png";
 
 export type CTASectionVariant = "gradient" | "ready";
 
 export type CTASectionProps = {
   variant?: CTASectionVariant;
 
-  /**
-   * Used for the "ready" variant. Defaults match the Careers reference.
-   */
   readyTitle?: string;
   readySubtitle?: string;
   readyButtonLabel?: string;
   readyClassName?: string;
 
-  /**
-   * Used for the "gradient" variant. Defaults preserve existing CTASection copy.
-   */
   gradientTitle?: string;
   gradientDescription?: string;
   gradientButtonLabel?: string;
@@ -39,31 +26,31 @@ export function CTASection({
   variant = "gradient",
 
   readyTitle = "Ready to Solve",
-  readySubtitle = "What\u0027s Next With OphoTech?",
-  readyButtonLabel = "Let\u0027s Start",
+  readySubtitle = "What's Next With Opho Technologies?",
+  readyButtonLabel = "Let's Start",
   readyClassName = "py-20 px-6",
 
-  gradientTitle = "Start a Conversation with OphoTech",
+  gradientTitle = "Start a Conversation with Opho Technologies",
   gradientDescription = "Explore how data-driven strategy and responsible technology can advance your business goals.",
   gradientButtonLabel = "Connect with an Expert",
   gradientClassName,
 }: CTASectionProps) {
   const router = useRouter();
-  const pathname = usePathname();
 
   const handleOpenContact = () => {
-    const searchParams = new URLSearchParams(
-      typeof window === "undefined" ? "" : window.location.search,
-    );
-    markContactModalOpenedFromUi();
-    router.push(buildContactModalOpenUrl(pathname, searchParams));
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#contact");
+    }
   };
 
   if (variant === "ready") {
     return (
-      <section className={cn("text-center", readyClassName)}>
-        <h2 className="mb-3 text-4xl font-medium text-[#111111]">{readyTitle}</h2>
-        <p className="mb-6 text-2xl md:text-4xl font-medium">{readySubtitle}</p>
+      <section className={cn("text-center bg-[#0a0a0a]", readyClassName)}>
+        <h2 className="mb-3 text-4xl font-medium text-white">{readyTitle}</h2>
+        <p className="mb-6 text-2xl md:text-4xl font-medium gradient-text">{readySubtitle}</p>
         <PrimaryButton onClick={handleOpenContact}>{readyButtonLabel}</PrimaryButton>
       </section>
     );
@@ -72,25 +59,27 @@ export function CTASection({
   return (
     <section
       className={cn(
-        "relative overflow-hidden py-15 text-white",
+        "relative overflow-hidden py-20 text-white bg-[#0a0a0a]",
         gradientClassName,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 ">
-        <Image
-          src={CTA_BACKGROUND}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
+      {/* Background gradient orbs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-0 left-1/3 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: "rgba(34,197,94,0.12)" }} />
+        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full blur-3xl"
+          style={{ background: "rgba(34,197,94,0.07)" }} />
+        <div className="absolute inset-0 grid-pattern opacity-40" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl font-semibold md:text-[38px]">
+      <div className="relative mx-auto max-w-6xl text-center px-4">
+        <span className="inline-block mb-4 px-4 py-2 rounded-full glass-green text-[#4ade80] text-sm">
+          Get Started
+        </span>
+        <h2 className="text-3xl font-semibold md:text-[38px] text-white">
           {gradientTitle}
         </h2>
-        <p className="mt-4 text-base text-blue-100 md:text-lg">
+        <p className="mt-4 text-base md:text-lg" style={{ color: "rgba(255,255,255,0.6)" }}>
           {gradientDescription}
         </p>
         <div className="mt-10 flex justify-center">
@@ -102,4 +91,3 @@ export function CTASection({
     </section>
   );
 }
-

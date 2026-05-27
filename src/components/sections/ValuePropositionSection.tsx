@@ -2,11 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import {
-  buildContactModalOpenUrl,
-  markContactModalOpenedFromUi,
-} from '@/lib/contact-modal';
+import { useRouter } from 'next/navigation';
 
 const features = [
   {
@@ -39,182 +35,147 @@ export function ValuePropositionSection() {
   const [activeStep, setActiveStep] = useState('connect');
   const [imageLoaded, setImageLoaded] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
 
   const activeFeature = features.find((f) => f.id === activeStep) || features[0];
 
   const handleOpenContact = () => {
-    const searchParams = new URLSearchParams(
-      typeof window === 'undefined' ? '' : window.location.search,
-    );
-    markContactModalOpenedFromUi();
-    router.push(buildContactModalOpenUrl(pathname, searchParams));
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push('/#contact');
+    }
   };
 
   return (
-    <>
-      <section className="relative overflow-hidden border-b-2 border-[#FEEFDF] py-12 px-4 sm:py-14 sm:px-6 md:py-16 md:px-[8%]">
-        {/* Background with gradient and pattern */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-white from-[38.524%] to-[#FEECD6] to-[171.52%]" />
-          <div 
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage: 'radial-gradient(circle,rgb(63, 64, 67) 1px, transparent 1px)',
-              backgroundSize: '24px 24px',
-            }}
-          />
-        </div>
+    <section className="relative overflow-hidden py-20 px-4 bg-white">
+      {/* Dot background */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
+      </div>
 
-        <div className="mx-auto max-w-6xl">
-          {/* Heading */}
-          <div className="mb-8 sm:mb-9 md:mb-10 text-center">
-          <h2 className="font-poppins text-4xl font-medium leading-tight text-[#111111] px-2">
-            The Governed AI Lifecycle<br />
-            <span className="text-black text-4xl">Connect · Create · Evolve</span>
+      <div className="relative mx-auto max-w-6xl">
+        {/* Heading */}
+        <div className="mb-12 text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#22c55e] mb-3">
+            <span className="w-6 h-px bg-[#22c55e]" />
+            Framework
+            <span className="w-6 h-px bg-[#22c55e]" />
+          </span>
+          <h2 className="text-4xl font-bold leading-tight text-[#111827] mt-1">
+            The Governed <span className="text-[#22c55e]">AI Lifecycle</span>
           </h2>
-          <p className="mx-auto mt-4 sm:mt-5 w-full max-w-[860px] font-poppins text-base leading-normal text-[#454545] px-2">
+          <p className="mx-auto mt-3 max-w-[720px] text-base leading-normal text-[#6b7280]">
             A three-phase framework ensuring every AI initiative is built on a secure foundation, aligned with business objectives, and designed for continuous improvement.
           </p>
         </div>
-{/* Main Content */}
-<div className="flex flex-col gap-8 sm:gap-9 md:gap-10 lg:flex-row lg:items-stretch lg:gap-6 ml-10">
-  <div className="flex w-full flex-col gap-6 sm:gap-7 md:gap-8 lg:flex-row lg:gap-10">
 
-    {/* Stepper */}
-    <div className="relative flex w-full flex-col gap-6 sm:gap-7 md:gap-8 lg:w-[300px] lg:shrink-0">
-      <div className="absolute -left-6 sm:-left-7 md:-left-8 top-0 h-full w-[2px] bg-gradient-to-b from-[#E45412] to-[#FEECD6]" />
+        {/* Main Content */}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-6">
+          <div className="flex w-full flex-col gap-6 lg:flex-row lg:gap-10">
 
-      {features.map((feature, index) => (
-        <div key={feature.id} className="relative">
-          {/* Circle */}
-          <div
-            className={`absolute -left-[30px] sm:-left-[34px] md:-left-[42px] top-1/2 z-10 -translate-y-1/2 flex size-4 sm:size-[18px] md:size-5 items-center justify-center rounded-full border-2 sm:border-[2.5px] md:border-[3px] border-white transition-all ${
-              activeStep === feature.id
-                ? 'bg-[#E45412]'
-                : index === 0
-                ? 'bg-[#E45412] opacity-40'
-                : 'bg-[#FEECD6]'
-            }`}
-          />
+            {/* Stepper */}
+            <div className="flex w-full flex-col gap-3 lg:w-[280px] lg:shrink-0">
+              {features.map((feature) => (
+                <div key={feature.id} className="relative">
+                  <button
+                    onClick={() => setActiveStep(feature.id)}
+                    className={`relative flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-left transition-all duration-200 border overflow-hidden ${
+                      activeStep === feature.id
+                        ? 'border-[#22c55e]/40 bg-[#f0fdf4]'
+                        : 'border-[#f3f4f6] bg-white hover:border-[#22c55e]/20 hover:bg-[#f9fafb]'
+                    }`}
+                  >
+                    {/* Active left-border accent */}
+                    {activeStep === feature.id && (
+                      <span className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl bg-[#22c55e]" />
+                    )}
+                    <div className="flex flex-col gap-0.5 min-w-0 flex-1 pl-1">
+                      <div className={`text-xs font-medium ${
+                        activeStep === feature.id ? 'text-[#22c55e]/80' : 'text-[#9ca3af]'
+                      }`}>
+                        {feature.subtitle}
+                      </div>
+                      <div className={`text-xl font-bold ${
+                        activeStep === feature.id ? 'text-[#111827]' : 'text-[#374151]'
+                      }`}>
+                        {feature.title}
+                      </div>
+                    </div>
 
-          {/* Button */}
-          <button
-            onClick={() => setActiveStep(feature.id)}
-            className={`relative flex w-full items-center justify-between gap-2 sm:gap-3 rounded-lg px-4 md:px-5 py-3 md:py-4 text-left transition-all ${
-              activeStep === feature.id
-                ? 'bg-gradient-to-br from-[#F68E41] to-[#BD3E11]'
-                : 'bg-white hover:bg-[#FFF6ED]'
-            }`}
-          >
-            <div className="flex flex-col gap-0.5 sm:gap-1 min-w-0 flex-1">
-              <div
-                className={`font-poppins text-xs sm:text-sm font-medium ${
-                  activeStep === feature.id ? 'text-[#FFF6ED]' : 'text-[#6D6D6D]'
-                }`}
-              >
-                {feature.subtitle}
-              </div>
-              <div
-                className={`font-poppins text-md sm:text-xl font-semibold ${
-                  activeStep === feature.id ? 'text-white' : 'text-[#2A73B5]'
-                }`}
-              >
-                {feature.title}
+                    <div className="flex size-9 items-center justify-center shrink-0">
+                      <Image
+                        src={feature.icon}
+                        alt={feature.title}
+                        width={36}
+                        height={36}
+                        className={`w-full h-full transition-all duration-200 ${
+                          activeStep === feature.id ? 'opacity-70' : 'opacity-30'
+                        }`}
+                      />
+                    </div>
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Content Card */}
+            <div className="flex w-full max-w-[800px] items-stretch rounded-2xl bg-white border border-[#f3f4f6] shadow-sm p-5 sm:p-6 overflow-hidden">
+              <div className="flex w-full flex-col gap-6 min-[1152px]:flex-row min-[1152px]:items-start min-[1152px]:gap-10">
+
+                {/* Text Side */}
+                <div className="flex flex-col gap-4 w-full md:min-w-[300px] lg:min-w-[350px]">
+                  <p className="text-base sm:text-lg leading-relaxed text-[#4b5563]">
+                    {activeFeature.description}
+                  </p>
+
+                  <button
+                    onClick={handleOpenContact}
+                    className="group flex w-fit items-center gap-1.5 rounded-xl border border-[#22c55e]/40 bg-[#f0fdf4] px-4 py-2.5 transition-all hover:bg-[#22c55e] hover:border-[#22c55e]"
+                  >
+                    <span className="text-sm sm:text-base font-semibold text-[#22c55e] group-hover:text-black transition-colors">
+                      Let&apos;s Connect
+                    </span>
+                    <svg
+                      width="16" height="16" viewBox="0 0 16 16" fill="none"
+                      className="text-[#22c55e] group-hover:text-black transition-colors group-hover:translate-x-1 transition-transform"
+                      aria-hidden
+                    >
+                      <path d="M5 8H11M11 8L8 5M11 8L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Image Side */}
+                <div className="flex items-center justify-center w-full sm:w-auto min-[1152px]:flex-1 min-[1152px]:justify-end">
+                  {!imageLoaded && (
+                    <div className="h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] animate-pulse rounded-lg bg-[#f3f4f6]" />
+                  )}
+                  <Image
+                    src="/images/valuesection/world.svg"
+                    alt="Global connectivity"
+                    width={340}
+                    height={340}
+                    className={`h-auto w-full max-w-[200px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[340px] ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    priority
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iI2Y5ZmFmYiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
+                    onLoad={() => setImageLoaded(true)}
+                  />
+                </div>
+
               </div>
             </div>
 
-            <div className="flex size-8 sm:size-9 md:size-10 items-center justify-center shrink-0">
-              <Image
-                src={feature.icon}
-                alt={feature.title}
-                width={40}
-                height={40}
-                className={`w-full h-full ${
-                  activeStep === feature.id ? 'invert brightness-0' : ''
-                }`}
-              />
-            </div>
-          </button>
+          </div>
         </div>
-      ))}
-    </div>
-
-    {/* Content Card */}
-    <div className="flex w-full max-w-[800px] items-stretch rounded-2xl bg-white p-4 sm:p-5 md:p-6 overflow-hidden">
-      <div className="flex w-full flex-col gap-6 sm:gap-7 md:gap-8 min-[1152px]:flex-row min-[1152px]:items-start min-[1152px]:gap-10">
-
-        {/* Text Side */}
-        <div className="flex flex-col gap-4 w-full md:min-w-[300px] lg:min-w-[350px]">
-          <p className="font-poppins text-base sm:text-lg leading-normal text-[#4F4F4F] break-words">
-            {activeFeature.description}
-          </p>
-
-          <button
-            onClick={handleOpenContact}
-            className="group flex w-fit items-center gap-1.5 rounded-lg bg-[#FFF6ED] px-3 md:px-4 py-2.5 md:py-3 transition-all hover:bg-[#FFE8D1]"
-          >
-            <span className="font-poppins text-sm sm:text-base leading-none text-[#E45412]">
-              Let&apos;s Connect
-            </span>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              className="transition-transform group-hover:translate-x-1"
-            >
-              <path
-                d="M5 8H11M11 8L8 5M11 8L8 11"
-                stroke="#E45412"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Image Side */}
-        <div className="flex items-center justify-center w-full sm:w-auto min-[1152px]:flex-1 min-[1152px]:justify-end md:min-w-[260px]">
-          {!imageLoaded && (
-            <div className="h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] md:h-[260px] md:w-[260px] animate-pulse rounded-lg bg-gray-200" />
-          )}
-
-          <Image
-            src="/images/valuesection/world.svg"
-            alt="Global connectivity"
-            width={340}
-            height={340}
-            className={`h-auto w-full max-w-[200px] sm:max-w-[240px] md:max-w-[300px] lg:max-w-[340px] ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            priority
-            placeholder="blur"
-            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iI2YzZjRmNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
-            onLoad={() => setImageLoaded(true)}
-          />
-        </div>
-
       </div>
-    </div>
-
-  </div>
-</div>
-</div>
-      </section>
-      <div className=" flex justify-center">
-         <Image
-           src="/images/horizontalline.svg"
-           alt=""
-           width={1200}
-           height={3}
-           className="w-full max-w-6xl"
-           aria-hidden
-         />
-       </div>
-    </>
+    </section>
   );
 }
-
-

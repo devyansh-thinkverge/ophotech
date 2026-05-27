@@ -9,10 +9,6 @@ import { Dropdown } from "@/components/layout/Dropdown";
 import { SearchDropdown } from "@/components/layout/SearchDropdown";
 import { PrimaryButton } from "@/components/ui/Button";
 import { SecondaryButton } from "@/components/ui/SecondaryButton";
-import {
-  buildContactModalOpenUrl,
-  markContactModalOpenedFromUi,
-} from "@/lib/contact-modal";
 import { slugify } from "@/lib/utils";
 import { fetchAllContent } from "@/lib/client-api";
 import { AllContentData } from "@/lib/types";
@@ -69,17 +65,17 @@ const SearchIcon = ({ className }: { className?: string }) => (
 const MenuIcon = ({ open }: { open: boolean }) => (
   <div className="relative flex h-6 w-6 items-center justify-center">
     <span
-      className={`absolute h-0.5 w-5 rounded-full bg-orange-25 transition-all duration-200 ${
+      className={`absolute h-0.5 w-5 rounded-full bg-white transition-all duration-200 ${
         open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
       }`}
     />
     <span
-      className={`absolute h-0.5 w-5 rounded-full bg-orange-25 transition-opacity duration-200 ${
+      className={`absolute h-0.5 w-5 rounded-full bg-white transition-opacity duration-200 ${
         open ? "opacity-0" : "opacity-100"
       }`}
     />
     <span
-      className={`absolute h-0.5 w-5 rounded-full bg-orange-25 transition-all duration-200 ${
+      className={`absolute h-0.5 w-5 rounded-full bg-white transition-all duration-200 ${
         open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
       }`}
     />
@@ -89,7 +85,7 @@ const MenuIcon = ({ open }: { open: boolean }) => (
 const ChevronSmall = ({ open }: { open: boolean }) => (
   <svg
     aria-hidden="true"
-    className={`size-4 text-orange-400 transition-transform duration-200 ${
+    className={`size-4 text-[#22c55e] transition-transform duration-200 ${
       open ? "rotate-180" : ""
     }`}
     fill="currentColor"
@@ -108,11 +104,12 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [allContent, setAllContent] = useState<AllContentData | null>(null);
   const [isLoadingContent, setIsLoadingContent] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchModalRef = useRef<HTMLDivElement | null>(null);
 
   const navLinkBase =
-    "relative inline-flex items-center pb-3 text-sm font-medium text-white/80 transition-colors duration-200 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-orange-500 after:transition-all after:duration-200 after:content-[''] hover:text-white hover:after:w-full";
+    "relative inline-flex items-center pb-3 text-sm font-medium text-white/70 transition-colors duration-200 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-[#22c55e] after:transition-all after:duration-200 after:content-[''] hover:text-white hover:after:w-full";
   const navLinkActive = "text-white after:w-full";
 
   const dropdowns = useMemo(
@@ -134,12 +131,16 @@ export function Header() {
     [],
   );
 
-  // Load content when search is opened for the first time
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSearchToggle = () => {
     setSearchOpen(!searchOpen);
   };
 
-  // Lazy load content when search opens
   useEffect(() => {
     if (searchOpen && !allContent && !isLoadingContent) {
       const loadContent = async () => {
@@ -157,7 +158,6 @@ export function Header() {
     }
   }, [searchOpen, allContent, isLoadingContent]);
 
-  // Close search modal when route changes (navigation completes)
   useEffect(() => {
     setSearchOpen(false);
   }, [pathname]);
@@ -193,28 +193,33 @@ export function Header() {
   }, []);
 
   const handleOpenContact = () => {
-    const searchParams = new URLSearchParams(
-      typeof window === "undefined" ? "" : window.location.search,
-    );
-    markContactModalOpenedFromUi();
-    router.push(buildContactModalOpenUrl(pathname, searchParams));
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#contact");
+    }
   };
 
   return (
     <>
       <header
-        className="relative sticky top-0 z-50 bg-gray-900 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-white/20 after:via-orange-500 after:to-white/10 after:content-['']"
+        className={`relative sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+            : "bg-[#0a0a0a]/90 border-b border-white/5"
+        }`}
         role="banner"
       >
-       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-2 xl:px-0">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-2 xl:px-0">
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo/logo.svg"
-              alt="OphoTech"
-              width={184}
-              height={39}
+              src="/images/logo/Opho logo for dark mode.png"
+              alt="Opho Technologies"
+              width={190}
+              height={64}
               priority
-              className="h-auto w-36 md:w-[184px]"
+              className="h-auto w-24 md:w-[140px]"
             />
           </Link>
 
@@ -250,12 +255,12 @@ export function Header() {
                 <button
                   type="button"
                   aria-label="Search"
-                  className="flex size-10 items-center justify-center rounded-xl bg-orange-25 text-orange-500 transition hover:bg-orange-50"
+                  className="flex size-10 items-center justify-center rounded-xl bg-white/5 text-[#22c55e] transition hover:bg-[#22c55e]/10 border border-white/10"
                   onClick={handleSearchToggle}
                   aria-expanded={searchOpen}
                   aria-haspopup="true"
                 >
-                  <SearchIcon className="size-9" />
+                  <SearchIcon className="size-5" />
                 </button>
 
                 {searchOpen ? (
@@ -273,7 +278,7 @@ export function Header() {
           <button
             type="button"
             aria-label="Toggle navigation"
-            className="flex items-center justify-center rounded-xl border border-white/10 p-2 text-orange-25 lg:hidden"
+            className="flex items-center justify-center rounded-xl border border-white/10 p-2 text-white lg:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
           >
             <MenuIcon open={mobileOpen} />
@@ -283,7 +288,7 @@ export function Header() {
         <div
           className={`lg:hidden transition-[max-height,opacity] duration-300 ${
             mobileOpen ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
-          } overflow-hidden border-t border-white/10 bg-[#151722]/95`}
+          } overflow-hidden border-t border-white/10 bg-[#0f0f0f]`}
         >
           <div className="space-y-6 px-4 py-6">
             <Link
@@ -291,7 +296,7 @@ export function Header() {
               onClick={() => setMobileOpen(false)}
               className={`block text-base font-semibold ${
                 pathname === "/"
-                  ? "text-white"
+                  ? "text-[#22c55e]"
                   : "text-white/80 hover:text-white"
               }`}
             >
@@ -322,7 +327,7 @@ export function Header() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="block text-sm text-blue-100 hover:text-white"
+                        className="block text-sm text-white/50 hover:text-[#22c55e]"
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.label}
@@ -361,10 +366,10 @@ export function Header() {
 
       {/* Mobile Search Modal */}
       {!HIDE_RESOURCES && searchOpen && (
-        <div className="fixed inset-0 z-[70] bg-black/50 lg:hidden">
+        <div className="fixed inset-0 z-[70] bg-black/70 lg:hidden">
           <div
             ref={mobileSearchModalRef}
-            className="fixed inset-x-0 top-0 bottom-0 z-[71] bg-white shadow-xl overflow-hidden"
+            className="fixed inset-x-0 top-0 bottom-0 z-[71] bg-[#0f0f0f] shadow-xl overflow-hidden"
           >
             <SearchDropdown
               allContent={allContent}

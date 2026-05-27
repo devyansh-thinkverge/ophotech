@@ -5,13 +5,12 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { YourJourney } from "@/components/sections/Your-Journey";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { LazyCTASection } from "@/components/sections/LazyCTASection";
 import { LazyValuePropositionSection } from "@/components/sections/LazyValuePropositionSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { HIDE_RESOURCES } from "@/lib/featureFlags";
 
 export default function Home() {
@@ -21,40 +20,19 @@ export default function Home() {
       <main className="flex flex-col">
         <HeroSection />
         <StatsSection />
-        <AnimatedSection delay={100}>
-          <YourJourney />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <ServicesSection />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <LazyValuePropositionSection />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <HowWeWorkSection />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <IndustriesSection />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <ProductsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={100}>
-          <LazyCTASection variant="gradient" />
-        </AnimatedSection>
+        <YourJourney />
+        <ServicesSection />
+        <LazyValuePropositionSection />
+        <HowWeWorkSection />
+        <IndustriesSection />
+        <ProductsSection />
         {HIDE_RESOURCES ? null : (
           <>
-            <AnimatedSection delay={100}>
-              <NewsletterSection />
-            </AnimatedSection>
-            <AnimatedSection delay={100}>
-              <CaseStudiesSection />
-            </AnimatedSection>
+            <NewsletterSection />
+            <CaseStudiesSection />
           </>
         )}
-        <AnimatedSection delay={100}>
-          <LazyCTASection variant="ready" />
-        </AnimatedSection>
+        <ContactSection />
       </main>
       <Footer />
     </div>

@@ -19,7 +19,7 @@ export const SecondaryButton = forwardRef<
   <button
     ref={ref}
     className={cn(
-      "inline-flex items-center gap-2 rounded-lg bg-orange-25 px-6 py-3 text-base text-orange-500 transition-colors duration-200 hover:bg-orange-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400",
+      "inline-flex items-center gap-2 rounded-lg border border-[#22c55e]/50 bg-transparent px-6 py-3 text-base text-[#4ade80] transition-all duration-200 hover:glass-green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22c55e]",
       className,
     )}
     {...props}
@@ -31,4 +31,3 @@ export const SecondaryButton = forwardRef<
 ));
 
 SecondaryButton.displayName = "SecondaryButton";
-

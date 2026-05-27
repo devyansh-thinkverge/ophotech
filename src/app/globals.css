@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
@@ -11,49 +12,69 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f6f6f6;
+  background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c6dcf1;
+  background: #22c55e40;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a73b5;
+  background: #22c55e;
 }
 
 @theme inline {
   --font-sans: var(--font-sans);
 
-  --color-background: #ffffff;
-  --color-foreground: #111111;
+  /* Dark theme base */
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
   --color-base-white: #ffffff;
 
-  --color-gray-900: #111111;
-  --color-gray-600: #4f4f4f;
-  --color-gray-400: #6d6d6d;
-  --color-gray-300: #888888;
-  --color-gray-100: #e7e7e7;
-  --color-gray-50: #f0f0f0;
-  --color-gray-25: #f6f6f6;
+  /* Surface colors */
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-surface-3: #222222;
 
+  /* Gray scale */
+  --color-gray-900: #ffffff;
+  --color-gray-600: #a0a0a0;
+  --color-gray-400: #6d6d6d;
+  --color-gray-300: #444444;
+  --color-gray-100: #2a2a2a;
+  --color-gray-50: #1a1a1a;
+  --color-gray-25: #111111;
+
+  /* Green (primary brand) */
+  --color-green-600: #16a34a;
+  --color-green-500: #22c55e;
+  --color-green-400: #4ade80;
+  --color-green-300: #86efac;
+  --color-green-100: rgba(34, 197, 94, 0.1);
+  --color-green-50: rgba(34, 197, 94, 0.05);
+  --color-green-25: rgba(34, 197, 94, 0.03);
+
+  /* Keep blue for Data Fabric AI product */
   --color-blue-500: #2a73b5;
   --color-blue-100: #c6dcf1;
 
-  --color-orange-600: #bd3e11;
-  --color-orange-500: #e45412;
-  --color-orange-400: #f37121;
-  --color-orange-100: #ffdfc8;
-  --color-orange-50: #fee7d6;
-  --color-orange-25: #fff6ed;
+  /* Keep orange aliases for any remaining references */
+  --color-orange-600: #16a34a;
+  --color-orange-500: #22c55e;
+  --color-orange-400: #4ade80;
+  --color-orange-100: rgba(34, 197, 94, 0.1);
+  --color-orange-50: rgba(34, 197, 94, 0.05);
+  --color-orange-25: rgba(34, 197, 94, 0.03);
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: #0a0a0a;
+  color: #ffffff;
   font-family: var(--font-sans);
 }
+
+/* ─── Keyframes ──────────────────────────────────────────── */
 
 @keyframes modal-in {
   from {
@@ -64,10 +85,6 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-@utility animate-modal-in {
-  animation: modal-in 0.3s ease forwards;
 }
 
 @keyframes fade-in {
@@ -81,190 +98,119 @@ body {
   }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes particle {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ─── Utility classes ────────────────────────────────────── */
+
+@utility animate-modal-in {
+  animation: modal-in 0.3s ease forwards;
+}
+
 @utility animate-fade-in {
   animation: fade-in 0.2s ease forwards;
 }
 
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 2s ease-out forwards;
+}
+
+/* ─── Glassmorphism ──────────────────────────────────────── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-green {
+  background: rgba(34, 197, 94, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* ─── Glow effects ───────────────────────────────────────── */
+
+.glow-green {
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+}
+
+.glow-green-sm {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+/* ─── Gradient text ──────────────────────────────────────── */
+
+.gradient-text {
+  background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #86efac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Backgrounds ────────────────────────────────────────── */
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(34, 197, 94, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ─── Service card (legacy — kept for any remaining usage) ── */
+
 .service-card {
-  --service-card-bg: #fffaf5;
-  --service-card-radius: 22px;
-  --service-card-border-width: 1px;
-  --service-card-border-color: rgb(254 243 199); /* orange-200 */
-  --service-card-border-color-hover: rgb(249 115 22); /* orange-500 */
-
-  /* Arrow button is h-11 w-11 => 44px */
-  --service-card-button-size: 44px;
-  --service-card-cutout-gap: 10px;
-  /* Cutout radius slightly larger than the button for breathing room */
-  --service-card-cutout-radius: calc(
-    (var(--service-card-button-size) / 2) + var(--service-card-cutout-gap)
-  );
-  /* Keep the cutout looking like a "half circle" by pushing half the radius outside */
-  --service-card-cutout-inset: calc(var(--service-card-cutout-radius) / 2);
-
-  /* Reusable masks (fixed-radius circle => never stretches into an oval) */
-  --service-card-cutout-mask: radial-gradient(
-    circle var(--service-card-cutout-radius) at
-      calc(100% - var(--service-card-cutout-inset))
-      calc(100% - var(--service-card-cutout-inset)),
-    transparent 0 calc(var(--service-card-cutout-radius) - 0.5px),
-    #000 calc(var(--service-card-cutout-radius) + 0.5px)
-  );
-  --service-card-cutout-radius-inner: calc(
-    var(--service-card-cutout-radius) - var(--service-card-border-width)
-  );
-  --service-card-cutout-inset-inner: calc(
-    var(--service-card-cutout-inset) - var(--service-card-border-width)
-  );
-  --service-card-cutout-mask-inner: radial-gradient(
-    circle var(--service-card-cutout-radius-inner) at
-      calc(100% - var(--service-card-cutout-inset-inner))
-      calc(100% - var(--service-card-cutout-inset-inner)),
-    transparent 0 calc(var(--service-card-cutout-radius-inner) - 0.5px),
-    #000 calc(var(--service-card-cutout-radius-inner) + 0.5px)
-  );
-  isolation: isolate;
-  position: relative;
-  border-radius: 0; /* Shape is handled by masks/pseudo-elements */
-  overflow: visible; /* Allow cutout and button to extend beyond card bounds */
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
 }
 
-/* Card background fill (masked so the cutout is transparent) */
-.service-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--service-card-bg);
-  z-index: -1;
-  border-radius: var(--service-card-radius);
-  -webkit-mask-image: var(--service-card-cutout-mask);
-  mask-image: var(--service-card-cutout-mask);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-
-/* Border ring (outer minus inner) so the curve stays perfectly circular */
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--service-card-radius);
-  padding: var(--service-card-border-width);
-  background: var(--service-card-border-color);
-  pointer-events: none;
-  transition: background 0.3s ease;
-  z-index: 1;
-  -webkit-mask:
-    var(--service-card-cutout-mask) border-box,
-    var(--service-card-cutout-mask-inner) content-box;
-  -webkit-mask-composite: xor;
-  mask:
-    var(--service-card-cutout-mask) border-box,
-    var(--service-card-cutout-mask-inner) content-box;
-  mask-composite: exclude;
-}
-
-.service-card:hover::before {
-  background: var(--service-card-border-color-hover);
-}
-
-/* Dotted pattern background - masked to exclude cutout area */
-.service-card-dots {
-  border-radius: var(--service-card-radius);
-  -webkit-mask-image: var(--service-card-cutout-mask);
-  mask-image: var(--service-card-cutout-mask);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-
-/* Arrow button anchor: tied to the same geometry as the cutout */
-.service-card-button {
-  position: absolute;
-  z-index: 4;
-  width: var(--service-card-button-size);
-  height: var(--service-card-button-size);
-  right: calc(
-    var(--service-card-cutout-inset) - (var(--service-card-button-size) / 2)
-  );
-  bottom: calc(
-    var(--service-card-cutout-inset) - (var(--service-card-button-size) / 2)
-  );
-}
-
-/* iPad mini specific styles (744px - 768px) */
-@media (min-width: 744px) and (max-width: 768px) {
-  /* Card headings - reduce from 24px to 20px */
-  .card-text-smaller h3 {
-    font-size: 1.25rem !important; /* 20px (reduced from 24px) */
-    line-height: 1.5rem !important; /* 24px */
-  }
-  
-  .card-text-smaller h4 {
-    font-size: 1.125rem !important; /* 18px */
-    line-height: 1.375rem !important; /* 22px */
-  }
-  
-  /* Card body text - reduce from 16px to 14px */
-  .card-text-smaller p {
-    font-size: 0.875rem !important; /* 14px (reduced from 16px) */
-    line-height: 1.25rem !important; /* 20px */
-  }
-  
-  /* Card body text with text-sm class - reduce from 14px to 12px */
-  .card-text-smaller p.text-sm {
-    font-size: 0.75rem !important; /* 12px (reduced from 14px) */
-    line-height: 1.125rem !important; /* 18px */
-  }
-  
-  /* Card headings that use p tag with text-[16px] - reduce to 14px */
-  .card-text-smaller p[class*="text-\[16px\]"].font-medium,
-  .card-text-smaller p.font-medium {
-    font-size: 0.875rem !important; /* 14px */
-    line-height: 1.25rem !important; /* 20px */
-  }
-  
-  /* Card headings that use p tag with text-[24px] - reduce to 20px (like h3) */
-  .card-text-smaller p[class*="text-\[24px\]"] {
-    font-size: 1.25rem !important; /* 20px (reduced from 24px) */
-    line-height: 1.5rem !important; /* 24px */
-  }
-  
-  /* Card body text with text-[18px] - reduce to 16px */
-  .card-text-smaller p[class*="text-\[18px\]"] {
-    font-size: 1rem !important; /* 16px (reduced from 18px) */
-    line-height: 1.5rem !important; /* 24px */
-  }
-}
-
-/* Mobile optimizations for service cards */
-@media (max-width: 640px) {
-  .service-card {
-    /* Simplify complex CSS on mobile for better performance */
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .service-card::after,
-  .service-card::before {
-    /* Use simpler borders on mobile */
-    border-radius: 16px;
-    border: 1px solid rgb(254 243 199);
-  }
-
-  .service-card::after {
-    background: #fffaf5;
-    border-radius: 16px;
-  }
-
-  .service-card-dots {
-    /* Reduce dotted pattern complexity on mobile */
-    background-size: 20px_20px;
-    opacity: 0.7;
-  }
-}
-
-@media (min-width: 1024px) {
-  [data-divider] {
-    background-size: 2px 100%;
-  }
+.service-card:hover {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.2);
 }

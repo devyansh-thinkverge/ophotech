@@ -10,32 +10,33 @@ export function JourneyAnimationMobile() {
       {/* Vertical Timeline Container */}
       <div className="relative">
         {/* Vertical Line */}
-        <div 
-          className="absolute left-[23px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-gray-300 to-white -translate-x-1/2"
+        <div
+          className="absolute left-[23px] top-0 bottom-0 w-[2px] -translate-x-1/2"
+          style={{ background: "linear-gradient(to bottom, #22c55e, rgba(34,197,94,0.1))" }}
         />
 
         {/* Timeline Items */}
         <div className="space-y-0 relative">
-          {JOURNEY_STOPS.map((stop, index) => (
+          {JOURNEY_STOPS.map((stop) => (
             <div key={stop.id} className="relative">
-              {/* Connector and Content Row */}
-              <div className="flex items-start gap-4 ">
-                {/* Connector SVG */}
-                <div className="relative flex-shrink-0 rounded-full bg-white p-2">
+              <div className="flex items-start gap-4">
+                {/* Icon */}
+                <div className="relative flex-shrink-0 rounded-full p-2" style={{ background: "rgba(34,197,94,0.15)", border: "1px solid rgba(34,197,94,0.3)" }}>
                   <Image
                     src={stop.iconMobile}
                     alt=""
                     width={30}
                     height={30}
+                    className="brightness-0 invert"
                   />
                 </div>
 
-                {/* Text Content */}
+                {/* Text */}
                 <div className="flex-1 mb-10">
-                  <h3 className="text-base font-bold text-gray-900 leading-tight mb-2">
+                  <h3 className="text-base font-bold text-white leading-tight mb-2">
                     {stop.title}
                   </h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
                     {stop.description}
                   </p>
                 </div>
