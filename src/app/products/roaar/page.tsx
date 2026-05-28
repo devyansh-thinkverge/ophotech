@@ -8,7 +8,7 @@ import BackgroundDots from "@/components/ui/background";
 import { IconCardsSection } from "@/components/ui/IconCardsSection";
 import { SolutionsNavigationSection } from "@/components/ui/SolutionsNavigationSection";
 import { SolutionsIntroSection } from "@/components/ui/SolutionsIntroSection";
-import { LazyCTASection } from "@/components/sections/LazyCTASection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const engineeringMethodology = [
   {
@@ -50,7 +50,7 @@ const whyROAAR = [
 
 export default function ROAARPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white text-[#111827]">
       <Header />
 
       <HeroSection
@@ -69,7 +69,7 @@ export default function ROAARPage() {
           imageAlt="ROAAR decision intelligence illustration"
           copy={
             <>
-              <h2 className="mb-4 text-2xl font-semibold text-[#0B1B2B]">
+              <h2 className="mb-4 text-2xl font-semibold text-[#111827]">
                 Stop Experimenting. Start Scaling.
               </h2>
               <p className="mb-6">
@@ -115,12 +115,10 @@ export default function ROAARPage() {
           withBackgroundDots
           backgroundDotsProps={{
             spacing: 36,
-            dotSize: 2.5,
-            backgroundColor: "",
-            dotColor: "#D9D9D9",
-            style: {
-              background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-            },
+            dotSize: 2,
+            backgroundColor: "white",
+            dotColor: "#e5e7eb",
+            style: { borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" },
           }}
         />
 
@@ -128,20 +126,17 @@ export default function ROAARPage() {
         <BackgroundDots
           className="py-16"
           spacing={36}
-          dotSize={2.5}
-          backgroundColor=""
-          dotColor="#D9D9D9"
-          style={{
-            background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-          }}
+          dotSize={2}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
         >
           <div className="mx-auto max-w-6xl px-3 xl:px-0">
             <div className="space-y-16">
               <div className="text-center">
-                <h2 className="text-3xl font-medium text-[#111111]">
+                <h2 className="text-3xl font-medium text-[#111827]">
                   The ROAAR Engineering Methodology
                 </h2>
-                <p className="mx-auto mt-4 max-w-3xl text-base text-[#454545]">
+                <p className="mx-auto mt-4 max-w-3xl text-base text-[#6b7280]">
                   A four-phase framework that transforms technology evaluation from guesswork into a
                   governed, repeatable process.
                 </p>
@@ -150,11 +145,11 @@ export default function ROAARPage() {
                   {engineeringMethodology.map((phase) => (
                     <div
                       key={phase.title}
-                      className="flex flex-col gap-3 rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 text-left shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)]"
+                      className="flex flex-col gap-3 rounded-2xl border border-[#f3f4f6] bg-white p-6 text-left shadow-sm hover:border-[#22c55e]/20 transition-colors"
                     >
-                      <div className="size-2 rounded-full bg-[#E45412]" />
-                      <h3 className="text-lg font-semibold text-[#111111]">{phase.title}</h3>
-                      <p className="text-sm leading-relaxed text-[#454545]">{phase.description}</p>
+                      <div className="size-2 rounded-full bg-[#22c55e]" />
+                      <h3 className="text-base font-semibold text-[#111827]">{phase.title}</h3>
+                      <p className="text-sm leading-relaxed text-[#6b7280]">{phase.description}</p>
                     </div>
                   ))}
                 </div>
@@ -162,25 +157,25 @@ export default function ROAARPage() {
 
               {/* Why Build With ROAAR */}
               <div className="text-center">
-                <h3 className="text-[26px] font-medium leading-[38px] text-gray-600 sm:text-[28px]">
+                <h3 className="text-[26px] font-medium leading-[38px] text-[#111827] sm:text-[28px]">
                   Why Build With ROAAR?
                 </h3>
-                <p className="mx-auto mt-4 max-w-4xl text-base text-[#454545]">
+                <p className="mx-auto mt-4 max-w-4xl text-base text-[#6b7280]">
                   A custom decision intelligence system built for your unique enterprise challenges.
                 </p>
 
-                <div className="mt-10 rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] sm:p-10">
+                <div className="mt-10 rounded-2xl border border-[#f3f4f6] bg-white p-6 shadow-sm sm:p-10">
                   <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
                     {whyROAAR.map((pillar, index) => (
                       <Fragment key={pillar.title}>
                         <div className="flex-1 text-left">
-                          <h4 className="text-2xl font-medium leading-[26px] text-[#E45412]">
+                          <h4 className="text-xl font-medium text-[#22c55e]">
                             {pillar.title}
                           </h4>
-                          <p className="mt-4 text-base text-[#454545]">{pillar.body}</p>
+                          <p className="mt-4 text-base text-[#6b7280]">{pillar.body}</p>
                         </div>
                         {index < whyROAAR.length - 1 && (
-                          <div className="hidden lg:block lg:w-[1px] lg:self-stretch lg:bg-gradient-to-b lg:from-transparent lg:via-[#FCD5AC] lg:to-transparent" />
+                          <div className="hidden lg:block lg:w-[1px] lg:self-stretch lg:bg-gradient-to-b lg:from-transparent lg:via-[#22c55e]/20 lg:to-transparent" />
                         )}
                       </Fragment>
                     ))}
@@ -191,7 +186,7 @@ export default function ROAARPage() {
           </div>
         </BackgroundDots>
 
-        <LazyCTASection variant="gradient" />
+        <ContactSection />
 
         <SolutionsNavigationSection
           title="Explore Our Products"

@@ -7,7 +7,7 @@ import BackgroundDots from "@/components/ui/background";
 import { IconCardsSection } from "@/components/ui/IconCardsSection";
 import { SolutionsNavigationSection } from "@/components/ui/SolutionsNavigationSection";
 import { SolutionsIntroSection } from "@/components/ui/SolutionsIntroSection";
-import { LazyCTASection } from "@/components/sections/LazyCTASection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const platformFeatures = [
   {
@@ -49,7 +49,7 @@ const enterprisePerformance = [
 
 export default function DataFabricAIPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white text-[#111827]">
       <Header />
 
       <HeroSection
@@ -68,7 +68,7 @@ export default function DataFabricAIPage() {
           imageAlt="Data Fabric AI platform illustration"
           copy={
             <>
-              <h2 className="mb-4 text-2xl font-semibold text-[#0B1B2B]">
+              <h2 className="mb-4 text-2xl font-semibold text-[#111827]">
                 Ending Integration Complexity
               </h2>
               <p className="mb-6">
@@ -146,12 +146,10 @@ export default function DataFabricAIPage() {
           withBackgroundDots
           backgroundDotsProps={{
             spacing: 36,
-            dotSize: 2.5,
-            backgroundColor: "",
-            dotColor: "#D9D9D9",
-            style: {
-              background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-            },
+            dotSize: 2,
+            backgroundColor: "white",
+            dotColor: "#e5e7eb",
+            style: { borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" },
           }}
         />
 
@@ -159,18 +157,15 @@ export default function DataFabricAIPage() {
         <BackgroundDots
           className="py-16"
           spacing={36}
-          dotSize={2.5}
-          backgroundColor=""
-          dotColor="#D9D9D9"
-          style={{
-            background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-          }}
+          dotSize={2}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
         >
           <div className="mx-auto max-w-6xl px-3 xl:px-0">
             <div className="space-y-16">
               <div className="text-center">
-                <h2 className="text-3xl font-medium text-[#111111]">Platform Features</h2>
-                <p className="mx-auto mt-4 max-w-3xl text-base text-[#454545]">
+                <h2 className="text-3xl font-medium text-[#111827]">Platform Features</h2>
+                <p className="mx-auto mt-4 max-w-3xl text-base text-[#6b7280]">
                   Everything your team needs to go from raw, siloed data to production-ready AI
                   assets — without heavy engineering overhead.
                 </p>
@@ -179,11 +174,11 @@ export default function DataFabricAIPage() {
                   {platformFeatures.map((feature) => (
                     <div
                       key={feature.title}
-                      className="flex flex-col gap-3 rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 text-left shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)]"
+                      className="flex flex-col gap-3 rounded-2xl border border-[#f3f4f6] bg-white p-6 text-left shadow-sm hover:border-[#22c55e]/20 transition-colors"
                     >
-                      <div className="size-2 rounded-full bg-[#2A73B5]" />
-                      <h3 className="text-lg font-semibold text-[#111111]">{feature.title}</h3>
-                      <p className="text-sm leading-relaxed text-[#454545]">{feature.description}</p>
+                      <div className="size-2 rounded-full bg-[#22c55e]" />
+                      <h3 className="text-base font-semibold text-[#111827]">{feature.title}</h3>
+                      <p className="text-sm leading-relaxed text-[#6b7280]">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -191,10 +186,10 @@ export default function DataFabricAIPage() {
 
               {/* Enterprise Performance */}
               <div className="text-center">
-                <h3 className="text-[26px] font-medium leading-[38px] text-gray-600 sm:text-[28px]">
+                <h3 className="text-[26px] font-medium leading-[38px] text-[#111827] sm:text-[28px]">
                   Enterprise Performance & Scalability
                 </h3>
-                <p className="mx-auto mt-4 max-w-4xl text-base text-[#454545]">
+                <p className="mx-auto mt-4 max-w-4xl text-base text-[#6b7280]">
                   Built for the scale and governance demands of modern enterprise AI operations.
                 </p>
 
@@ -202,10 +197,10 @@ export default function DataFabricAIPage() {
                   {enterprisePerformance.map((item) => (
                     <div
                       key={item.title}
-                      className="rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 text-left shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] flex flex-col"
+                      className="rounded-2xl border border-[#f3f4f6] bg-white p-6 text-left shadow-sm flex flex-col hover:border-[#22c55e]/20 transition-colors"
                     >
-                      <h4 className="text-xl font-medium text-[#2A73B5]">{item.title}</h4>
-                      <p className="mt-3 text-base text-[#454545]">{item.body}</p>
+                      <h4 className="text-xl font-medium text-[#22c55e]">{item.title}</h4>
+                      <p className="mt-3 text-base text-[#6b7280]">{item.body}</p>
                     </div>
                   ))}
                 </div>
@@ -214,7 +209,7 @@ export default function DataFabricAIPage() {
           </div>
         </BackgroundDots>
 
-        <LazyCTASection variant="gradient" />
+        <ContactSection />
 
         <SolutionsNavigationSection
           previousHref="/products/roaar"

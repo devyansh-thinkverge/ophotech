@@ -8,7 +8,7 @@ import BackgroundDots from "@/components/ui/background";
 import { IconCardsSection } from "@/components/ui/IconCardsSection";
 import { SolutionsNavigationSection } from "@/components/ui/SolutionsNavigationSection";
 import { SolutionsIntroSection } from "@/components/ui/SolutionsIntroSection";
-import { LazyCTASection } from "@/components/sections/LazyCTASection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const enterprisePerformance = [
   {
@@ -27,7 +27,7 @@ const enterprisePerformance = [
 
 export default function ShooutAIPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white text-[#111827]">
       <Header />
 
       <HeroSection
@@ -46,7 +46,7 @@ export default function ShooutAIPage() {
           imageAlt="Shoout AI marketing intelligence illustration"
           copy={
             <>
-              <h2 className="mb-4 text-2xl font-semibold text-[#0B1B2B]">
+              <h2 className="mb-4 text-2xl font-semibold text-[#111827]">
                 Your Strategic Marketing Co-Pilot
               </h2>
               <p className="mb-6">
@@ -102,12 +102,10 @@ export default function ShooutAIPage() {
           withBackgroundDots
           backgroundDotsProps={{
             spacing: 36,
-            dotSize: 2.5,
-            backgroundColor: "",
-            dotColor: "#D9D9D9",
-            style: {
-              background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-            },
+            dotSize: 2,
+            backgroundColor: "white",
+            dotColor: "#e5e7eb",
+            style: { borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" },
           }}
         />
 
@@ -115,35 +113,32 @@ export default function ShooutAIPage() {
         <BackgroundDots
           className="py-16"
           spacing={36}
-          dotSize={2.5}
-          backgroundColor=""
-          dotColor="#D9D9D9"
-          style={{
-            background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-          }}
+          dotSize={2}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
         >
           <div className="mx-auto max-w-6xl px-3 xl:px-0">
             <div className="text-center">
-              <h2 className="text-3xl font-medium text-[#111111]">
+              <h2 className="text-3xl font-medium text-[#111827]">
                 Engineered for Enterprise Performance
               </h2>
-              <p className="mx-auto mt-4 max-w-3xl text-base text-[#454545]">
+              <p className="mx-auto mt-4 max-w-3xl text-base text-[#6b7280]">
                 Built to meet the reliability, security, and scalability demands of global
                 marketing organizations.
               </p>
 
-              <div className="mt-10 rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] sm:p-10">
+              <div className="mt-10 rounded-2xl border border-[#f3f4f6] bg-white p-6 shadow-sm sm:p-10">
                 <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
                   {enterprisePerformance.map((pillar, index) => (
                     <Fragment key={pillar.title}>
                       <div className="flex-1 text-left">
-                        <h4 className="text-2xl font-medium leading-[26px] text-[#059669]">
+                        <h4 className="text-xl font-medium text-[#22c55e]">
                           {pillar.title}
                         </h4>
-                        <p className="mt-4 text-base text-[#454545]">{pillar.body}</p>
+                        <p className="mt-4 text-base text-[#6b7280]">{pillar.body}</p>
                       </div>
                       {index < enterprisePerformance.length - 1 && (
-                        <div className="hidden lg:block lg:w-[1px] lg:self-stretch lg:bg-gradient-to-b lg:from-transparent lg:via-[#FCD5AC] lg:to-transparent" />
+                        <div className="hidden lg:block lg:w-[1px] lg:self-stretch lg:bg-gradient-to-b lg:from-transparent lg:via-[#22c55e]/20 lg:to-transparent" />
                       )}
                     </Fragment>
                   ))}
@@ -153,7 +148,7 @@ export default function ShooutAIPage() {
           </div>
         </BackgroundDots>
 
-        <LazyCTASection variant="gradient" />
+        <ContactSection />
 
         <SolutionsNavigationSection
           previousHref="/products/data-fabric-ai"

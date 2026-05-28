@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/ui/HeroSection";
 import BackgroundDots from "@/components/ui/background";
-import { LazyCTASection } from "@/components/sections/LazyCTASection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 const PRODUCTS = [
   {
@@ -36,7 +36,7 @@ const PRODUCTS = [
       },
     ],
     badge: "Decision Intelligence",
-    color: "#E45412",
+    color: "#22c55e",
     audience: "C-Suite, Chief Data Officers, Compliance Teams",
     href: "/products/roaar",
   },
@@ -68,7 +68,7 @@ const PRODUCTS = [
       },
     ],
     badge: "Data Platform",
-    color: "#2A73B5",
+    color: "#22c55e",
     audience: "Data Engineering Teams, IT Architects, Data Scientists",
     href: "/products/data-fabric-ai",
   },
@@ -100,7 +100,7 @@ const PRODUCTS = [
       },
     ],
     badge: "Marketing Intelligence",
-    color: "#059669",
+    color: "#22c55e",
     audience: "CMOs, Marketing Operations, Revenue Teams",
     href: "/products/shoout-ai",
   },
@@ -108,7 +108,7 @@ const PRODUCTS = [
 
 export default function ProductsPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
       <HeroSection
@@ -117,11 +117,11 @@ export default function ProductsPage() {
         subtitle="Purpose-built enterprise platforms that embed governed AI directly into your operations."
       />
 
-      <main className="bg-white text-[#0B1B2B]">
+      <main className="bg-white">
         <section className="py-16 px-4">
           <div className="mx-auto max-w-6xl">
-            <p className="text-center text-base text-[#454545] max-w-2xl mx-auto mb-16">
-              Each OphoTech product is engineered from the ground up for enterprise-grade security, compliance, and measurable ROI — not consumer-grade tools adapted for business use.
+            <p className="text-center text-base text-[#6b7280] max-w-2xl mx-auto mb-16">
+              Each Opho Technologies product is engineered from the ground up for enterprise-grade security, compliance, and measurable ROI — not consumer-grade tools adapted for business use.
             </p>
 
             <div className="flex flex-col gap-20">
@@ -131,7 +131,7 @@ export default function ProductsPage() {
                   <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
                     <div className="flex flex-col gap-3 max-w-xl">
                       <div className="flex items-center gap-3">
-                        <h2 className="text-4xl font-bold text-[#0B1B2B]">{product.name}</h2>
+                        <h2 className="text-4xl font-bold text-[#111827]">{product.name}</h2>
                         <span
                           className="rounded-full px-3 py-1 text-xs font-semibold text-white"
                           style={{ backgroundColor: product.color }}
@@ -142,12 +142,12 @@ export default function ProductsPage() {
                       <p className="text-lg font-medium" style={{ color: product.color }}>
                         {product.tagline}
                       </p>
-                      <p className="text-sm text-[#454545]">
-                        <span className="font-medium text-[#0B1B2B]">Built for: </span>
+                      <p className="text-sm text-[#6b7280]">
+                        <span className="font-medium text-[#111827]">Built for: </span>
                         {product.audience}
                       </p>
                     </div>
-                    <p className="text-base leading-relaxed text-[#454545] max-w-lg">
+                    <p className="text-base leading-relaxed text-[#6b7280] max-w-lg">
                       {product.description}
                     </p>
                   </div>
@@ -157,12 +157,9 @@ export default function ProductsPage() {
                     className="rounded-2xl py-10 px-6 md:px-10"
                     spacing={36}
                     dotSize={2}
-                    backgroundColor=""
-                    dotColor="#D9D9D9"
-                    style={{
-                      background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-                      border: "1px solid #FCD5AC",
-                    }}
+                    backgroundColor="white"
+                    dotColor="#e5e7eb"
+                    style={{ border: "1px solid #f3f4f6" }}
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                       {product.features.map((feature) => (
@@ -171,8 +168,8 @@ export default function ProductsPage() {
                             className="size-2 rounded-full"
                             style={{ backgroundColor: product.color }}
                           />
-                          <h3 className="text-lg font-semibold text-[#111111]">{feature.title}</h3>
-                          <p className="text-sm leading-relaxed text-[#454545]">
+                          <h3 className="text-base font-semibold text-[#111827]">{feature.title}</h3>
+                          <p className="text-sm leading-relaxed text-[#6b7280]">
                             {feature.description}
                           </p>
                         </div>
@@ -183,7 +180,7 @@ export default function ProductsPage() {
                   <div className="flex justify-end">
                     <Link
                       href={product.href}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-orange-500 transition-colors hover:text-orange-600"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-[#22c55e] transition-colors hover:text-[#16a34a]"
                     >
                       View Full Details
                       <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
@@ -193,7 +190,7 @@ export default function ProductsPage() {
                   </div>
 
                   {index < PRODUCTS.length - 1 && (
-                    <div className="h-px w-full bg-[#F0F0F0]" />
+                    <div className="h-px w-full bg-[#f3f4f6]" />
                   )}
                 </div>
               ))}
@@ -201,7 +198,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <LazyCTASection variant="gradient" />
+        <ContactSection />
       </main>
 
       <Footer />

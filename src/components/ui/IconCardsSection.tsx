@@ -13,24 +13,9 @@ export type IconCardsSectionProps = {
   title: string;
   subtitle?: string;
   items: IconCardsSectionItem[];
-
-  /**
-   * Careers reference behavior:
-   * - true: render each word on a new line
-   * - false: render title normally
-   */
   stackTitleWords?: boolean;
-
-  /**
-   * If true, wraps the section with BackgroundDots.
-   * Use `backgroundDotsProps` to pass spacing/dotSize/etc.
-   */
   withBackgroundDots?: boolean;
   backgroundDotsProps?: Omit<ComponentProps<typeof BackgroundDots>, "children">;
-
-  /**
-   * Styling overrides. Defaults are based on Careers page (105–175).
-   */
   sectionClassName?: string;
   titleClassName?: string;
   subtitleClassName?: string;
@@ -38,19 +23,8 @@ export type IconCardsSectionProps = {
   cardClassName?: string;
   titleTextClassName?: string;
   descriptionClassName?: string;
-
-  /**
-   * Divider (between cards) defaults to Careers implementation.
-   *
-   * NOTE: divider is rendered with a simple element (not next/image) to avoid
-   * inconsistent scaling produced by next/image for very thin SVGs.
-   */
   dividerContainerClassName?: string;
   dividerBarClassName?: string;
-  /**
-   * If provided, uses an explicit height in px for the divider bar.
-   * If omitted, the divider uses h-full (matches card height).
-   */
   dividerImageHeight?: number;
 };
 
@@ -58,22 +32,18 @@ export function IconCardsSection({
   title,
   subtitle,
   items,
-  stackTitleWords = false, // Changed default to false for normal text wrapping
+  stackTitleWords = false,
   withBackgroundDots = false,
   backgroundDotsProps,
   sectionClassName = "mx-auto max-w-5xl mb-2 px-4",
-  titleClassName = "text-center text-4xl font-medium mt-10",
-  subtitleClassName = "text-center text-base text-[#3A4A5F] mt-5 mb-2",
+  titleClassName = "text-center text-4xl font-medium mt-10 text-[#111827]",
+  subtitleClassName = "text-center text-base text-[#6b7280] mt-5 mb-2",
   cardsRowClassName =
-    "mt-5 flex flex-col  items-center lg:flex-row lg:items-end lg:justify-center lg:gap-0",
+    "mt-5 flex flex-col items-center lg:flex-row lg:items-end lg:justify-center lg:gap-0",
   cardClassName = "flex-1 min-w-[200px] rounded-[20px] lg:px-5 xl:px-2 py-15 text-center flex flex-col items-center",
   titleTextClassName =
-    "text-base font-medium leading-[20px] text-black mx-auto max-w-[180px]",
-  descriptionClassName = "mt-2 text-sm text-[#3A4A5F]",
-  dividerContainerClassName =
-    "flex items-center justify-center lg:flex",
-  // dividerBarClassName controls width + gradient; height handled by style/h-full
-  dividerBarClassName = "block w-[1px] bg-gradient-to-b from-transparent via-[#F37121] to-transparent mx-6",
+    "text-base font-medium leading-[20px] text-[#111827] mx-auto max-w-[180px]",
+  descriptionClassName = "mt-2 text-sm text-[#6b7280]",
   dividerImageHeight = 290,
 }: IconCardsSectionProps) {
   const content = (
@@ -85,13 +55,14 @@ export function IconCardsSection({
         {items.map((item, index, array) => (
           <div key={`card-group-${index}`} className="flex items-start gap-0">
             <article className={cardClassName}>
-              <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-[#FFE6D5]">
+              <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-[#f0fdf4] border border-[#22c55e]/20">
                 <Image
                   src={item.icon}
                   alt={`${item.title} icon`}
                   width={40}
                   height={40}
                   className="h-10 w-10"
+                  style={{ filter: "brightness(0) sepia(1) saturate(3) hue-rotate(95deg)" }}
                 />
               </div>
 
@@ -112,10 +83,8 @@ export function IconCardsSection({
 
             {index < array.length - 1 ? (
               <div
-                className="w-[1px] bg-gradient-to-b from-transparent via-[#F37121] to-transparent lg:mx-2 xl:mx-6 flex-shrink-0"
-                style={{
-                  height: `${dividerImageHeight}px`,
-                }}
+                className="w-[1px] bg-gradient-to-b from-transparent via-[#22c55e]/30 to-transparent lg:mx-2 xl:mx-6 flex-shrink-0"
+                style={{ height: `${dividerImageHeight}px` }}
                 aria-hidden
               />
             ) : null}
@@ -127,13 +96,14 @@ export function IconCardsSection({
         {items.map((item, index, array) => (
           <div key={`mobile-card-${index}`}>
             <article className={cardClassName}>
-              <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-[#FFE6D5]">
+              <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-[#f0fdf4] border border-[#22c55e]/20">
                 <Image
                   src={item.icon}
                   alt={`${item.title} icon`}
                   width={40}
                   height={40}
                   className="h-10 w-10"
+                  style={{ filter: "brightness(0) sepia(1) saturate(3) hue-rotate(95deg)" }}
                 />
               </div>
 
@@ -154,7 +124,7 @@ export function IconCardsSection({
 
             {index < array.length - 1 ? (
               <div
-                className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#F37121] to-transparent"
+                className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#22c55e]/30 to-transparent"
                 aria-hidden
               />
             ) : null}

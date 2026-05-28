@@ -13,18 +13,11 @@ export type SolutionsIntroTechStackLogo = {
 };
 
 export type SolutionsIntroSectionProps = {
-  /**
-   * Layout overrides. Defaults match the Cyber Security reference section.
-   */
   sectionClassName?: string;
   gridClassName?: string;
   leftWrapperClassName?: string;
-  dividerWrapperClassName?: string;
   rightWrapperClassName?: string;
 
-  /**
-   * Left illustration image.
-   */
   imageSrc: string;
   imageAlt: string;
   imageWidth?: number;
@@ -32,18 +25,14 @@ export type SolutionsIntroSectionProps = {
   imageClassName?: string;
   imagePriority?: boolean;
 
-  /**
-   * Center divider image.
-   */
+  // kept for API compat, unused
   dividerSrc?: string;
   dividerAlt?: string;
   dividerWidth?: number;
   dividerHeight?: number;
   dividerClassName?: string;
+  dividerWrapperClassName?: string;
 
-  /**
-   * Right copy + tech stack.
-   */
   copy: ReactNode;
   techStackTitle?: string;
   techStack?: SolutionsIntroTechStackLogo[];
@@ -53,19 +42,13 @@ export function SolutionsIntroSection({
   sectionClassName = "mx-auto max-w-6xl py-20 px-3 xl:px-0",
   gridClassName = "grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-15",
   leftWrapperClassName = "flex justify-center md:justify-start",
-  dividerWrapperClassName = "flex justify-center",
-  rightWrapperClassName = "text-[15.5px] text-[#3A4A5F] max-w-full flex flex-col justify-center",
+  rightWrapperClassName = "text-[15.5px] text-[#4b5563] max-w-full flex flex-col justify-center",
   imageSrc,
   imageAlt,
   imageWidth = 600,
   imageHeight = 380,
   imageClassName = "h-auto md:w-[600px] rounded-xl",
   imagePriority = true,
-  dividerSrc = "/images/raar/lineraar.svg",
-  dividerAlt = "",
-  dividerWidth = 2,
-  dividerHeight = 320,
-  dividerClassName = "w-auto h-auto",
   copy,
   techStackTitle = "Our Tech Stack",
   techStack = [],
@@ -85,38 +68,12 @@ export function SolutionsIntroSection({
           />
         </div>
 
-        {/* CENTER — Divider (vertical on md+, horizontal on mobile) */}
-        <div className={dividerWrapperClassName}>
-          {/* Mobile: horizontal divider (rotate the vertical asset) */}
-          <div className="flex w-full justify-center md:hidden">
-            {/* 
-              Important: transforms (rotate) don't change layout size.
-              We absolutely position the rotated divider inside a small container
-              to avoid large vertical gaps on mobile.
-            */}
-            <div className="relative h-6 w-full max-w-md">
-              <Image
-                src={dividerSrc}
-                alt={dividerAlt}
-                width={dividerWidth}
-                height={dividerHeight}
-                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 ${dividerClassName}`}
-                aria-hidden
-              />
-            </div>
-          </div>
-
-          {/* Desktop+: vertical divider */}
-          <div className="hidden md:block">
-            <Image
-              src={dividerSrc}
-              alt={dividerAlt}
-              width={dividerWidth}
-              height={dividerHeight}
-              className={dividerClassName}
-              aria-hidden
-            />
-          </div>
+        {/* CENTER — CSS gradient divider */}
+        <div className="flex justify-center">
+          {/* Mobile: horizontal */}
+          <div className="md:hidden h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-[#22c55e]/30 to-transparent" />
+          {/* Desktop: vertical */}
+          <div className="hidden md:block w-px h-80 bg-gradient-to-b from-transparent via-[#22c55e]/30 to-transparent" />
         </div>
 
         {/* RIGHT — Text */}
@@ -125,7 +82,7 @@ export function SolutionsIntroSection({
 
           {techStack.length ? (
             <div className="mt-8">
-              <h2 className="text-xl font-medium text-[#0B1B2B]">
+              <h2 className="text-xl font-medium text-[#111827]">
                 {techStackTitle}
               </h2>
               <div className="flex flex-wrap gap-2 mt-4">

@@ -32,14 +32,7 @@ function isLinkCta(cta: SolutionsNavigationSectionProps["cta"]): cta is LinkCTA 
 
 function PreviousArrowIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      className="size-4"
-      aria-hidden
-    >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="size-4" aria-hidden>
       <path
         d="M13 8H3M3 8L7 12M3 8L7 4"
         stroke="currentColor"
@@ -70,7 +63,7 @@ export function SolutionsNavigationSection({
         <div className="mb-6">
           <Link
             href={previousHref}
-            className="inline-flex items-center gap-2 font-poppins text-sm font-medium text-orange-500 transition-colors hover:text-orange-600"
+            className="inline-flex items-center gap-2 font-poppins text-sm font-medium text-[#22c55e] transition-colors hover:text-[#16a34a]"
           >
             <PreviousArrowIcon />
             <span>{previousLabel}</span>
@@ -80,24 +73,15 @@ export function SolutionsNavigationSection({
 
       {titleLines.map((line, idx) => (
         <h2
-  key={`${idx}-${line}`}
-  className={cn(
-    "text-center text-2xl md:text-4xl font-medium text-[#0B1B2B]",
-    titleClassName,
-  )}
->
-  {line}
-</h2>
-
+          key={`${idx}-${line}`}
+          className={cn("text-center text-2xl md:text-4xl font-medium text-[#111827]", titleClassName)}
+        >
+          {line}
+        </h2>
       ))}
 
       {description ? (
-        <p
-          className={cn(
-            "mx-auto mt-3 max-w-3xl text-center text-[15px] text-[#3A4A5F]",
-            descriptionClassName,
-          )}
-        >
+        <p className={cn("mx-auto mt-3 max-w-3xl text-center text-[15px] text-[#6b7280]", descriptionClassName)}>
           {description}
         </p>
       ) : null}
@@ -114,4 +98,3 @@ export function SolutionsNavigationSection({
     </section>
   );
 }
-
