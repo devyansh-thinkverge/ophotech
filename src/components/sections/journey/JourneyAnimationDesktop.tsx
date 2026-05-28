@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useAnimate, useMotionValue } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useAnimate } from "framer-motion";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { JOURNEY_STOPS } from "./JourneyStops";
 
@@ -31,30 +31,13 @@ const useBreakpoint = () => {
 
 export function JourneyAnimationDesktop() {
   const [scope, animate] = useAnimate();
-  const progress = useMotionValue(0);
   const breakpoint = useBreakpoint();
 
-  const pathRef = useRef<SVGPathElement | null>(null);
-  const planeRef = useRef<SVGGElement | null>(null);
-  const totalLengthRef = useRef<number>(0);
-
-  const PLANE_WIDTH = 80;
-  const PLANE_HEIGHT = 80;
-  // small rotation offset to match the plane artwork orientation if needed
-  const PLANE_ROTATION_OFFSET_DEG = -12;
-
-  const getResponsiveProgress = (stop: typeof JOURNEY_STOPS[0]) =>
-    stop.progress[breakpoint];
-
-  // Helper function to wait for element to exist in DOM
   const waitForElement = (selector: string, maxAttempts = 10, delay = 50): Promise<Element | null> => {
     return new Promise((resolve) => {
       let attempts = 0;
       const check = () => {
-        if (!scope.current) {
-          resolve(null);
-          return;
-        }
+        if (!scope.current) { resolve(null); return; }
         const element = scope.current.querySelector(selector);
         if (element) {
           resolve(element);
@@ -69,110 +52,33 @@ export function JourneyAnimationDesktop() {
     });
   };
 
-  // sequence logic (same as your previous)
   useEffect(() => {
     const sequence = async () => {
-      // Ensure scope is mounted before starting
-      if (!scope.current) {
-        return;
-      }
-
-      progress.set(0);
+      if (!scope.current) return;
 
       for (const stop of JOURNEY_STOPS) {
-        await animate(progress, getResponsiveProgress(stop), {
-          duration: 1,
-          ease: "easeInOut"
-        });
-
-        const contentSelector = `#${stop.id}`;
-        const connectorSelector = `#${stop.id}-connector`;
-
-        // Wait for elements to exist before animating
-        const [contentElement, connectorElement] = await Promise.all([
-          waitForElement(contentSelector),
-          waitForElement(connectorSelector)
+        const [contentEl, connectorEl] = await Promise.all([
+          waitForElement(`#${stop.id}`),
+          waitForElement(`#${stop.id}-connector`),
         ]);
 
-        // Only animate if elements exist
-        if (contentElement && connectorElement) {
+        if (contentEl && connectorEl) {
           await Promise.all([
-            animate(contentSelector, { opacity: 1, y: 0 }, { duration: 0.5 }),
-            animate(connectorSelector, { opacity: 1, y: 0 }, { duration: 0.5 })
+            animate(`#${stop.id}`, { opacity: 1, y: 0 }, { duration: 0.35 }),
+            animate(`#${stop.id}-connector`, { opacity: 1, y: 0 }, { duration: 0.35 }),
           ]);
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        await new Promise((resolve) => setTimeout(resolve, 300));
       }
     };
 
     sequence();
-  }, [animate, progress, breakpoint]);
-
-  // update total length whenever svg/path is available or window resizes
-  useEffect(() => {
-    const updateTotal = () => {
-      if (pathRef.current) {
-        totalLengthRef.current = pathRef.current.getTotalLength();
-        // place plane at current progress so it immediately matches after a resize
-        const val = progress.get();
-        if (pathRef.current && planeRef.current) {
-          const len = totalLengthRef.current * val;
-          const p = pathRef.current.getPointAtLength(len);
-          planeRef.current.setAttribute('transform', `translate(${p.x} ${p.y}) rotate(0)`);
-        }
-      }
-    };
-
-    updateTotal();
-    window.addEventListener('resize', updateTotal);
-    return () => window.removeEventListener('resize', updateTotal);
-  }, [progress]);
-
-  // subscribe to progress changes and move the plane exactly on the SVG path
-  useEffect(() => {
-    const unsub = progress.onChange((rawVal) => {
-      const val = Number(rawVal); // expected between 0..1
-      if (!pathRef.current || !planeRef.current) return;
-      const total = totalLengthRef.current || pathRef.current.getTotalLength();
-      totalLengthRef.current = total;
-
-      const lengthAt = Math.max(0, Math.min(total, val * total));
-
-      // current point
-      const p = pathRef.current.getPointAtLength(lengthAt);
-
-      // small look-ahead to estimate tangent for rotation
-      const lookAheadPx = 1; // 1px ahead on the path
-      const lengthAhead = Math.min(total, lengthAt + lookAheadPx);
-      const pAhead = pathRef.current.getPointAtLength(lengthAhead);
-
-      const dx = pAhead.x - p.x;
-      const dy = pAhead.y - p.y;
-      let angleRad = Math.atan2(dy, dx);
-      let angleDeg = (angleRad * 180) / Math.PI;
-
-      // apply artwork offset
-      angleDeg += PLANE_ROTATION_OFFSET_DEG;
-
-      // set the group's transform: translate to the point and rotate the group
-      // we render the <image> centered around 0,0 (x=-w/2, y=-h/2) so translate to (p.x, p.y)
-      planeRef.current.setAttribute(
-        'transform',
-        `translate(${p.x} ${p.y}) rotate(${angleDeg})`
-      );
-    });
-
-    // initialize to current progress
-    const init = progress.get();
-    if (init !== undefined) progress.set(init);
-
-    return () => unsub();
-  }, [progress]);
+  }, [animate, breakpoint]);
 
   return (
     <div ref={scope} className="relative w-full aspect-[1216/600] hidden lg:block mb-15">
-      {/* SVG Path + Plane (single coordinate system) */}
+      {/* SVG Path */}
       <div className="absolute inset-0 top-20 flex justify-center pointer-events-none">
         <svg
           viewBox="0 0 1216 139"
@@ -191,10 +97,8 @@ export function JourneyAnimationDesktop() {
             </linearGradient>
           </defs>
 
-          {/* Curve path (single source) */}
           <path
             id="journey-path"
-            ref={pathRef}
             d={CURVE_PATH_DATA}
             stroke="url(#pathGradient)"
             strokeWidth="8"
@@ -202,38 +106,16 @@ export function JourneyAnimationDesktop() {
             strokeDasharray="20 20"
             strokeLinecap="round"
           />
-
-          {/* Plane group: we position the group origin at the exact sampled point,
-              and place the image centered at 0,0 (so translate + rotate works nicely). */}
-          <g
-            ref={planeRef}
-            // initial off-screen until the subscription moves it; pointer events none
-            transform={`translate(-9999 -9999)`}
-            style={{ pointerEvents: 'none' }}
-          >
-            {/* center the image on the group origin */}
-            <image
-              href="/images/journey/aeroplane.svg"
-              width={PLANE_WIDTH}
-              height={PLANE_HEIGHT}
-              x={-PLANE_WIDTH / 2}
-              y={-PLANE_HEIGHT / 2}
-              // optional: preserveAspectRatio, etc.
-            />
-          </g>
         </svg>
       </div>
 
-      {/* Connectors & Content (unchanged) */}
+      {/* Connectors & Content */}
       <div className="absolute inset-0 w-full h-full max-w-[1216px] mx-auto">
         {JOURNEY_STOPS.map((stop) => (
           <div
             key={stop.id}
             className="absolute flex flex-row items-start w-[260px]"
-            style={{
-              left: stop.left,
-              top: stop.top[breakpoint]
-            }}
+            style={{ left: stop.left, top: stop.top[breakpoint] }}
           >
             <motion.div
               id={`${stop.id}-connector`}
