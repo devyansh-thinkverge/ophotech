@@ -52,10 +52,6 @@ export const metadata: Metadata = {
   title: "OphoTech",
   description:
     "Transform your vision into production-ready MVPs with OphoTech's AI-driven development approach.",
-  icons: {
-    icon: "/images/icons/titlebar.svg",
-  },
-  
   verification: {
     google: "5m6QiWoBYT3883hjGFlJqfPu4f9vbmIBaXfwC9JppVk",
   },

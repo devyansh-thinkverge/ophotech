@@ -7,23 +7,24 @@ type StoredCookiePrefs = {
 };
 
 export default function CookieConsent() {
-  const [show, setShow] = useState(() => {
-    // Initialize show state based on whether preferences exist and are valid
-    if (typeof window === "undefined") return false; // SSR safe
+  const [show, setShow] = useState(false);
+  const [openedFromSettings, setOpenedFromSettings] = useState(false);
 
+  useEffect(() => {
     const saved = localStorage.getItem("cookie_prefs");
-    if (!saved) return true; // Show if no preferences saved
-
+    if (!saved) {
+      setShow(true);
+      return;
+    }
     try {
       const parsed: unknown = JSON.parse(saved);
-      if (!parsed || typeof parsed !== "object") return true;
+      if (!parsed || typeof parsed !== "object") { setShow(true); return; }
       const maybe = parsed as { analytics?: unknown };
-      return typeof maybe.analytics !== "boolean"; // Show if invalid shape
+      if (typeof maybe.analytics !== "boolean") setShow(true);
     } catch {
-      return true; // Show if invalid JSON
+      setShow(true);
     }
-  });
-  const [openedFromSettings, setOpenedFromSettings] = useState(false);
+  }, []);
 
   useEffect(() => {
     const openSettings = () => {

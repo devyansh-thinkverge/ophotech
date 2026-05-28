@@ -10,11 +10,6 @@ import { ContactSection } from "@/components/sections/ContactSection";
 
 const communicationsImage = "/images/aboutus/evolve.png";
 
-const centerCircle = "/images/aboutus/center-circle.svg";
-const outerCircle = "/images/aboutus/outer-circle.svg";
-const topArrow = "/images/aboutus/top-arrow.svg";
-const arrowCircle = "/images/aboutus/arrow-circle.svg";
-
 const papersearchicon = "/images/icons/paper-analysis.svg";
 const aiAgentIcon = "/images/icons/ai-agent.svg";
 const resilienticon = "/images/icons/cloud-integration.svg";
@@ -106,51 +101,49 @@ and drive profitable growth."
         />
 
         {/* Our Mission & Vision */}
-        <section className="relative w-full text-white pb-16 lg:pb-0 pt-16 lg:pt-[10rem] lg:bg-[url('/images/aboutus/our-mission.png')] lg:bg-[length:100%_auto] lg:bg-top lg:bg-no-repeat">
-          {/* Desktop view with SVG decorations */}
-          <div className="hidden lg:block relative mx-auto h-[450px] max-w-6xl px-6">
-            <div className="pointer-events-none absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2">
-              <Image src={outerCircle} alt="" width={554} height={554} className="h-[420px] w-[420px]" aria-hidden />
-            </div>
-            <div className="pointer-events-none absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2">
-              <Image src={centerCircle} alt="" width={94} height={94} className="h-24 w-24" aria-hidden />
-            </div>
-            <div className="pointer-events-none absolute right-[34%] top-[-10%]">
-              <Image src={topArrow} alt="" width={113} height={113} className="h-[113px] w-[113px]" aria-hidden />
-            </div>
-            <div className="pointer-events-none absolute top-[30%] right-[54%] -translate-y-1/2">
-              <Image src={arrowCircle} alt="" width={196} height={15} className="h-[12px] w-[196px]" aria-hidden />
-            </div>
-            <div className="absolute left-[70%] top-[-12%] max-w-xs text-left">
-              <h2 className="text-4xl font-medium leading-[1.3] text-[#FEF1F0]">Our Mission</h2>
-              <p className="mt-4 text-base leading-relaxed text-[#E7E7E7]">
-                To equip leaders with platforms and practices that surface the right signals early, automate the routine, and scale securely from first hypothesis to production impact.
+        <BackgroundDots
+          className="py-20"
+          spacing={36}
+          dotSize={2.5}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
+          style={{ borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" }}
+        >
+          <section className="mx-auto max-w-6xl px-3 xl:px-0">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-medium text-[#111827]">Our Mission &amp; Vision</h2>
+              <p className="mt-4 text-base text-[#6b7280] max-w-2xl mx-auto">
+                The purpose that drives our work and the future we are building toward.
               </p>
             </div>
-            <div className="absolute left-[10%] top-[25%] max-w-sm text-left">
-              <h3 className="text-4xl font-medium leading-[1.3] text-[#FEF1F0]">Our Vision</h3>
-              <p className="mt-4 text-base leading-relaxed max-w-[250px] text-[#E7E7E7]">
-                A world where every organization operates on decision-grade intelligence—timely, trusted, and actionable.
-              </p>
-            </div>
-          </div>
 
-          {/* Mobile / tablet card layout */}
-          <div className="lg:hidden max-w-4xl mx-auto px-6 grid gap-6 sm:grid-cols-2">
-            <div className="bg-white border border-[#22c55e]/20 rounded-xl p-6 shadow-sm">
-              <h3 className="text-2xl font-semibold text-[#111827] mb-3">Our Vision</h3>
-              <p className="text-sm leading-relaxed text-[#6b7280]">
-                A world where every organization operates on decision-grade intelligence—timely, trusted, and actionable.
-              </p>
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* Mission */}
+              <div className="relative rounded-2xl border border-[#f3f4f6] bg-white p-8 shadow-sm hover:border-[#22c55e]/20 transition-colors overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full rounded-l-2xl bg-[#22c55e]" />
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f0fdf4] border border-[#22c55e]/20 px-3 py-1">
+                  <div className="size-2 rounded-full bg-[#22c55e]" />
+                  <span className="text-sm font-medium text-[#22c55e]">Our Mission</span>
+                </div>
+                <p className="text-base leading-relaxed text-[#6b7280]">
+                  To equip leaders with platforms and practices that surface the right signals early, automate the routine, and scale securely from first hypothesis to production impact.
+                </p>
+              </div>
+
+              {/* Vision */}
+              <div className="relative rounded-2xl border border-[#f3f4f6] bg-white p-8 shadow-sm hover:border-[#22c55e]/20 transition-colors overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full rounded-l-2xl bg-[#22c55e]" />
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#f0fdf4] border border-[#22c55e]/20 px-3 py-1">
+                  <div className="size-2 rounded-full bg-[#22c55e]" />
+                  <span className="text-sm font-medium text-[#22c55e]">Our Vision</span>
+                </div>
+                <p className="text-base leading-relaxed text-[#6b7280]">
+                  A world where every organization operates on decision-grade intelligence—timely, trusted, and actionable.
+                </p>
+              </div>
             </div>
-            <div className="bg-white border border-[#22c55e]/20 rounded-xl p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold text-[#111827] mb-3">Our Mission</h2>
-              <p className="text-sm leading-relaxed text-[#6b7280]">
-                To equip leaders with platforms and practices that surface the right signals early, automate the routine, and scale securely from first hypothesis to production impact.
-              </p>
-            </div>
-          </div>
-        </section>
+          </section>
+        </BackgroundDots>
 
         {/* Our Values Section */}
         <BackgroundDots
