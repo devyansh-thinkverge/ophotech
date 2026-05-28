@@ -1,7 +1,5 @@
 "use client";
 
-// app/ai-agent-development/page.tsx
-import Image from "next/image";
 import { Fragment } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -10,6 +8,7 @@ import BackgroundDots from "@/components/ui/background";
 import { IconCardsSection } from "@/components/ui/IconCardsSection";
 import { SolutionsNavigationSection } from "@/components/ui/SolutionsNavigationSection";
 import { SolutionsIntroSection } from "@/components/ui/SolutionsIntroSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function AIAgentDevelopment() {
   const strategicValueCards = [
@@ -88,10 +87,9 @@ export default function AIAgentDevelopment() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
-      {/* HERO SECTION */}
       <HeroSection
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -103,8 +101,7 @@ export default function AIAgentDevelopment() {
       />
 
       <main className="flex-1">
-  
-        {/* Intro split */}
+
         <SolutionsIntroSection
           imageSrc="/images/ai_agents/ai-agent.png"
           imageAlt="AI agents illustration"
@@ -119,27 +116,30 @@ export default function AIAgentDevelopment() {
             </>
           }
           techStack={[
-            {  
+            {
               src: "/images/tech-stack-logos/langchain.svg",
               alt: "langchain logo",
-              wrapperClassName: "w-15 h-6 md:w-20 md:h-8 flex items-center justify-center" },
-            { 
+              wrapperClassName: "w-15 h-6 md:w-20 md:h-8 flex items-center justify-center",
+            },
+            {
               src: "/images/tech-stack-logos/haystack.svg",
-              alt: "haystack logo", 
-              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center" },
-            { 
-              src: "/images/tech-stack-logos/pinecone.svg", 
-              alt: "Pinecone logo", 
-              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center" },
+              alt: "haystack logo",
+              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center",
+            },
+            {
+              src: "/images/tech-stack-logos/pinecone.svg",
+              alt: "Pinecone logo",
+              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center",
+            },
             {
               src: "/images/tech-stack-logos/llamaindex.svg",
               alt: "llamaindex logo",
-              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center"
+              wrapperClassName: "w-20 h-6 md:w-22 md:h-8 flex items-center justify-center",
             },
             {
               src: "/images/tech-stack-logos/gemini.svg",
               alt: "gemini logo",
-              wrapperClassName: "w-15 h-6 md:w-18 md:h-8 flex items-center justify-center"
+              wrapperClassName: "w-15 h-6 md:w-18 md:h-8 flex items-center justify-center",
             },
           ]}
         />
@@ -172,179 +172,154 @@ export default function AIAgentDevelopment() {
           backgroundDotsProps={{
             spacing: 36,
             dotSize: 2.5,
-            backgroundColor: "",
-            dotColor: "#D9D9D9",
-            style: {
-              background:
-                "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-            },
+            backgroundColor: "white",
+            dotColor: "#e5e7eb",
+            style: { borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" },
           }}
         />
+
         {/* AI Agent Development Framework */}
-        <section className="relative">
-      {/* AI Solutions & Services Section */}
-      <BackgroundDots
-          className="py-16 "
+        <BackgroundDots
+          className="py-16"
           spacing={36}
           dotSize={2.5}
-          backgroundColor=""
-          dotColor="#D9D9D9"
-          style={{
-            background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-          }}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
+          style={{ borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" }}
         >
-            <div className="mx-auto max-w-6xl px-3 xl:px-0">
-              <div className="space-y-16">
-                {/* Strategic Value */}
-                <div className="text-center">
-                  <h2 className="text-3xl font-medium text-[#111111]">
-                    The Strategic Value of Autonomous Agents
-                  </h2>
-                  <p className="mx-auto mt-4 max-w-3xl text-base text-[#454545]">
+          <div className="mx-auto max-w-6xl px-3 xl:px-0">
+            <div className="space-y-16">
+              {/* Strategic Value */}
+              <div className="text-center">
+                <h2 className="text-3xl font-medium text-[#111827]">
+                  The Strategic Value of Autonomous Agents
+                </h2>
+                <p className="mx-auto mt-4 max-w-3xl text-base text-[#6b7280]">
                   AI Agents enhance core business functions by completing end-to-end workflows, making decisions, and adapting to dynamic conditions beyond basic automation.
-                  </p>
+                </p>
 
-                  <div className="mt-10 grid gap-6 md:grid-cols-2">
-                    {strategicValueCards.map((card) => (
-                      <div
-                        key={card.title}
-                        className="relative rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 text-left shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] card-text-smaller"
-                      >
-                        <div className="space-y-3">
-                          <div>
-                            <h3 className="text-2xl font-medium text-[#111111]">{card.title}</h3>
-                            <p className="text-base text-gray-800">{card.subtitle}</p>
-                          </div>
+                <div className="mt-10 grid gap-6 md:grid-cols-2">
+                  {strategicValueCards.map((card) => (
+                    <div
+                      key={card.title}
+                      className="relative rounded-2xl border border-[#f3f4f6] bg-white p-6 text-left shadow-sm hover:border-[#22c55e]/20 transition-colors"
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h3 className="text-2xl font-medium text-[#111827]">{card.title}</h3>
+                          <p className="text-base text-[#6b7280]">{card.subtitle}</p>
+                        </div>
 
-                          {card.details.map((detail, detailIndex) => {
-                            if (detail.type === "badge") {
-                              return (
-                                <div
-                                  key={`${card.title}-badge-${detailIndex}`}
-                                  className="inline-flex rounded-lg bg-[#F6F6F6] px-3 py-1 text-sm font-medium text-[#111111]"
-                                >
+                        {card.details.map((detail, detailIndex) => {
+                          if (detail.type === "badge") {
+                            return (
+                              <div
+                                key={`${card.title}-badge-${detailIndex}`}
+                                className="inline-flex rounded-lg bg-[#f9fafb] px-3 py-1 text-sm font-medium text-[#111827]"
+                              >
+                                {detail.text}
+                              </div>
+                            );
+                          }
+
+                          if (detail.type === "badgeWithCopy") {
+                            return (
+                              <div key={`${card.title}-badgecopy-${detailIndex}`} className="space-y-2">
+                                <div className="inline-flex rounded-lg bg-[#f9fafb] px-3 py-1 text-sm font-medium text-[#111827]">
                                   {detail.text}
                                 </div>
-                              );
-                            }
-
-                            if (detail.type === "badgeWithCopy") {
-                              return (
-                                <div key={`${card.title}-badgecopy-${detailIndex}`} className="space-y-2">
-                                  <div className="inline-flex rounded-lg bg-[#F6F6F6] px-3 py-1 text-sm font-medium text-[#111111]">
-                                    {detail.text}
-                                  </div>
-                                  <p className="text-base text-[#454545]">
-                                    <span className="font-medium text-[#111111]">{detail.bold}</span>
-                                    {detail.rest}
-                                  </p>
-                                </div>
-                              );
-                            }
-
-                            return (
-                              <p key={`${card.title}-text-${detailIndex}`} className="text-base text-[#454545]">
-                                <span className="font-medium text-[#111111]">{detail.label} </span>
-                                {detail.copy}
-                              </p>
+                                <p className="text-base text-[#6b7280]">
+                                  <span className="font-medium text-[#111827]">{detail.bold}</span>
+                                  {detail.rest}
+                                </p>
+                              </div>
                             );
-                          })}
-                        </div>
+                          }
+
+                          return (
+                            <p key={`${card.title}-text-${detailIndex}`} className="text-base text-[#6b7280]">
+                              <span className="font-medium text-[#111827]">{detail.label} </span>
+                              {detail.copy}
+                            </p>
+                          );
+                        })}
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Agentic AI – Uses */}
-                <div className="text-center">
-                  <h3 className="text-2xl font-medium leading-[38px] text-gray-600">Agentic AI - Uses</h3>
-                  <p className="mx-auto mt-4 max-w-4xl text-base text-[#454545]">
-                  Our focus is on bridging the gap between complex business requirements and technical innovation by building agents that are reliable, governed, and integrated into your current systems.
-                  </p>
-
-                  <div className="mt-10 grid gap-6 md:grid-cols-3">
-                    {agenticUseCases.map((useCase) => (
-                      <div
-                        key={useCase.title}
-                        className="rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 text-left shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] card-text-smaller h-full flex flex-col"
-                      >
-                        <h4 className="text-2xl font-medium text-[#111111] h-[60px] flex items-start">
-                          {useCase.title}
-                        </h4>
-                        <p className="mt-3 text-base text-[#454545]">
-                          {useCase.body}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Building Trustworthy and Governed Agents */}
-                <div className="text-center">
-                  <h3 className="text-[26px] font-medium leading-[38px] text-gray-600 sm:text-[28px]">
-                    Building Trustworthy and Governed Agents
-                  </h3>
-                  <p className="mx-auto mt-4 max-w-4xl text-[16px] text-[#454545] sm:text-[18px]">
-                  As leaders in AI, we prioritize a governance framework essential for scaling autonomous systems
-                  </p>
-
-                  <div className="mt-10 rounded-2xl border border-[#FCD5AC] bg-white/30 p-6 shadow-[0_10px_30px_-18px_rgba(15,44,88,0.35)] sm:p-10 card-text-smaller">
-                    <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-                      {governancePillars.map((pillar, index) => (
-                        <Fragment key={pillar.title.join(" ")}>
-                          <div className="flex-1 text-left">
-                            <h4 className="text-2xl font-medium leading-[26px] text-[#E45412]">
-                              {pillar.title.map((line) => (
-                                <span key={line} className="block">
-                                  {line}
-                                </span>
-                              ))}
-                            </h4>
-                            <p className="mt-4 text-base text-[#454545]">{pillar.body}</p>
-                          </div>
-                          {index < governancePillars.length - 1 && (
-                            <div className="hidden lg:flex lg:h-full lg:w-[2px] lg:justify-center">
-                             <Image
-                      src="/images/raar/lineraar.svg"
-                      alt=""
-                      width={2}
-                      height={320}
-                      className="w-auto h-[200px]"
-                      aria-hidden
-                    />
-                            </div>
-                          )}
-                        </Fragment>
-                      ))}
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Agentic AI – Uses */}
+              <div className="text-center">
+                <h3 className="text-2xl font-medium leading-[38px] text-[#111827]">Agentic AI - Uses</h3>
+                <p className="mx-auto mt-4 max-w-4xl text-base text-[#6b7280]">
+                  Our focus is on bridging the gap between complex business requirements and technical innovation by building agents that are reliable, governed, and integrated into your current systems.
+                </p>
+
+                <div className="mt-10 grid gap-6 md:grid-cols-3">
+                  {agenticUseCases.map((useCase) => (
+                    <div
+                      key={useCase.title}
+                      className="rounded-2xl border border-[#f3f4f6] bg-white p-6 text-left shadow-sm hover:border-[#22c55e]/20 transition-colors h-full flex flex-col"
+                    >
+                      <h4 className="text-2xl font-medium text-[#111827] h-[60px] flex items-start">
+                        {useCase.title}
+                      </h4>
+                      <p className="mt-3 text-base text-[#6b7280]">
+                        {useCase.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Building Trustworthy and Governed Agents */}
+              <div className="text-center">
+                <h3 className="text-[26px] font-medium leading-[38px] text-[#111827] sm:text-[28px]">
+                  Building Trustworthy and Governed Agents
+                </h3>
+                <p className="mx-auto mt-4 max-w-4xl text-[16px] text-[#6b7280] sm:text-[18px]">
+                  As leaders in AI, we prioritize a governance framework essential for scaling autonomous systems
+                </p>
+
+                <div className="mt-10 rounded-2xl border border-[#f3f4f6] bg-white p-6 shadow-sm sm:p-10">
+                  <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+                    {governancePillars.map((pillar, index) => (
+                      <Fragment key={pillar.title.join(" ")}>
+                        <div className="flex-1 text-left">
+                          <h4 className="text-2xl font-medium leading-[26px] text-[#22c55e]">
+                            {pillar.title.map((line) => (
+                              <span key={line} className="block">
+                                {line}
+                              </span>
+                            ))}
+                          </h4>
+                          <p className="mt-4 text-base text-[#6b7280]">{pillar.body}</p>
+                        </div>
+                        {index < governancePillars.length - 1 && (
+                          <div className="hidden lg:block w-px self-stretch bg-gradient-to-b from-transparent via-[#22c55e]/20 to-transparent" aria-hidden />
+                        )}
+                      </Fragment>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-          </BackgroundDots>
-        </section>
+          </div>
+        </BackgroundDots>
 
-    
-       <div className=" flex justify-center">
-         <Image
-           src="/images/horizontalline.svg"
-           alt=""
-           width={1200}
-           height={3}
-           className="w-full max-w-5xl"
-           aria-hidden
-         />
-       </div>
+        <div className="h-px w-full max-w-5xl mx-auto bg-[#f3f4f6]" aria-hidden />
 
-       {/* Navigation */}
-       <SolutionsNavigationSection
-         previousHref="/solutions/ai-solutions-and-services"
-         title="Discover Next Step of Your AI Journey"
-         cta={{
-           href: "/solutions/predictive-analysis",
-           label: "Predictive Analysis",
-         }}
-       />
+        <ContactSection />
+
+        <SolutionsNavigationSection
+          previousHref="/solutions/ai-solutions-and-services"
+          title="Discover Next Step of Your AI Journey"
+          cta={{
+            href: "/solutions/predictive-analysis",
+            label: "Predictive Analysis",
+          }}
+        />
       </main>
 
       <Footer />

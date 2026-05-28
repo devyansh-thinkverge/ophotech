@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/ui/HeroSection";
@@ -8,10 +7,11 @@ import BackgroundDots from "@/components/ui/background";
 import { IconCardsSection } from "@/components/ui/IconCardsSection";
 import { SolutionsNavigationSection } from "@/components/ui/SolutionsNavigationSection";
 import { SolutionsIntroSection } from "@/components/ui/SolutionsIntroSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function PredictiveAnalysisPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#0B1B2B]">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
       <HeroSection
@@ -24,7 +24,7 @@ export default function PredictiveAnalysisPage() {
         video="/videos/Research-and-Analysis.mp4"
       />
 
-      <main className="bg-white text-[#0B1B2B]">
+      <main className="bg-white">
 
         <SolutionsIntroSection
           imageSrc="/images/raar/research.png"
@@ -73,15 +73,13 @@ export default function PredictiveAnalysisPage() {
           className="py-16"
           spacing={36}
           dotSize={2.5}
-          backgroundColor=""
-          dotColor="#D9D9D9"
-          style={{
-            background: "linear-gradient(to bottom, #ffffff 38.524%, #feecd6 171.52%)",
-          }}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
+          style={{ borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" }}
         >
           <section className="mx-auto max-w-6xl px-3 xl:px-0">
             <div className="flex flex-col gap-10 items-center">
-              <h2 className="text-center text-4xl font-medium text-[#111111]">
+              <h2 className="text-center text-4xl font-medium text-[#111827]">
                 Predictive Engineering Methodology
               </h2>
 
@@ -105,9 +103,9 @@ export default function PredictiveAnalysisPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="h-full">
-                    <div className="h-full rounded-2xl border border-[#fcd5ac] bg-white/30 p-5 flex flex-col gap-4 items-start card-text-smaller">
-                      <h3 className="text-xl font-medium text-[#111111]">{item.title}</h3>
-                      <p className="text-base leading-normal text-[#454545]">{item.text}</p>
+                    <div className="h-full rounded-2xl border border-[#f3f4f6] bg-white p-5 flex flex-col gap-4 items-start shadow-sm hover:border-[#22c55e]/20 transition-colors">
+                      <h3 className="text-xl font-medium text-[#111827]">{item.title}</h3>
+                      <p className="text-base leading-normal text-[#6b7280]">{item.text}</p>
                     </div>
                   </div>
                 ))}
@@ -117,53 +115,51 @@ export default function PredictiveAnalysisPage() {
             {/* Key Differentiators */}
             <div className="flex flex-col gap-10 mt-16">
               <div className="flex flex-col gap-5 items-center text-center px-4">
-                <h3 className="text-3xl font-medium leading-[32px] md:leading-[38px] text-[#454545]">
+                <h3 className="text-3xl font-medium leading-[32px] md:leading-[38px] text-[#111827]">
                   From Reactive Reporting to Proactive Foresight
                 </h3>
-                <p className="text-base font-normal leading-normal text-[#454545] max-w-[860px]">
+                <p className="text-base font-normal leading-normal text-[#6b7280] max-w-[860px]">
                   We replace static, intuition-based planning with data-driven precision — accurately forecasting demand spikes, operational bottlenecks, and customer behavior so you can deploy capital exactly where it is needed.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#FCD5AC] bg-white/30 px-6 py-5 md:px-10 w-full card-text-smaller">
+              <div className="rounded-2xl border border-[#f3f4f6] bg-white px-6 py-5 md:px-10 w-full shadow-sm">
                 <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-stretch md:items-start min-h-[243px] relative">
                   <div className="flex-1 flex flex-col gap-4 items-start justify-start">
                     <div className="flex flex-col gap-2 w-full mb-2 h-[110px]">
-                      <div className="bg-[#F6F6F6] rounded-lg px-2.5 py-3 w-fit">
-                        <span className="capitalize text-sm font-medium text-[#111111]">Business Challenge</span>
+                      <div className="bg-[#f9fafb] rounded-lg px-2.5 py-3 w-fit">
+                        <span className="capitalize text-sm font-medium text-[#111827]">Business Challenge</span>
                       </div>
-                      <p className="capitalize text-2xl font-medium leading-[26px] text-[#E45412]">
+                      <p className="capitalize text-2xl font-medium leading-[26px] text-[#22c55e]">
                         Supply chain disruptions eroding margins.
                       </p>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                      <div className="bg-[#F6F6F6] rounded-lg px-2.5 w-fit">
-                        <span className="capitalize text-sm font-medium text-[#111111]">Predictive Solution</span>
+                      <div className="bg-[#f9fafb] rounded-lg px-2.5 w-fit">
+                        <span className="capitalize text-sm font-medium text-[#111827]">Predictive Solution</span>
                       </div>
-                      <p className="text-base font-normal leading-normal text-[#454545]">
+                      <p className="text-base font-normal leading-normal text-[#6b7280]">
                         ML models forecasting localized demand fluctuations — factoring seasonality, economic indicators, and global logistics constraints — to optimize inventory flow and eliminate costly stockouts.
                       </p>
                     </div>
                   </div>
 
-                  <div className="hidden md:flex absolute left-1/2 top-0 bottom-0 -translate-x-1/2 items-center justify-center">
-                    <Image src="/images/raar/lineraar.svg" alt="" width={2} height={320} className="w-auto h-auto" aria-hidden />
-                  </div>
+                  <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-[#22c55e]/20 to-transparent" aria-hidden />
 
                   <div className="flex-1 flex flex-col gap-4 items-start justify-start">
                     <div className="flex flex-col gap-2 w-full mb-2 h-[110px]">
-                      <div className="bg-[#F6F6F6] rounded-lg px-2.5 py-3 w-fit">
-                        <span className="capitalize text-sm font-medium text-[#111111]">Business Challenge</span>
+                      <div className="bg-[#f9fafb] rounded-lg px-2.5 py-3 w-fit">
+                        <span className="capitalize text-sm font-medium text-[#111827]">Business Challenge</span>
                       </div>
-                      <p className="capitalize text-2xl font-medium leading-[26px] text-[#E45412]">
+                      <p className="capitalize text-2xl font-medium leading-[26px] text-[#22c55e]">
                         High-value customers churning without warning.
                       </p>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                      <div className="bg-[#F6F6F6] rounded-lg px-2.5 w-fit">
-                        <span className="capitalize text-sm font-medium text-[#111111]">Predictive Solution</span>
+                      <div className="bg-[#f9fafb] rounded-lg px-2.5 w-fit">
+                        <span className="capitalize text-sm font-medium text-[#111827]">Predictive Solution</span>
                       </div>
-                      <p className="text-base font-normal leading-normal text-[#454545]">
+                      <p className="text-base font-normal leading-normal text-[#6b7280]">
                         Churn prediction models that analyze engagement metrics and transaction histories to identify at-risk accounts before cancellation — triggering proactive retention workflows and maximizing long-term revenue.
                       </p>
                     </div>
@@ -210,16 +206,9 @@ export default function PredictiveAnalysisPage() {
           ]}
         />
 
-        <div className="flex justify-center">
-          <Image
-            src="/images/horizontalline.svg"
-            alt=""
-            width={1200}
-            height={3}
-            className="w-full max-w-5xl"
-            aria-hidden
-          />
-        </div>
+        <div className="h-px w-full max-w-5xl mx-auto bg-[#f3f4f6]" aria-hidden />
+
+        <ContactSection />
 
         <SolutionsNavigationSection
           previousHref="/solutions/ai-agent-development"

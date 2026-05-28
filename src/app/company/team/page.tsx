@@ -2,7 +2,7 @@
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { CTASection } from "@/components/sections/CTASection";
+import { ContactSection } from "@/components/sections/ContactSection";
 import BackgroundDots from "@/components/ui/background";
 import { HeroSection } from "@/components/ui/HeroSection";
 import Image from "next/image";
@@ -11,20 +11,11 @@ import { Fragment } from "react";
 const bhavneetImage = "/images/aboutus/walia-image.png";
 const shivenderImage = "/images/aboutus/sofat-image.png";
 const rajveerImage = "/images/aboutus/singh-image.png";
-const dividerLine = "/images/raar/lineraar.svg";
 
 const teamMembers = [
   { name: "Mr. Bhavneet Walia", title: "Founder", image: bhavneetImage },
-  {
-    name: "Mr. Shivender Sofat",
-    title: "Advisory Board Member",
-    image: shivenderImage,
-  },
-  {
-    name: "Mr. Rajveer Singh",
-    title: "Advisory Board Member",
-    image: rajveerImage,
-  },
+  { name: "Mr. Shivender Sofat", title: "Advisory Board Member", image: shivenderImage },
+  { name: "Mr. Rajveer Singh", title: "Advisory Board Member", image: rajveerImage },
 ];
 
 const leaderProfiles = [
@@ -36,56 +27,33 @@ const leaderProfiles = [
     ],
     image: bhavneetImage,
     reverse: false,
-    theme: "white",
   },
   {
     name: "Mr. Shivender Sofat",
     title: "Advisory Board Member",
     description: [
-      "Mr. Shivender Sofat is a highly sought-after cross-border finance and assurance leader who enables organizational growth through strong controls, transparency, and regulatory compliance. He holds the prestigious triple certification of Chartered Accountant (India), Certified Public Accountant (USA), and Certified Fraud Examiner, positioning him as a globally recognized expert in international finance and risk management. His professional affiliations include active membership in the AICPA, NYSSCPA, ACFE, and ICAI, where he contributes to anti-money laundering and combating the Financing of Terrorism initiatives, as well as IRS-related committees. ",
+      "Mr. Shivender Sofat is a highly sought-after cross-border finance and assurance leader who enables organizational growth through strong controls, transparency, and regulatory compliance. He holds the prestigious triple certification of Chartered Accountant (India), Certified Public Accountant (USA), and Certified Fraud Examiner, positioning him as a globally recognized expert in international finance and risk management. His professional affiliations include active membership in the AICPA, NYSSCPA, ACFE, and ICAI, where he contributes to anti-money laundering and combating the Financing of Terrorism initiatives, as well as IRS-related committees.",
     ],
     image: shivenderImage,
     reverse: true,
-    theme: "peach",
   },
   {
     name: "Mr. Rajveer Singh",
     title: "Advisory Board Member",
     description: [
-      "Mr. Rajveer Singh brings exceptional public-sector leadership with extensive expertise in audit, policy design, infrastructure finance, and multilateral standards. As a member of the Indian Civil Service (1991 batch), he has served as Special Secretary to the Government of India. He has also held senior leadership positions with the Comptroller and Auditor General of India, the Accountant General (Audit), Delhi, Northern Railway, and the New Delhi Municipal Council. His academic foundation includes degrees in Agriculture, Agricultural Economics, and Law, providing him with a comprehensive understanding of policy frameworks across multiple sectors. ",
-      "At OphoTech, Mr. Rajveer anchors governance and public-sector assurance across technology-policy engagements. His role focuses on ensuring compliance with regulatory frameworks while maximizing impact through strategic policy alignment and multilateral engagement standards. ",
+      "Mr. Rajveer Singh brings exceptional public-sector leadership with extensive expertise in audit, policy design, infrastructure finance, and multilateral standards. As a member of the Indian Civil Service (1991 batch), he has served as Special Secretary to the Government of India. He has also held senior leadership positions with the Comptroller and Auditor General of India, the Accountant General (Audit), Delhi, Northern Railway, and the New Delhi Municipal Council. His academic foundation includes degrees in Agriculture, Agricultural Economics, and Law, providing him with a comprehensive understanding of policy frameworks across multiple sectors.",
+      "At OphoTech, Mr. Rajveer anchors governance and public-sector assurance across technology-policy engagements. His role focuses on ensuring compliance with regulatory frameworks while maximizing impact through strategic policy alignment and multilateral engagement standards.",
     ],
     image: rajveerImage,
     reverse: false,
-    theme: "white",
   },
 ];
 
-const baseDotsProps = {
-  className: "py-16 ",
-  spacing: 36,
-  dotSize: 2.5,
-  dotColor: "#D9D9D9",
-};
-
-const gradientBackground = {
-  ...baseDotsProps,
-  style: {
-    background: "rgba(254, 236, 214, 0.33)",
-  },
-};
-
-const whiteBackground = {
-  ...baseDotsProps,
-  style: {
-    backgroundColor: "#ffffff",
-  },
-};
-
 export default function Team() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-gray-900">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
+
       <HeroSection
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -97,15 +65,22 @@ export default function Team() {
         contentAlignment="center"
       />
 
-      <main className="bg-white text-gray-800">
-        <BackgroundDots {...gradientBackground}>
+      <main className="bg-white">
+        {/* Team photo row */}
+        <BackgroundDots
+          className="py-16"
+          spacing={36}
+          dotSize={2.5}
+          backgroundColor="white"
+          dotColor="#e5e7eb"
+          style={{ borderTop: "1px solid #f3f4f6", borderBottom: "1px solid #f3f4f6" }}
+        >
           <section className="mx-auto flex max-w-6xl flex-col gap-10 px-3 xl:px-0">
             <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-between">
               {teamMembers.map((member, index) => (
                 <Fragment key={member.name}>
                   <div className="flex w-full flex-1 flex-col items-center">
-                    {/* --- ORANGE CARD WITH ONLY IMAGE --- */}
-                    <div className="w-full max-w-[180px] rounded-2xl border border-[#FCD5AC] bg-[#FFF6ED] shadow-[0px_12px_30px_rgba(228,84,18,0.08)]">
+                    <div className="w-full max-w-[180px] rounded-2xl border border-[#f3f4f6] bg-white shadow-sm">
                       <div className="relative w-full aspect-[3/4] overflow-hidden rounded-2xl">
                         <Image
                           src={member.image}
@@ -116,26 +91,17 @@ export default function Team() {
                         />
                       </div>
                     </div>
-
-                    {/* --- NAME & TITLE OUTSIDE CARD --- */}
-                    <h3 className="mt-4 text-xl font-medium text-gray-900 text-center">
+                    <h3 className="mt-4 text-xl font-medium text-[#111827] text-center">
                       {member.name}
                     </h3>
-                    <p className="text-sm font-semibold text-orange-500 text-center">
+                    <p className="text-sm font-semibold text-[#22c55e] text-center">
                       {member.title}
                     </p>
                   </div>
 
-                  {/* --- DIVIDER LINE (HEIGHT INCREASED) --- */}
                   {index < teamMembers.length - 1 && (
                     <div className="hidden items-center justify-center lg:flex">
-                      <Image
-                        src={dividerLine}
-                        alt="Divider"
-                        width={2}
-                        height={420} // ⬆ increased height
-                        className="h-[250px] w-15px"
-                      />
+                      <div className="w-px h-[250px] bg-gradient-to-b from-transparent via-[#22c55e]/20 to-transparent" aria-hidden />
                     </div>
                   )}
                 </Fragment>
@@ -144,93 +110,80 @@ export default function Team() {
           </section>
         </BackgroundDots>
 
-        {leaderProfiles.map((profile) => {
-          const backgroundProps =
-            profile.theme === "peach" ? gradientBackground : whiteBackground;
-
-          return (
-            <BackgroundDots key={profile.name} {...backgroundProps}>
-              <section
-                className={`mx-auto flex w-full max-w-6xl flex-col px-3 xl:px-0 ${
-                  profile.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+        {/* Leader profiles */}
+        {leaderProfiles.map((profile, profileIndex) => (
+          <BackgroundDots
+            key={profile.name}
+            className="py-16"
+            spacing={36}
+            dotSize={2.5}
+            backgroundColor="white"
+            dotColor="#e5e7eb"
+            style={{ borderBottom: "1px solid #f3f4f6" }}
+          >
+            <section
+              className={`mx-auto flex w-full max-w-6xl flex-col px-3 xl:px-0 ${
+                profile.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+              }`}
+            >
+              {/* Text area */}
+              <div
+                className={`lg:flex-[0.65] flex-1 space-y-3 ${
+                  profile.reverse ? "lg:pr-4" : "lg:pl-2"
                 }`}
               >
-                {/* TEXT AREA */}
+                <h3 className="text-xl md:text-3xl font-medium text-[#111827]">
+                  {profile.name}
+                </h3>
+                <p className="text-xl font-medium text-[#22c55e]">
+                  {profile.title}
+                </p>
+                <div className="space-y-4 text-base leading-relaxed text-[#6b7280] mb-5 lg:mb-0">
+                  {profile.description.map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Image + divider */}
+              <div
+                className={`lg:flex-[0.35] flex flex-1 flex-col items-center gap-10 lg:flex-row ${
+                  profile.reverse ? "lg:justify-start" : "lg:justify-end"
+                }`}
+              >
                 <div
-                  className={`lg:flex-[0.65] flex-1 space-y-3 ${
-                    profile.reverse ? "lg:pr-4" : "lg:pl-2"
+                  className={`hidden lg:block ${
+                    profile.reverse ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
-                  <h3 className="text-xl md:text-3xl font-medium text-gray-900">
-                    {profile.name}
-                  </h3>
-                  <p className="text-xl font-medium text-orange-500">
-                    {profile.title}
-                  </p>
-
-                  <div className="space-y-4 text-base leading-relaxed text-gray-600 mb-5 lg:mb-0">
-                    {profile.description.map((paragraph, idx) => (
-                      <p key={idx}>{paragraph}</p>
-                    ))}
-                  </div>
+                  <div className="w-px h-[400px] bg-gradient-to-b from-transparent via-[#22c55e]/20 to-transparent" aria-hidden />
                 </div>
 
-                {/* IMAGE + DIVIDER AREA */}
                 <div
-                  className={`lg:flex-[0.35] flex flex-1 flex-col items-center gap-10 lg:flex-row ${
-                    profile.reverse ? "lg:justify-start" : "lg:justify-end"
+                  className={`rounded-2xl border border-[#f3f4f6] bg-white shadow-sm ${
+                    profile.reverse ? "lg:order-1" : "lg:order-2"
                   }`}
                 >
-                  <div
-                    className={`hidden lg:block ${
-                      profile.reverse ? "lg:order-2" : "lg:order-1"
-                    }`}
-                  >
+                  <div className="relative h-[250px] w-[220px]">
                     <Image
-                      src={dividerLine}
-                      alt="Divider"
-                      width={2}
-                      height={348}
-                      className="h-[400px] w-15px"
+                      src={profile.image}
+                      alt={`${profile.name} portrait`}
+                      fill
+                      sizes="260px"
+                      className="rounded-2xl object-cover"
                     />
                   </div>
-
-                  <div
-                    className={`rounded-2xl border border-[#FCD5AC] bg-[#FFF6ED]  shadow-[0px_12px_30px_rgba(228,84,18,0.08)] ${
-                      profile.reverse ? "lg:order-1" : "lg:order-2"
-                    }`}
-                  >
-                    <div className="relative h-[250px] w-[220px]">
-                      <Image
-                        src={profile.image}
-                        alt={`${profile.name} portrait`}
-                        fill
-                        sizes="260px"
-                        className="rounded-2xl object-cover"
-                      />
-                    </div>
-                  </div>
                 </div>
-              </section>
-            </BackgroundDots>
-          );
-        })}
+              </div>
+            </section>
+          </BackgroundDots>
+        ))}
 
-        <div className="px-6 pb-16">
-          <div className="flex justify-center">
-            <Image
-              src="/images/horizontalline.svg"
-              alt=""
-              width={1200}
-              height={3}
-              className="w-full max-w-5xl"
-              aria-hidden
-            />
-          </div>
-        </div>
+        <div className="h-px w-full max-w-5xl mx-auto bg-[#f3f4f6]" aria-hidden />
 
-        <CTASection variant="ready" />
+        <ContactSection />
       </main>
+
       <Footer />
     </div>
   );
