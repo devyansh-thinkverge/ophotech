@@ -12,7 +12,7 @@ import { SecondaryButton } from "@/components/ui/SecondaryButton";
 import { slugify } from "@/lib/utils";
 import { fetchAllContent } from "@/lib/client-api";
 import { AllContentData } from "@/lib/types";
-import { HIDE_RESOURCES } from "@/lib/featureFlags";
+import { HIDE_RESOURCES, HIDE_PRODUCTS } from "@/lib/featureFlags";
 
 const NAV_SECTIONS = [
   {
@@ -114,9 +114,11 @@ export function Header() {
 
   const dropdowns = useMemo(
     () =>
-      NAV_SECTIONS.filter((section) =>
-        HIDE_RESOURCES ? section.key !== "resources" : true,
-      ).map((section) => ({
+      NAV_SECTIONS.filter((section) => {
+        if (HIDE_RESOURCES && section.key === "resources") return false;
+        if (HIDE_PRODUCTS && section.key === "products") return false;
+        return true;
+      }).map((section) => ({
         label: section.label,
         key: section.key,
         items: section.items.map((item) => ({

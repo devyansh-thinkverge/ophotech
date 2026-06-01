@@ -11,7 +11,7 @@ import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { HIDE_RESOURCES } from "@/lib/featureFlags";
+import { HIDE_RESOURCES, HIDE_PRODUCTS } from "@/lib/featureFlags";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <LazyValuePropositionSection />
         <HowWeWorkSection />
         <IndustriesSection />
-        <ProductsSection />
+        {HIDE_PRODUCTS ? null : <ProductsSection />}
         {HIDE_RESOURCES ? null : (
           <>
             <NewsletterSection />

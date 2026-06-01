@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { slugify } from "@/lib/utils";
-import { HIDE_RESOURCES } from "@/lib/featureFlags";
+import { HIDE_RESOURCES, HIDE_PRODUCTS } from "@/lib/featureFlags";
 
 const COMPANY_LINKS = [
   "About Us",
@@ -135,17 +135,19 @@ export function Footer() {
           />
 
           {/* Products Links */}
-          <FooterColumn
-            title="Products"
-            links={PRODUCT_LINKS}
-            hrefMapper={(link) => {
-              if (link === "All Products") return "/products";
-              if (link === "ROAAR") return "/products/roaar";
-              if (link === "Data Fabric AI") return "/products/data-fabric-ai";
-              if (link === "Shoout AI") return "/products/shoout-ai";
-              return "/products";
-            }}
-          />
+          {!HIDE_PRODUCTS && (
+            <FooterColumn
+              title="Products"
+              links={PRODUCT_LINKS}
+              hrefMapper={(link) => {
+                if (link === "All Products") return "/products";
+                if (link === "ROAAR") return "/products/roaar";
+                if (link === "Data Fabric AI") return "/products/data-fabric-ai";
+                if (link === "Shoout AI") return "/products/shoout-ai";
+                return "/products";
+              }}
+            />
+          )}
 
           {/* Resources Links */}
           {RESOURCE_LINKS.length ? (
