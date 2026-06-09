@@ -59,7 +59,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-1"
           >
-            <p className="text-5xl font-bold sm:text-6xl lg:text-7xl leading-[1.05] gradient-text text-glow">
+            <p className="text-5xl font-bold sm:text-6xl lg:text-7xl leading-[1.05] text-[#22c55e]">
               Governed AI
             </p>
             <p className="text-5xl font-bold text-white sm:text-6xl lg:text-7xl leading-[1.05]">

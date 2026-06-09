@@ -9,6 +9,11 @@ type ServiceIconKey =
   | "ai-solutions"
   | "ai-agent"
   | "cyber-security"
+  | "financial-services"
+  | "public-sector"
+  | "supply-chain"
+  | "enterprise-it"
+  | "corporate-workforce"
   | "default";
 
 type ServiceIconProps = {
@@ -24,6 +29,11 @@ const ICON_SOURCES: Record<ServiceIconKey, string> = {
   "ai-solutions": "/images/icons/ai-solutions.svg",
   "ai-agent": "/images/icons/ai-agent.svg",
   "cyber-security": "/images/icons/cyber-security.svg",
+  "financial-services": "/images/icons/settings-money.svg",
+  "public-sector": "/images/icons/shield.svg",
+  "supply-chain": "/images/icons/globe.svg",
+  "enterprise-it": "/images/icons/monitor.svg",
+  "corporate-workforce": "/images/icons/people.svg",
   default: "/images/icons/default.svg",
 };
 

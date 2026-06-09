@@ -73,8 +73,8 @@ export function HowWeWorkSection() {
 
               {/* Step number */}
               <span
-                className="text-5xl font-black leading-none select-none transition-colors duration-300 group-hover:text-[#22c55e]/40"
-                style={{ color: "rgba(34,197,94,0.15)" }}
+                className="text-5xl font-black leading-none select-none transition-colors duration-300 group-hover:text-[#22c55e]"
+                style={{ color: "rgba(34,197,94,0.6)" }}
               >
                 {step.number}
               </span>

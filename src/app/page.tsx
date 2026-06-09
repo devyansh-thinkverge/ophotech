@@ -2,7 +2,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CaseStudiesSection } from "@/components/sections/CaseStudiesSection";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { YourJourney } from "@/components/sections/Your-Journey";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { LazyValuePropositionSection } from "@/components/sections/LazyValuePropositionSection";
@@ -20,7 +19,6 @@ export default function Home() {
       <main className="flex flex-col">
         <HeroSection />
         <StatsSection />
-        <YourJourney />
         <ServicesSection />
         <LazyValuePropositionSection />
         <HowWeWorkSection />
