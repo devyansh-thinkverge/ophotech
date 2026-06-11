@@ -15,7 +15,7 @@ const COMPANY_LINKS = [
   "Cookie settings",
 ];
 
-const PRODUCT_LINKS = ["All Products", "ROAAR", "Data Fabric AI", "Shoout AI"];
+const PRODUCT_LINKS = ["All Products", "ROAAR", "CENTOIRE"];
 
 const RESOURCE_LINKS = HIDE_RESOURCES ? [] : ["Blogs", "Newsletters", "Case Studies"];
 
@@ -142,6 +142,7 @@ export function Footer() {
               hrefMapper={(link) => {
                 if (link === "All Products") return "/products";
                 if (link === "ROAAR") return "/products/roaar";
+                if (link === "CENTOIRE") return "/products/centoire";
                 if (link === "Data Fabric AI") return "/products/data-fabric-ai";
                 if (link === "Shoout AI") return "/products/shoout-ai";
                 return "/products";

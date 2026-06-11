@@ -11,5 +11,5 @@ export const HIDE_RESOURCES = true;
  * - Products column in Footer
  * - ProductsSection on the home page
  */
-export const HIDE_PRODUCTS = true;
+export const HIDE_PRODUCTS = false;
 

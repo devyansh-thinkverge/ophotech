@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { Fragment } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -26,6 +27,7 @@ const enterprisePerformance = [
 ];
 
 export default function ShooutAIPage() {
+  notFound();
   return (
     <div className="flex min-h-screen flex-col bg-white text-[#111827]">
       <Header />

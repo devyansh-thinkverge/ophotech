@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/ui/HeroSection";
@@ -48,6 +49,7 @@ const enterprisePerformance = [
 ];
 
 export default function DataFabricAIPage() {
+  notFound();
   return (
     <div className="flex min-h-screen flex-col bg-white text-[#111827]">
       <Header />

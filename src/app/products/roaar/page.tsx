@@ -191,7 +191,7 @@ export default function ROAARPage() {
         <SolutionsNavigationSection
           title="Explore Our Products"
           description="See how our full product suite transforms your enterprise data and marketing operations."
-          cta={{ href: "/products/data-fabric-ai", label: "Data Fabric AI" }}
+          cta={{ href: "/products/centoire", label: "CENTOIRE" }}
         />
       </main>
 

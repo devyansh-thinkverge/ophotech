@@ -23,7 +23,7 @@ const NAV_SECTIONS = [
   {
     label: "Products",
     key: "products",
-    items: ["All Products", "ROAAR", "Data Fabric AI", "Shoout AI"],
+    items: ["All Products", "ROAAR", "CENTOIRE"],
   },
   {
     label: "Solutions",

@@ -41,68 +41,36 @@ const PRODUCTS = [
     href: "/products/roaar",
   },
   {
-    name: "Data Fabric AI",
-    tagline: "Low-Code Data Unification Platform",
+    name: "CENTOIRE",
+    tagline: "AI-Powered Fashion Intelligence Platform",
     description:
-      "Data Fabric AI eliminates the integration bottlenecks that prevent enterprises from building production-ready AI. It unifies data ingestion, semantic modeling, and one-click production deployment into a single governed pipeline — enabling teams to go from raw, siloed data to AI-ready assets without heavy engineering overhead.",
+      "CENTOIRE compresses the most time-intensive phases of fashion product development — from initial inspiration to production-ready specifications — into an intelligent, automated workflow powered by a multi-agent AI pipeline.",
     features: [
       {
-        title: "Unified Data Ingestion",
+        title: "AI TechPack Generator",
         description:
-          "Connect and ingest data from legacy databases, modern cloud environments, and third-party applications into a single, standardized data environment — eliminating siloed, fragmented data streams.",
+          "Generate factory-ready 15-section technical specification documents — including flat sketches, grading tables, material specs, and BOM — from a natural language brief in under 30 minutes.",
       },
       {
-        title: "Semantic Modeling Layer",
+        title: "Trend Analysis Agent",
         description:
-          "Build a shared semantic model across your enterprise data, standardizing internal taxonomies and ensuring every AI model trained on this foundation operates with consistent, contextually accurate information.",
+          "RAG-powered intelligence layer indexed from WGSN, Vogue Runway, and social signals. Query trend data in natural language, validate concepts, and surface micro-trends before they hit trade reports.",
       },
       {
-        title: "One-Click Production Deployment",
+        title: "Cost Calculator",
         description:
-          "Move from validated data pipelines to production deployment in a single action. Automated quality checks and compliance validation are built into every deployment workflow.",
+          "Full itemized cost modeling: BOM, CMT manufacturing estimates, packaging, freight, import duties, and landed cost per unit across multiple MOQ tiers and 5 manufacturing regions simultaneously.",
       },
       {
-        title: "Self-Healing Data Flows",
+        title: "AI Product Imagery",
         description:
-          "Automated quality pipelines continuously monitor data health, flag anomalies, and remediate inconsistencies — ensuring AI models are always trained on pristine, investment-grade data.",
+          "Generate professional ghost, flat-lay, on-figure, and lifestyle product images before a sample exists. Batch-render all colorways simultaneously for catalog, e-commerce, and marketing use.",
       },
     ],
-    badge: "Data Platform",
+    badge: "Fashion Intelligence",
     color: "#22c55e",
-    audience: "Data Engineering Teams, IT Architects, Data Scientists",
-    href: "/products/data-fabric-ai",
-  },
-  {
-    name: "Shoout AI",
-    tagline: "Enterprise Marketing Intelligence & Automation Platform",
-    description:
-      "Shoout AI is the strategic co-pilot for enterprise marketing teams — combining predictive analytics, audience intelligence, and automated campaign execution into a single platform. It replaces fragmented marketing tools and intuition-based planning with data-driven precision that maximizes customer lifetime value and marketing ROI.",
-    features: [
-      {
-        title: "Predictive Campaign Optimization",
-        description:
-          "ML models continuously analyze campaign performance data, competitor positioning, and market signals to optimize targeting, messaging, and timing — maximizing return on every marketing dollar spent.",
-      },
-      {
-        title: "Intelligent Audience Segmentation",
-        description:
-          "Automatically segment audiences based on behavioral patterns, engagement history, and predicted lifetime value — enabling hyper-personalized campaigns that drive loyalty and reduce churn.",
-      },
-      {
-        title: "Automated Execution Workflows",
-        description:
-          "End-to-end campaign automation from audience selection through creative versioning, channel distribution, and performance reporting — freeing marketing teams for high-value strategic work.",
-      },
-      {
-        title: "Real-Time Revenue Impact Analytics",
-        description:
-          "Direct-line attribution dashboards connecting marketing activities to revenue outcomes, customer acquisition costs, and lifetime value — giving CMOs the data needed to confidently scale spend.",
-      },
-    ],
-    badge: "Marketing Intelligence",
-    color: "#22c55e",
-    audience: "CMOs, Marketing Operations, Revenue Teams",
-    href: "/products/shoout-ai",
+    audience: "Fashion Designers, D2C E-Commerce Brands, Design Agencies",
+    href: "/products/centoire",
   },
 ];
 

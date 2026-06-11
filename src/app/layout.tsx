@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import { Suspense } from "react";
 import { headers } from "next/headers";
 import "./globals.css";
-import VoiceflowChatbot from "@/components/chatbot";
 import CookieConsent from "@/components/cookies/CookieConsent";
 import { ContactModalRouteController } from "@/components/forms/ContactModalRouteController";
 import ConditionalGtm from "@/components/analytics/ConditionalGtm";
@@ -126,7 +125,6 @@ export default async function RootLayout({
           <ContactModalRouteController />
         </Suspense>
 
-        <VoiceflowChatbot nonce={nonce} />
         <CookieConsent />
       </body>
     </html>

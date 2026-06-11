@@ -16,32 +16,18 @@ const PRODUCTS = [
     href: "/products/roaar",
   },
   {
-    name: "Data Fabric AI",
-    tagline: "Low-Code Data Unification Platform",
+    name: "CENTOIRE",
+    tagline: "AI-Powered Fashion Intelligence Platform",
     description:
-      "A low-code data platform that eliminates integration bottlenecks across enterprise systems. Unify ingestion, semantic modeling, and production deployment into a single governed pipeline.",
+      "Compress fashion product development from weeks to hours. Generate factory-ready techpacks, AI product imagery, and real-time trend intelligence — all in one multi-agent platform.",
     highlights: [
-      "One-click production deployment",
-      "Unified semantic modeling layer",
-      "Eliminates data silo bottlenecks",
+      "TechPack generation in under 30 minutes",
+      "40% fewer sampling rounds",
+      "Real-time trend intelligence & cost modeling",
     ],
-    badge: "Data Platform",
-    accentColor: "#2A73B5",
-    href: "/products/data-fabric-ai",
-  },
-  {
-    name: "Shoout AI",
-    tagline: "Marketing Intelligence & Automation",
-    description:
-      "An enterprise-grade marketing intelligence platform. Acts as a strategic co-pilot for planning, executing, and optimizing marketing initiatives with predictive analytics.",
-    highlights: [
-      "Predictive campaign optimization",
-      "Automated audience segmentation",
-      "Real-time revenue impact analytics",
-    ],
-    badge: "Marketing Intelligence",
+    badge: "Fashion Intelligence",
     accentColor: "#22c55e",
-    href: "/products/shoout-ai",
+    href: "/products/centoire",
   },
 ];
 
