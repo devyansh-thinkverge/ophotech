@@ -37,11 +37,9 @@ const RESOURCE_LINKS = [
 function NavDropdown({
   label,
   links,
-  scrolled,
 }: {
   label: string;
   links: { label: string; href: string }[];
-  scrolled: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -52,9 +50,7 @@ function NavDropdown({
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors relative ${
-          scrolled ? "text-white/80 hover:text-[#09C771]" : "text-[#0E1010]/80 hover:text-[#0E1010]"
-        }`}
+        className="flex items-center gap-1 text-sm font-medium tracking-wide transition-colors relative text-white/80 hover:text-[#09C771]"
       >
         {label}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -117,33 +113,23 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0E1010]/95 backdrop-blur-md border-b border-white/10"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0E1010]/95 backdrop-blur-md border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center">
           <motion.div
-            className="flex items-center gap-2.5"
             whileHover={{ scale: 1.04 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <Image
-              src="/opho-favicon.png"
+              src="/images/logo/Opho logo for dark mode.png"
               alt="Opho Technologies"
-              width={36}
-              height={36}
-              className="w-9 h-9 rounded-full"
+              width={190}
+              height={64}
+              className="h-8 w-auto"
+              priority
             />
-            <div className="flex flex-col leading-none">
-              <span className={`text-xl font-black tracking-tight ${scrolled ? "text-white" : "text-[#0E1010]"}`}>
-                OPHO
-              </span>
-              <span className="text-[9px] font-mono tracking-[0.25em] text-[#09C771]">TECHNOLOGIES</span>
-            </div>
           </motion.div>
         </Link>
 
@@ -191,7 +177,7 @@ export function Header() {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className={scrolled ? "text-white" : "text-[#0E1010]"} size={22} />
+                <X className="text-white" size={22} />
               </motion.div>
             ) : (
               <motion.div
@@ -201,7 +187,7 @@ export function Header() {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Menu className={scrolled ? "text-white" : "text-[#0E1010]"} size={22} />
+                <Menu className="text-white" size={22} />
               </motion.div>
             )}
           </AnimatePresence>
