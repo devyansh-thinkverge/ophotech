@@ -135,13 +135,13 @@ export function Header() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-7">
-          <NavDropdown label="Company" links={COMPANY_LINKS} scrolled={scrolled} />
+          <NavDropdown label="Company" links={COMPANY_LINKS} />
           {!HIDE_PRODUCTS && (
-            <NavDropdown label="Products" links={PRODUCT_LINKS} scrolled={scrolled} />
+            <NavDropdown label="Products" links={PRODUCT_LINKS} />
           )}
-          <NavDropdown label="Solutions" links={SOLUTION_LINKS} scrolled={scrolled} />
+          <NavDropdown label="Solutions" links={SOLUTION_LINKS} />
           {!HIDE_RESOURCES && (
-            <NavDropdown label="Resources" links={RESOURCE_LINKS} scrolled={scrolled} />
+            <NavDropdown label="Resources" links={RESOURCE_LINKS} />
           )}
         </div>
 
