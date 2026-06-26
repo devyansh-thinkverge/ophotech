@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, JetBrains_Mono } from "next/font/google";
+import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import { Suspense } from "react";
 import { headers } from "next/headers";
@@ -10,47 +10,32 @@ import ConditionalGtm from "@/components/analytics/ConditionalGtm";
 import { LenisProvider } from "@/components/ui/lenis-provider";
 import ClickSpark from "@/components/ui/click-spark";
 
-const poppins = Poppins({
+const manrope = Manrope({
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
   preload: true,
   adjustFontFallback: true,
-  fallback: [
-    "system-ui",
-    "-apple-system",
-    "Segoe UI",
-    "Roboto",
-    "Arial",
-    "sans-serif",
-  ],
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Arial", "sans-serif"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
+const clashDisplay = localFont({
+  src: [
+    { path: '../../public/fonts/ClashDisplay-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/ClashDisplay-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/ClashDisplay-Semibold.woff2', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/ClashDisplay-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-display',
 });
 
 const uCityPro = localFont({
   src: [
-    {
-      path: '../../public/fonts/UCityProWeb-Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/UCityProWeb-Semibold.woff',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/UCityProWeb-Bold.woff',
-      weight: '700',
-      style: 'normal',
-    },
+    { path: '../../public/fonts/UCityProWeb-Regular.woff', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/UCityProWeb-Semibold.woff', weight: '600', style: 'normal' },
+    { path: '../../public/fonts/UCityProWeb-Bold.woff', weight: '700', style: 'normal' },
   ],
   display: 'swap',
   variable: '--font-ucity',
@@ -86,7 +71,7 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="en" className={`${uCityPro.variable} ${uCityPro.className} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${clashDisplay.variable} ${uCityPro.variable}`}>
       <head>
         {/* Preconnects for Voiceflow Infrastructure */}
         <link rel="preconnect" href="https://cdn.voiceflow.com" crossOrigin="anonymous" />
@@ -122,7 +107,7 @@ export default async function RootLayout({
         />
       </head>
 
-      <body className={`${poppins.variable} font-sans antialiased bg-[#0E1010]`}>
+      <body className="font-sans antialiased bg-[#0E1010]">
         {/* GTM — loads only in production and only after consent */}
         {process.env.NODE_ENV === "production" && (
           <ConditionalGtm gtmId="GTM-KQRTLRFZ" nonce={nonce} />
