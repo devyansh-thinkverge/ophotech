@@ -1,6 +1,5 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-import { convertTo24Hour, formatTime12Hour } from '@/lib/date-utils';
 import { fileTypeFromBuffer } from 'file-type';
 
 function getResendClient() {
@@ -76,20 +75,20 @@ export async function POST(request: Request) {
       fileNameForTemplate = file.name;
     }
 
-    // 4. Format time slot (combine startTime and endTime with 12-hour format)
-    const startTime24 = startTime && startPeriod
-      ? convertTo24Hour(startTime, startPeriod)
+    // 4. Format time slot
+    const startDisplay = startTime
+      ? `${startTime}${startPeriod ? ` ${startPeriod}` : ''}`
       : '';
-    const endTime24 = endTime && endPeriod
-      ? convertTo24Hour(endTime, endPeriod)
+    const endDisplay = endTime
+      ? `${endTime}${endPeriod ? ` ${endPeriod}` : ''}`
       : '';
 
-    const timeSlot = startTime24 && endTime24
-      ? `${formatTime12Hour(startTime24)} - ${formatTime12Hour(endTime24)}`
-      : startTime24
-      ? formatTime12Hour(startTime24)
-      : endTime24
-      ? formatTime12Hour(endTime24)
+    const timeSlot = startDisplay && endDisplay
+      ? `${startDisplay} - ${endDisplay}`
+      : startDisplay
+      ? startDisplay
+      : endDisplay
+      ? endDisplay
       : 'Not specified';
 
     // 5. Send Admin Email to Multiple Recipients
@@ -105,41 +104,41 @@ export async function POST(request: Request) {
       .map((e) => e.trim())
       .filter((e) => e.length > 0);
 
+    const adminHtml = `
+      <h1>New Inquiry from ${name}</h1>
+      <p><strong>Organization:</strong> ${organization}</p>
+      <p><strong>Role:</strong> ${role || 'Not specified'}</p>
+      <p><strong>Industry:</strong> ${industry || 'Not specified'}</p>
+      <p><strong>Work Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+      <p><strong>Country:</strong> ${country || 'Not specified'}</p>
+      <p><strong>Date:</strong> ${date || 'Not specified'}</p>
+      <p><strong>Time:</strong> ${timeSlot}</p>
+      <p><strong>Brief:</strong> ${brief || 'No message provided'}</p>
+      <p><strong>File:</strong> ${fileNameForTemplate}</p>
+    `;
+
     const adminEmail = await resend.emails.send({
       from: 'info@ophotech.com',
       to: adminRecipients,
       replyTo: email,
       subject: `New Inquiry from ${name}`,
       attachments: attachments,
-      template: {
-        id: 'admin-1',
-        variables: {
-          NAME: name,
-          ORGANIZATION: organization,
-          ROLE: role || 'Not specified',
-          INDUSTRY: industry || 'Not specified',
-          WORK_EMAIL: email,
-          PHONE: phone || 'Not provided',
-          COUNTRY: country || 'Not specified',
-          DATE: date || 'Not specified',
-          TIME: timeSlot,
-          BRIEF: brief || 'No message provided',
-          FILE_NAME: fileNameForTemplate,
-        },
-      },
+      html: adminHtml,
     });
 
     // 6. Send Email to Lead (User)
+    const userHtml = `
+      <h1>Thank you, ${name}</h1>
+      <p>We received your inquiry and an Opho engineer will get back to you shortly.</p>
+      <p><strong>Organization:</strong> ${organization}</p>
+    `;
+
     const userEmail = await resend.emails.send({
       from: 'noreply@ophotech.com',
       to: email,
       subject: 'Thank you for your inquiry',
-      template: {
-        id: 'lead',
-        variables: {
-          NAME: name,
-        },
-      },
+      html: userHtml,
     });
 
     if (adminEmail.error || userEmail.error) {
