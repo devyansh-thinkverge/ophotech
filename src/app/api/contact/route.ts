@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     const startPeriod = formData.get("startPeriod") as string;
     const endTime = formData.get("endTime") as string;
     const endPeriod = formData.get("endPeriod") as string;
-    const brief = formData.get("brief") as string;
+    const brief = (formData.get("brief") as string) || (formData.get("message") as string);
     const file = formData.get("file") as File | null;
 
     // 2. Validate Required Fields

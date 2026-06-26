@@ -23,20 +23,19 @@ export function ContactSection() {
     setStatus("submitting");
     try {
       const fd = new FormData();
-      fd.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
-      fd.append("from_name", "OPHO Technologies Contact Form");
       fd.append("name", formData.name);
       fd.append("email", formData.email);
       fd.append("organization", formData.organization);
-      fd.append("message", formData.message);
+      fd.append("brief", formData.message);
 
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { Accept: "application/json" },
         body: fd,
       });
       const data = await res.json();
-      if (!res.ok || !data.success) throw new Error(data.message);
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || data.message || "Failed to send message");
+      }
       setStatus("success");
       setFormData({ name: "", email: "", organization: "", message: "" });
     } catch {
@@ -149,6 +148,7 @@ export function ContactSection() {
                   id="organization"
                   name="organization"
                   type="text"
+                  required
                   value={formData.organization}
                   onChange={handleChange}
                   placeholder="Company / institution"
