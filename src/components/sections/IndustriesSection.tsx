@@ -1,82 +1,180 @@
-import { ServiceIcon } from "@/components/icons/ServiceIcon";
+"use client";
 
-const INDUSTRIES = [
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+
+const SECTORS = [
   {
-    title: "Financial Services",
+    image: "/images/sectors/financial-services.png",
+    name: "Financial Services",
     description:
       "Real-time fraud detection, predictive risk modeling, and automated regulatory compliance for banks, insurers, and capital markets firms.",
-    icon: "financial-services" as const,
   },
   {
-    title: "Public Sector",
+    image: "/images/sectors/government.png",
+    name: "Public Sector",
     description:
       "Secure, restricted AI for sovereign intelligence — purpose-built for government agencies with strict data localization and audit requirements.",
-    icon: "public-sector" as const,
   },
   {
-    title: "Supply Chain & Logistics",
+    image: "/images/sectors/retail.png",
+    name: "Supply Chain & Logistics",
     description:
       "Autonomous workflow orchestration, demand forecasting, and operational bottleneck prediction across global distribution networks.",
-    icon: "supply-chain" as const,
   },
   {
-    title: "Enterprise IT Operations",
+    image: "/images/sectors/it-operations.png",
+    name: "Enterprise IT Operations",
     description:
       "Infrastructure auditing, system redundancy elimination, and intelligent automation to reduce operational overhead and accelerate delivery.",
-    icon: "enterprise-it" as const,
   },
   {
-    title: "Corporate Workforce",
+    image: "/images/sectors/workforce.png",
+    name: "Corporate Workforce",
     description:
       "Secure conversational AI agents that give employees instant access to institutional knowledge without exposing sensitive data.",
-    icon: "corporate-workforce" as const,
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
+  },
+};
+
 export function IndustriesSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
-    <section className="py-20 px-4 bg-white relative overflow-hidden">
-      <div className="relative mx-auto max-w-6xl">
-        <div className="mb-14 text-center">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#22c55e] mb-3">
-            <span className="w-6 h-px bg-[#22c55e]" />
-            Sectors
-            <span className="w-6 h-px bg-[#22c55e]" />
-          </span>
-          <h2 className="text-4xl font-bold text-[#111827] mt-1">
-            Industries We <span className="text-[#22c55e]">Serve</span>
-          </h2>
-          <p className="mt-3 text-base text-[#6b7280] max-w-2xl mx-auto">
-            Governed AI transformation for high-stakes enterprises where data security, compliance, and measurable ROI are non-negotiable.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {INDUSTRIES.map((industry) => (
-            <div
-              key={industry.title}
-              className="group flex flex-col gap-4 rounded-2xl border border-[#f3f4f6] bg-white p-6 transition-all duration-300 hover:border-[#22c55e]/40 hover:shadow-xl hover:-translate-y-1 cursor-default"
-              style={{ "--tw-shadow-color": "rgba(240,253,244,0.8)" } as React.CSSProperties}
+    <section id="sectors" className="relative py-16 bg-[#01404F] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          className="text-center mb-10"
+        >
+          <motion.span
+            className="font-mono text-[#09C771] text-xs tracking-widest inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            SECTORS
+          </motion.span>
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mt-2">
+            <motion.span
+              className="inline-block"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
             >
-              <ServiceIcon
-                name={industry.icon}
-                alt={industry.title}
-                className="transition-all duration-300 group-hover:scale-110"
-              />
-              <h3 className="text-lg font-bold text-[#111827] group-hover:text-[#22c55e] transition-colors duration-300">
-                {industry.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-[#6b7280]">{industry.description}</p>
+              INDUSTRIES WE{" "}
+            </motion.span>
+            <motion.span
+              className="text-[#09C771] inline-block"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.3 }}
+            >
+              SERVE
+            </motion.span>
+          </h2>
+          <motion.p
+            className="text-sm md:text-base text-white/60 font-mono mt-3 max-w-2xl mx-auto text-pretty"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            Governed AI transformation for high-stakes enterprises where data security, compliance, and measurable ROI are non-negotiable.
+          </motion.p>
+        </motion.div>
 
-              <div className="mt-auto pt-3 border-t border-[#f9fafb] flex items-center gap-1 text-xs font-semibold text-[#22c55e] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Learn more
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden>
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+        <motion.div
+          ref={ref}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {SECTORS.map((sector) => (
+            <motion.div
+              key={sector.name}
+              variants={itemVariants}
+              whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+              className="group flex flex-col bg-[#0E1010] rounded-2xl overflow-hidden border border-white/10 hover:border-[#09C771]/50 transition-colors duration-300"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <Image
+                  src={sector.image}
+                  alt={sector.name}
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0E1010] via-transparent to-transparent" />
               </div>
-            </div>
+
+              <div className="flex flex-col flex-1 p-6">
+                <h3 className="text-xl font-black text-white tracking-tight">{sector.name}</h3>
+                <p className="text-sm text-white/60 leading-relaxed mt-3 flex-1 text-pretty">{sector.description}</p>
+
+                <motion.button
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  className="flex items-center gap-2 text-[#09C771] font-bold text-xs tracking-wide mt-5"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Learn more
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </motion.button>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <motion.button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            className="flex items-center gap-2 bg-[#09C771] text-[#0E1010] px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+              whileHover={{ x: "200%" }}
+              transition={{ duration: 0.6 }}
+            />
+            <span className="relative z-10">Discuss your industry</span>
+            <ArrowRight className="w-4 h-4 relative z-10" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

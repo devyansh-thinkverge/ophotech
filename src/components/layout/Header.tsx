@@ -1,387 +1,258 @@
 "use client";
 
-import Image from "next/image";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { HIDE_PRODUCTS, HIDE_RESOURCES } from "@/lib/featureFlags";
 
-import { Dropdown } from "@/components/layout/Dropdown";
-import { SearchDropdown } from "@/components/layout/SearchDropdown";
-import { PrimaryButton } from "@/components/ui/Button";
-import { SecondaryButton } from "@/components/ui/SecondaryButton";
-import { slugify } from "@/lib/utils";
-import { fetchAllContent } from "@/lib/client-api";
-import { AllContentData } from "@/lib/types";
-import { HIDE_RESOURCES, HIDE_PRODUCTS } from "@/lib/featureFlags";
-
-const NAV_SECTIONS = [
-  {
-    label: "Company",
-    key: "company",
-    items: ["About Us", "Team", "Careers"],
-  },
-  {
-    label: "Products",
-    key: "products",
-    items: ["All Products", "ROAAR", "CENTOIRE"],
-  },
-  {
-    label: "Solutions",
-    key: "solutions",
-    items: [
-      "Research & Analysis",
-      "Data Structuring & Monetization",
-      "Cloud Integration",
-      "AI Solutions & Services",
-      "AI Agent Development",
-      "Predictive Analysis",
-    ],
-  },
-  {
-    label: "Resources",
-    key: "resources",
-    items: ["Newsletters", "Blogs", "Case Studies"],
-  },
+const COMPANY_LINKS = [
+  { label: "About Us", href: "/company/about-us" },
+  { label: "Team", href: "/company/team" },
+  { label: "Careers", href: "/company/careers" },
 ];
 
-const SearchIcon = ({ className }: { className?: string }) => (
-  <svg
-    aria-hidden="true"
-    className={className}
-    fill="none"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="m15.5 15.5-3.15-3.15m1.15-3.35a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    />
-  </svg>
-);
+const PRODUCT_LINKS = [
+  { label: "All Products", href: "/products" },
+  { label: "ROAAR", href: "/products/roaar" },
+  { label: "CENTOIRE", href: "/products/centoire" },
+];
 
-const MenuIcon = ({ open }: { open: boolean }) => (
-  <div className="relative flex h-6 w-6 items-center justify-center">
-    <span
-      className={`absolute h-0.5 w-5 rounded-full bg-white transition-all duration-200 ${
-        open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
-      }`}
-    />
-    <span
-      className={`absolute h-0.5 w-5 rounded-full bg-white transition-opacity duration-200 ${
-        open ? "opacity-0" : "opacity-100"
-      }`}
-    />
-    <span
-      className={`absolute h-0.5 w-5 rounded-full bg-white transition-all duration-200 ${
-        open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
-      }`}
-    />
-  </div>
-);
+const SOLUTION_LINKS = [
+  { label: "Research & Analysis", href: "/solutions/research-and-analysis" },
+  { label: "Data Structuring", href: "/solutions/data-structuring-and-monetization" },
+  { label: "Cloud Integration", href: "/solutions/cloud-integration" },
+  { label: "AI Solutions & Services", href: "/solutions/ai-solutions-and-services" },
+  { label: "AI Agent Development", href: "/solutions/ai-agent-development" },
+  { label: "Predictive Analysis", href: "/solutions/predictive-analysis" },
+];
 
-const ChevronSmall = ({ open }: { open: boolean }) => (
-  <svg
-    aria-hidden="true"
-    className={`size-4 text-[#22c55e] transition-transform duration-200 ${
-      open ? "rotate-180" : ""
-    }`}
-    fill="currentColor"
-    viewBox="0 0 12 7"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M6 7 0 0h12L6 7Z" />
-  </svg>
-);
+const RESOURCE_LINKS = [
+  { label: "Newsletters", href: "/newsletters" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Case Studies", href: "/case-studies" },
+];
+
+function NavDropdown({
+  label,
+  links,
+  scrolled,
+}: {
+  label: string;
+  links: { label: string; href: string }[];
+  scrolled: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors relative ${
+          scrolled ? "text-white/80 hover:text-[#09C771]" : "text-[#0E1010]/80 hover:text-[#0E1010]"
+        }`}
+      >
+        {label}
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <motion.span
+          className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#09C771] origin-left"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: open ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+        />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+            className="absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[180px] z-50"
+          >
+            <div className="bg-[#0E1010]/98 backdrop-blur-md rounded-2xl border border-white/10 p-2 shadow-2xl">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-[#09C771] hover:bg-white/5 transition-colors"
+                  onClick={() => setOpen(false)}
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#09C771] opacity-0 group-hover:opacity-100" />
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function Header() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [expandedSection, setExpandedSection] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [allContent, setAllContent] = useState<AllContentData | null>(null);
-  const [isLoadingContent, setIsLoadingContent] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const searchContainerRef = useRef<HTMLDivElement | null>(null);
-  const mobileSearchModalRef = useRef<HTMLDivElement | null>(null);
-
-  const navLinkBase =
-    "relative inline-flex items-center pb-3 text-sm font-medium text-white/70 transition-colors duration-200 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-[#22c55e] after:transition-all after:duration-200 after:content-[''] hover:text-white hover:after:w-full";
-  const navLinkActive = "text-white after:w-full";
-
-  const dropdowns = useMemo(
-    () =>
-      NAV_SECTIONS.filter((section) => {
-        if (HIDE_RESOURCES && section.key === "resources") return false;
-        if (HIDE_PRODUCTS && section.key === "products") return false;
-        return true;
-      }).map((section) => ({
-        label: section.label,
-        key: section.key,
-        items: section.items.map((item) => ({
-          label: item,
-          href: section.key === "products"
-            ? (item === "All Products" ? "/products" : `/products${slugify(item)}`)
-            : section.key === "solutions" ? `/solutions${slugify(item)}`
-            : section.key === "company" ? `/company${slugify(item)}`
-            : slugify(item),
-        })),
-      })),
-    [],
-  );
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSearchToggle = () => {
-    setSearchOpen(!searchOpen);
-  };
-
-  useEffect(() => {
-    if (searchOpen && !allContent && !isLoadingContent) {
-      const loadContent = async () => {
-        setIsLoadingContent(true);
-        try {
-          const data = await fetchAllContent();
-          setAllContent(data);
-        } catch (error) {
-          console.error("Failed to load search content:", error);
-        } finally {
-          setIsLoadingContent(false);
-        }
-      };
-      loadContent();
-    }
-  }, [searchOpen, allContent, isLoadingContent]);
-
-  useEffect(() => {
-    setSearchOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    const handlePointerDown = (event: PointerEvent) => {
-      const targetNode = event.target as Node | null;
-      if (!targetNode) return;
-
-      const clickedInsideDesktop =
-        searchContainerRef.current?.contains(targetNode) ?? false;
-      const clickedInsideMobile =
-        mobileSearchModalRef.current?.contains(targetNode) ?? false;
-
-      if (!clickedInsideDesktop && !clickedInsideMobile) {
-        setSearchOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSearchOpen(false);
-      }
-    };
-
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
-
-  const handleOpenContact = () => {
+  const scrollToContact = () => {
     const el = document.getElementById("contact");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      router.push("/#contact");
     }
+    setMobileMenuOpen(false);
   };
 
   return (
-    <>
-      <header
-        className={`relative sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-black/80 backdrop-blur-md border-b border-white/10"
-            : "bg-[#0a0a0a]/90 border-b border-white/5"
-        }`}
-        role="banner"
-      >
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-2 xl:px-0">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/logo/Opho logo for dark mode.png"
-              alt="Opho Technologies"
-              width={190}
-              height={64}
-              priority
-              className="h-auto w-24 md:w-[140px]"
-            />
-          </Link>
-
-          <nav className="hidden items-center gap-8 lg:flex">
-            <Link
-              href="/"
-              className={`${navLinkBase} ${
-                pathname === "/" ? navLinkActive : ""
-              }`}
-            >
-              Home
-            </Link>
-            {dropdowns.map((dropdown) => {
-              const isActive = dropdown.items.some((item) =>
-                pathname?.startsWith(item.href),
-              );
-              return (
-                <Dropdown
-                  key={dropdown.key}
-                  label={dropdown.label}
-                  items={dropdown.items}
-                  isActive={isActive}
-                  linkClassName={navLinkBase}
-                  activeClassName={navLinkActive}
-                />
-              );
-            })}
-          </nav>
-
-          <div className="hidden items-center gap-4 lg:flex">
-            {HIDE_RESOURCES ? null : (
-              <div ref={searchContainerRef} className="relative">
-                <button
-                  type="button"
-                  aria-label="Search"
-                  className="flex size-10 items-center justify-center rounded-xl bg-white/5 text-[#22c55e] transition hover:bg-[#22c55e]/10 border border-white/10"
-                  onClick={handleSearchToggle}
-                  aria-expanded={searchOpen}
-                  aria-haspopup="true"
-                >
-                  <SearchIcon className="size-5" />
-                </button>
-
-                {searchOpen ? (
-                  <SearchDropdown
-                    allContent={allContent}
-                    isLoading={isLoadingContent}
-                    onClose={() => setSearchOpen(false)}
-                  />
-                ) : null}
-              </div>
-            )}
-            <PrimaryButton onClick={handleOpenContact}>Schedule a Call</PrimaryButton>
-          </div>
-
-          <button
-            type="button"
-            aria-label="Toggle navigation"
-            className="flex items-center justify-center rounded-xl border border-white/10 p-2 text-white lg:hidden"
-            onClick={() => setMobileOpen((prev) => !prev)}
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#0E1010]/95 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <motion.div
+            className="flex items-center gap-2.5"
+            whileHover={{ scale: 1.04 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <MenuIcon open={mobileOpen} />
-          </button>
+            <Image
+              src="/opho-favicon.png"
+              alt="Opho Technologies"
+              width={36}
+              height={36}
+              className="w-9 h-9 rounded-full"
+            />
+            <div className="flex flex-col leading-none">
+              <span className={`text-xl font-black tracking-tight ${scrolled ? "text-white" : "text-[#0E1010]"}`}>
+                OPHO
+              </span>
+              <span className="text-[9px] font-mono tracking-[0.25em] text-[#09C771]">TECHNOLOGIES</span>
+            </div>
+          </motion.div>
+        </Link>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-7">
+          <NavDropdown label="Company" links={COMPANY_LINKS} scrolled={scrolled} />
+          {!HIDE_PRODUCTS && (
+            <NavDropdown label="Products" links={PRODUCT_LINKS} scrolled={scrolled} />
+          )}
+          <NavDropdown label="Solutions" links={SOLUTION_LINKS} scrolled={scrolled} />
+          {!HIDE_RESOURCES && (
+            <NavDropdown label="Resources" links={RESOURCE_LINKS} scrolled={scrolled} />
+          )}
         </div>
 
-        <div
-          className={`lg:hidden transition-[max-height,opacity] duration-300 ${
-            mobileOpen ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
-          } overflow-hidden border-t border-white/10 bg-[#0f0f0f]`}
+        {/* CTA */}
+        <motion.button
+          onClick={scrollToContact}
+          className="hidden md:block bg-[#09C771] text-[#0E1010] px-6 py-2.5 rounded-full font-bold text-sm tracking-wide relative overflow-hidden"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <div className="space-y-6 px-4 py-6">
-            <Link
-              href="/"
-              onClick={() => setMobileOpen(false)}
-              className={`block text-base font-semibold ${
-                pathname === "/"
-                  ? "text-[#22c55e]"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              Home
-            </Link>
-            {dropdowns.map((dropdown) => {
-              const isExpanded = expandedSection === dropdown.key;
-              return (
-                <div key={dropdown.key} className="border-t border-white/5 pt-4">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between text-left text-base font-semibold text-white/80"
-                    onClick={() =>
-                      setExpandedSection((prev) =>
-                        prev === dropdown.key ? null : dropdown.key,
-                      )
-                    }
-                  >
-                    {dropdown.label}
-                    <ChevronSmall open={isExpanded} />
-                  </button>
-                  <div
-                    className={`mt-3 space-y-2 pl-4 transition-[max-height,opacity] duration-300 ${
-                      isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                    } overflow-hidden`}
-                  >
-                    {dropdown.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block text-sm text-white/50 hover:text-[#22c55e]"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-            <div className="flex items-center gap-3 pt-4">
-              {HIDE_RESOURCES ? null : (
-                <SecondaryButton
-                  withArrow={false}
-                  className="w-full justify-center"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    setSearchOpen(true);
-                  }}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+          />
+          <span className="relative z-10">Schedule a Call</span>
+        </motion.button>
+
+        {/* Mobile hamburger */}
+        <motion.button
+          className="md:hidden p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Toggle menu"
+        >
+          <AnimatePresence mode="wait">
+            {mobileMenuOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X className={scrolled ? "text-white" : "text-[#0E1010]"} size={22} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu className={scrolled ? "text-white" : "text-[#0E1010]"} size={22} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+            className="md:hidden bg-[#0E1010]/98 backdrop-blur-md border-t border-white/10 overflow-hidden"
+          >
+            <div className="px-6 py-5 space-y-1">
+              {[
+                ...COMPANY_LINKS.map(l => ({ ...l, section: "Company" })),
+                ...(HIDE_PRODUCTS ? [] : PRODUCT_LINKS.map(l => ({ ...l, section: "Products" }))),
+                ...SOLUTION_LINKS.map(l => ({ ...l, section: "Solutions" })),
+                ...(HIDE_RESOURCES ? [] : RESOURCE_LINKS.map(l => ({ ...l, section: "Resources" }))),
+              ].map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04 }}
                 >
-                  Search
-                </SecondaryButton>
-              )}
-              <PrimaryButton
-                className="w-full justify-center"
-                onClick={() => {
-                  setMobileOpen(false);
-                  handleOpenContact();
-                }}
+                  <Link
+                    href={link.href}
+                    className="block text-white/70 hover:text-[#09C771] text-base font-medium py-2.5 border-b border-white/5 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.button
+                onClick={scrollToContact}
+                className="w-full mt-4 bg-[#09C771] text-[#0E1010] px-6 py-3 rounded-full font-bold text-sm tracking-wide"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
               >
                 Schedule a Call
-              </PrimaryButton>
+              </motion.button>
             </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Search Modal */}
-      {!HIDE_RESOURCES && searchOpen && (
-        <div className="fixed inset-0 z-[70] bg-black/70 lg:hidden">
-          <div
-            ref={mobileSearchModalRef}
-            className="fixed inset-x-0 top-0 bottom-0 z-[71] bg-[#0f0f0f] shadow-xl overflow-hidden"
-          >
-            <SearchDropdown
-              allContent={allContent}
-              isLoading={isLoadingContent}
-              onClose={() => setSearchOpen(false)}
-              isMobile={true}
-            />
-          </div>
-        </div>
-      )}
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }
