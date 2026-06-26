@@ -48,13 +48,13 @@ export function ValuePropositionSection() {
   };
 
   return (
-    <section className="relative overflow-hidden py-20 px-4 bg-white">
+    <section className="relative overflow-hidden py-20 px-4 bg-[#F1F1F1]">
       {/* Dot background */}
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(14,16,16,0.12) 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
@@ -63,15 +63,12 @@ export function ValuePropositionSection() {
       <div className="relative mx-auto max-w-6xl">
         {/* Heading */}
         <div className="mb-12 text-center">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#22c55e] mb-3">
-            <span className="w-6 h-px bg-[#22c55e]" />
-            Framework
-            <span className="w-6 h-px bg-[#22c55e]" />
-          </span>
-          <h2 className="text-4xl font-bold leading-tight text-[#111827] mt-1">
-            The Governed <span className="text-[#22c55e]">AI Lifecycle</span>
+          <span className="font-mono text-[#0E1010]/60 text-xs tracking-widest uppercase">Framework</span>
+          <h2 className="text-4xl md:text-6xl font-black text-[#0E1010] tracking-tighter mt-2">
+            THE GOVERNED{" "}
+            <span className="text-[#09C771]">AI LIFECYCLE</span>
           </h2>
-          <p className="mx-auto mt-3 max-w-[720px] text-base leading-normal text-[#6b7280]">
+          <p className="mx-auto mt-3 max-w-[720px] text-sm md:text-base font-mono text-[#0E1010]/60">
             A three-phase framework ensuring every AI initiative is built on a secure foundation, aligned with business objectives, and designed for continuous improvement.
           </p>
         </div>
@@ -88,22 +85,22 @@ export function ValuePropositionSection() {
                     onClick={() => setActiveStep(feature.id)}
                     className={`relative flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-left transition-all duration-200 border overflow-hidden ${
                       activeStep === feature.id
-                        ? 'border-[#22c55e]/40 bg-[#f0fdf4]'
-                        : 'border-[#f3f4f6] bg-white hover:border-[#22c55e]/20 hover:bg-[#f9fafb]'
+                        ? 'border-[#09C771]/40 bg-[#f0fdf4]'
+                        : 'border-[#0E1010]/10 bg-white hover:border-[#09C771]/30 hover:bg-white'
                     }`}
                   >
                     {/* Active left-border accent */}
                     {activeStep === feature.id && (
-                      <span className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl bg-[#22c55e]" />
+                      <span className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl bg-[#09C771]" />
                     )}
                     <div className="flex flex-col gap-0.5 min-w-0 flex-1 pl-1">
                       <div className={`text-xs font-medium ${
-                        activeStep === feature.id ? 'text-[#22c55e]/80' : 'text-[#9ca3af]'
+                        activeStep === feature.id ? 'text-[#09C771]/80' : 'text-[#0E1010]/40'
                       }`}>
                         {feature.subtitle}
                       </div>
                       <div className={`text-xl font-bold ${
-                        activeStep === feature.id ? 'text-[#111827]' : 'text-[#374151]'
+                        activeStep === feature.id ? 'text-[#0E1010]' : 'text-[#0E1010]/70'
                       }`}>
                         {feature.title}
                       </div>
@@ -126,25 +123,25 @@ export function ValuePropositionSection() {
             </div>
 
             {/* Content Card */}
-            <div className="flex w-full max-w-[800px] items-stretch rounded-2xl bg-white border border-[#f3f4f6] shadow-sm p-5 sm:p-6 overflow-hidden">
+            <div className="flex w-full max-w-[800px] items-stretch rounded-2xl bg-white border border-[#0E1010]/10 shadow-sm p-5 sm:p-6 overflow-hidden">
               <div className="flex w-full flex-col gap-6 min-[1152px]:flex-row min-[1152px]:items-start min-[1152px]:gap-10">
 
                 {/* Text Side */}
                 <div className="flex flex-col gap-4 w-full md:min-w-[300px] lg:min-w-[350px]">
-                  <p className="text-base sm:text-lg leading-relaxed text-[#4b5563]">
+                  <p className="text-base sm:text-lg leading-relaxed text-[#0E1010]/60">
                     {activeFeature.description}
                   </p>
 
                   <button
                     onClick={handleOpenContact}
-                    className="group flex w-fit items-center gap-1.5 rounded-xl border border-[#22c55e]/40 bg-[#f0fdf4] px-4 py-2.5 transition-all hover:bg-[#22c55e] hover:border-[#22c55e]"
+                    className="group flex w-fit items-center gap-1.5 rounded-xl border border-[#09C771]/40 bg-[#f0fdf4] px-4 py-2.5 transition-all hover:bg-[#09C771] hover:border-[#09C771]"
                   >
-                    <span className="text-sm sm:text-base font-semibold text-[#22c55e] group-hover:text-black transition-colors">
+                    <span className="text-sm sm:text-base font-semibold text-[#09C771] group-hover:text-black transition-colors">
                       Let&apos;s Connect
                     </span>
                     <svg
                       width="16" height="16" viewBox="0 0 16 16" fill="none"
-                      className="text-[#22c55e] group-hover:text-black transition-colors group-hover:translate-x-1 transition-transform"
+                      className="text-[#09C771] group-hover:text-black transition-colors group-hover:translate-x-1 transition-transform"
                       aria-hidden
                     >
                       <path d="M5 8H11M11 8L8 5M11 8L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

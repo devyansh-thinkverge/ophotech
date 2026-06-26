@@ -1,104 +1,200 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import type React from "react";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { Boxes, Users, Landmark, CalendarClock, Code2 } from "lucide-react";
 
 const STATS = [
-  { value: 20, suffix: "+", label: "AI Products Developed" },
-  { value: 10, suffix: "+", label: "Data Scientists & AI/ML Engineers" },
-  { value: 9, suffix: "+", label: "Government Agencies Served" },
-  { value: 20, suffix: "+", label: "Years of Experience" },
-  { value: 10, suffix: "M+", label: "Lines of Code Written" },
+  {
+    icon: Boxes,
+    title: "20+",
+    subtitle: "AI Products Developed",
+    description: "Shipped into regulated production",
+  },
+  {
+    icon: Users,
+    title: "10+",
+    subtitle: "Data Scientists & AI/ML Engineers",
+    description: "Senior, governance-first specialists",
+  },
+  {
+    icon: Landmark,
+    title: "9+",
+    subtitle: "Government Agencies Served",
+    description: "Sovereign, audit-ready delivery",
+  },
+  {
+    icon: CalendarClock,
+    title: "20+",
+    subtitle: "Years of Experience",
+    description: "Across complex enterprise systems",
+  },
+  {
+    icon: Code2,
+    title: "10M+",
+    subtitle: "Lines of Code Written",
+    description: "Battle-tested, maintainable systems",
+  },
 ];
 
-function CountUp({ target, suffix, duration = 1800 }: { target: number; suffix: string; duration?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-  const started = useRef(false);
+function StatCard({ stat, index }: { stat: (typeof STATS)[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    if (!inView || started.current) return;
-    started.current = true;
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
 
-    const start = performance.now();
-    const step = (now: number) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-      else setCount(target);
-    };
-    requestAnimationFrame(step);
-  }, [inView, target, duration]);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setIsHovered(false);
+  };
 
   return (
-    <span ref={ref} className="tabular-nums">
-      {count}{suffix}
-    </span>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="relative group cursor-pointer"
+    >
+      {/* Border glow */}
+      <motion.div
+        className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: "linear-gradient(135deg, rgba(9,199,113,0.4), transparent, rgba(9,199,113,0.4))",
+          filter: "blur(8px)",
+        }}
+      />
+
+      <div className="relative bg-[#1a1a1a] rounded-2xl p-5 border border-white/10 overflow-hidden h-full">
+        {/* Shine on hover */}
+        <motion.div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100"
+          initial={false}
+          animate={
+            isHovered
+              ? {
+                  background: [
+                    "linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.03) 25%, transparent 30%)",
+                    "linear-gradient(105deg, transparent 70%, rgba(255,255,255,0.03) 75%, transparent 80%)",
+                  ],
+                }
+              : {}
+          }
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        />
+
+        <div className="relative z-10 flex flex-col h-full min-h-[140px]">
+          {/* Icon */}
+          <motion.div
+            className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
+            style={{ backgroundColor: "rgba(9,199,113,0.2)" }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            <motion.div
+              className="absolute inset-0 rounded-xl bg-[#09C771]"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isHovered ? { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+            <stat.icon className="w-5 h-5 relative z-10 text-[#09C771]" />
+          </motion.div>
+
+          <div className="flex-1">
+            <motion.div
+              className="text-3xl font-black tracking-tight text-[#09C771]"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 + index * 0.1 }}
+            >
+              {stat.title}
+            </motion.div>
+            <h3 className="text-sm font-semibold text-white mt-1">{stat.subtitle}</h3>
+            <p className="text-xs text-white/50 mt-1 font-mono">{stat.description}</p>
+          </div>
+
+          <motion.div
+            className="h-[2px] rounded-full mt-4 bg-[#09C771]"
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 + index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+          />
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
 export function StatsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-[#0a0a0a] py-16 px-4"
-    >
-      {/* Continuous grid pattern (same as hero) */}
-      <div className="absolute inset-0 grid-pattern opacity-70 pointer-events-none" />
+    <section className="relative py-16 bg-[#0E1010] overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0E1010] via-[#01404F]/30 to-[#0E1010]" />
 
-      {/* Top divider line — subtle separator from hero */}
-      <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(34,197,94,0.3), transparent)" }}
-      />
-
-      <div className="relative mx-auto max-w-6xl">
-        <motion.dl
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
-          }}
-          className="grid grid-cols-2 gap-y-10 gap-x-4 sm:grid-cols-3 lg:grid-cols-5"
+      <div ref={ref} className="max-w-5xl mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
         >
-          {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-              }}
-              className="flex flex-col items-center text-center gap-2 group relative"
+          <motion.span
+            className="inline-block font-mono text-[#09C771] text-[10px] tracking-[0.3em] uppercase"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ delay: 0.1 }}
+          >
+            The Numbers
+          </motion.span>
+
+          <div className="overflow-hidden mt-2">
+            <motion.h2
+              className="text-4xl md:text-6xl font-black text-white tracking-tight"
+              initial={{ y: 60 }}
+              animate={isInView ? { y: 0 } : { y: 60 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.15 }}
             >
-              {/* Vertical divider between items (desktop) */}
-              {i < STATS.length - 1 && (
-                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-10"
-                  style={{ background: "rgba(34,197,94,0.15)" }}
-                />
-              )}
+              Built for Scale & Scrutiny
+            </motion.h2>
+          </div>
 
-              <dt className="text-4xl font-black text-[#22c55e] leading-none">
-                <CountUp target={stat.value} suffix={stat.suffix} />
-              </dt>
-              <dd className="text-sm leading-snug text-white/45 max-w-[130px] font-medium">
-                {stat.label}
-              </dd>
-            </motion.div>
+          <motion.div
+            className="h-[2px] w-12 bg-[#09C771] mx-auto mt-3 rounded-full"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+          />
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {STATS.map((stat, index) => (
+            <StatCard key={stat.subtitle} stat={stat} index={index} />
           ))}
-        </motion.dl>
+        </div>
       </div>
-
-      {/* Bottom divider into journey */}
-      <div className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(34,197,94,0.2), transparent)" }}
-      />
     </section>
   );
 }

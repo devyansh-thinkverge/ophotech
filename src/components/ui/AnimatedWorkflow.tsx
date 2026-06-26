@@ -17,8 +17,9 @@ const floatingElements = [
   { icon: Activity, x: 84, y: 68, delay: 1.5 },
 ];
 
-const GREEN = "#22c55e";
-const GREEN_DIM = "rgba(34,197,94,0.6)";
+const GREEN = "#09C771";
+const DARK = "#0E1010";
+const GREEN_DIM = "rgba(9,199,113,0.7)";
 
 export function AnimatedWorkflow() {
   return (
@@ -37,7 +38,7 @@ export function AnimatedWorkflow() {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0 rounded-full"
             style={{
-              border: "2px dashed rgba(34,197,94,0.25)",
+              border: "2px dashed rgba(14,16,16,0.2)",
             }}
           />
 
@@ -46,7 +47,7 @@ export function AnimatedWorkflow() {
             animate={{ rotate: -360 }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             className="absolute inset-4 rounded-full"
-            style={{ border: "1px solid rgba(34,197,94,0.15)" }}
+            style={{ border: "1px solid rgba(14,16,16,0.1)" }}
           />
 
           {/* Center Node */}
@@ -55,7 +56,7 @@ export function AnimatedWorkflow() {
             transition={{ duration: 2, repeat: Infinity }}
             className="absolute inset-0 m-auto w-24 h-24 rounded-full flex items-center justify-center glow-green"
             style={{
-              background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+              background: "linear-gradient(135deg, #09C771 0%, #06a350 100%)",
             }}
           >
             <Brain className="w-10 h-10 text-black" />
@@ -82,7 +83,8 @@ export function AnimatedWorkflow() {
               >
                 <motion.div
                   whileHover={{ scale: 1.15 }}
-                  className="w-14 h-14 rounded-xl glass-green flex items-center justify-center group cursor-pointer relative"
+                  className="w-14 h-14 rounded-xl flex items-center justify-center group cursor-pointer relative"
+                  style={{ background: DARK, border: "1px solid rgba(9,199,113,0.3)" }}
                 >
                   <step.icon className="w-6 h-6" style={{ color: GREEN }} />
                   <motion.span
@@ -153,9 +155,10 @@ export function AnimatedWorkflow() {
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, delay: el.delay }}
-            className="w-10 h-10 rounded-lg glass flex items-center justify-center"
+            className="w-10 h-10 rounded-lg flex items-center justify-center"
+            style={{ background: DARK, border: "1px solid rgba(9,199,113,0.2)" }}
           >
-            <el.icon className="w-5 h-5" style={{ color: GREEN_DIM }} />
+            <el.icon className="w-5 h-5" style={{ color: GREEN }} />
           </motion.div>
         </motion.div>
       ))}

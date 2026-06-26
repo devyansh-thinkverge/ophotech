@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { Suspense } from "react";
 import { headers } from "next/headers";
@@ -7,10 +7,12 @@ import "./globals.css";
 import CookieConsent from "@/components/cookies/CookieConsent";
 import { ContactModalRouteController } from "@/components/forms/ContactModalRouteController";
 import ConditionalGtm from "@/components/analytics/ConditionalGtm";
+import { LenisProvider } from "@/components/ui/lenis-provider";
+import ClickSpark from "@/components/ui/click-spark";
 
 const poppins = Poppins({
   variable: "--font-sans",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "900"],
   subsets: ["latin"],
   display: "swap",
   preload: true,
@@ -23,6 +25,13 @@ const poppins = Poppins({
     "Arial",
     "sans-serif",
   ],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const uCityPro = localFont({
@@ -77,7 +86,7 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="en" className={`${uCityPro.variable} ${uCityPro.className}`}>
+    <html lang="en" className={`${uCityPro.variable} ${uCityPro.className} ${jetbrainsMono.variable}`}>
       <head>
         {/* Preconnects for Voiceflow Infrastructure */}
         <link rel="preconnect" href="https://cdn.voiceflow.com" crossOrigin="anonymous" />
@@ -113,13 +122,24 @@ export default async function RootLayout({
         />
       </head>
 
-      <body className={`${poppins.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased bg-[#0E1010]`}>
         {/* GTM — loads only in production and only after consent */}
         {process.env.NODE_ENV === "production" && (
           <ConditionalGtm gtmId="GTM-KQRTLRFZ" nonce={nonce} />
         )}
 
-        {children}
+        <ClickSpark
+          sparkColor="#09C771"
+          sparkSize={12}
+          sparkRadius={20}
+          sparkCount={8}
+          duration={400}
+          easing="ease-out"
+        >
+          <LenisProvider>
+            {children}
+          </LenisProvider>
+        </ClickSpark>
 
         <Suspense fallback={null}>
           <ContactModalRouteController />

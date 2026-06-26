@@ -14,7 +14,7 @@ import { HIDE_RESOURCES, HIDE_PRODUCTS } from "@/lib/featureFlags";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-gray-900">
+    <div className="flex min-h-screen flex-col bg-[#0E1010]">
       <Header />
       <main className="flex flex-col">
         <HeroSection />
