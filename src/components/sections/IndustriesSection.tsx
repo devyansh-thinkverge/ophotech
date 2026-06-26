@@ -87,8 +87,9 @@ export function IndustriesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
             >
-              INDUSTRIES WE{" "}
+              INDUSTRIES WE
             </motion.span>
+            {" "}
             <motion.span
               className="text-[#09C771] inline-block"
               initial={{ opacity: 0, y: 30 }}
@@ -117,7 +118,7 @@ export function IndustriesSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {SECTORS.map((sector) => (
+          {SECTORS.map((sector, index) => (
             <motion.div
               key={sector.name}
               variants={itemVariants}
@@ -129,6 +130,8 @@ export function IndustriesSection() {
                   src={sector.image}
                   alt={sector.name}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={index < 3}
                   className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E1010] via-transparent to-transparent" />

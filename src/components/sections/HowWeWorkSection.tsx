@@ -96,8 +96,9 @@ export function HowWeWorkSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
             >
-              OUR ENGAGEMENT{" "}
+              OUR ENGAGEMENT
             </motion.span>
+            {" "}
             <motion.span
               className="text-[#09C771] inline-block"
               initial={{ opacity: 0, y: 30 }}

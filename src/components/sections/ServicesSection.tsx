@@ -148,8 +148,9 @@ export function ServicesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             >
-              WHAT WE BUILD{" "}
+              WHAT WE BUILD
             </motion.span>
+            {" "}
             <motion.span
               className="inline-block text-[#09C771]"
               initial={{ opacity: 0, y: 30 }}
