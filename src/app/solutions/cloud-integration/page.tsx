@@ -22,7 +22,7 @@ export default function CloudIntegrationPage() {
         ]}
         title="Cloud Integration & Architecture"
         subtitle="Purpose-Built Infrastructure for Enterprise AI Workloads"
-        video="/videos/Cloud-Integration.mp4"
+        video="/vids/service-cloud-integration.mp4"
       />
 
       <main className="bg-white">

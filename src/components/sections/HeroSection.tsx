@@ -2,8 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { AnimatedWorkflow } from "@/components/ui/AnimatedWorkflow";
-import { HeroBackground } from "@/components/ui/HeroBackground";
+import { VideoPlayer } from "@/components/ui/VideoPlayer";
 
 const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
 
@@ -54,9 +53,8 @@ export function HeroSection() {
     <section
       id="hero"
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F1F1F1] noise-overlay"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F1F1F1]"
     >
-      <HeroBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-12 w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -191,20 +189,20 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right — AnimatedWorkflow */}
+          {/* Right — Video */}
           <motion.div style={{ y, scale }} className="relative flex justify-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
-              className="relative w-full"
+              className="relative w-full rounded-2xl overflow-hidden shadow-2xl"
             >
-              <motion.div
-                className="absolute inset-0 bg-[#09C771]/20 blur-[80px] rounded-full scale-75"
-                animate={{ scale: [0.75, 0.85, 0.75], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              <VideoPlayer
+                src="/vids/ophotech-home.mp4"
+                autoplay={true}
+                muted={true}
+                showControls={false}
               />
-              <AnimatedWorkflow />
             </motion.div>
           </motion.div>
         </div>

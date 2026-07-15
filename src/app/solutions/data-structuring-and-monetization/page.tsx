@@ -22,7 +22,7 @@ export default function DataMonetizationPage() {
         ]}
         title="Data Structuring & Monetization"
         subtitle="Turn Fragmented Information into Investment-Grade Assets"
-        video="/videos/Data-Structuring.mp4"
+        video="/vids/service-data-structuring.mp4"
       />
 
       <main className="bg-white">

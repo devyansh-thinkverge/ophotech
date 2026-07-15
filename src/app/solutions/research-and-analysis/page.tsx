@@ -22,7 +22,7 @@ export default function RAARPage() {
         ]}
         title="Research & Analysis"
         subtitle="The Enterprise AI Readiness Assessment"
-        video="/videos/Research-and-Analysis.mp4"
+        video="/vids/service-research-analysis.mp4"
       />
 
       <main className="bg-white">

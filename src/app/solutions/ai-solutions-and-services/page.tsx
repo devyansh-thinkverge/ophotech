@@ -21,7 +21,7 @@ export default function AISolutionsAndServices() {
         ]}
         title="AI Solutions & Services"
         subtitle="Driving ROI Through Applied Artificial Intelligence"
-        video="/videos/AI-Solutions.mp4"
+        video="/vids/service-ai-solutions.mp4"
       />
 
       <main className="bg-white">

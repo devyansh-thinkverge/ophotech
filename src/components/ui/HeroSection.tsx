@@ -78,6 +78,7 @@ export function HeroSection({
                   <VideoPlayer
                     src={video}
                     poster={videoPoster}
+                    autoplay={true}
                     muted={true}
                     showControls={true}
                   />

@@ -229,10 +229,10 @@ export function VideoPlayer({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-[27px] bg-orange-25/40 p-1 transition-all duration-300 ${className}`}
+      className={`relative overflow-hidden rounded-[24px] transition-all duration-300 ${className}`}
     >
       <div
-        className="relative aspect-[16/10] overflow-hidden rounded-[24px] bg-white"
+        className="relative aspect-[16/10] overflow-hidden rounded-[24px]"
         onMouseEnter={() => !isMobile && setIsHovered(true)}
         onMouseLeave={() => !isMobile && setIsHovered(false)}
         onClick={handleVideoClick}

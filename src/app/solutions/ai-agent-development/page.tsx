@@ -97,7 +97,7 @@ export default function AIAgentDevelopment() {
         ]}
         title="AI Agent Development"
         subtitle="Shift From Static Software to a Dynamic AI Digital Workforce"
-        video="/videos/AI-Agent.mp4"
+        video="/vids/service-ai-agent.mp4"
       />
 
       <main className="flex-1">
