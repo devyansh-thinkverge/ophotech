@@ -21,7 +21,7 @@ export default function PredictiveAnalysisPage() {
         ]}
         title="Predictive Analysis as a Service"
         subtitle="Anticipate the Market. Optimize the Enterprise."
-        video="/videos/Research-and-Analysis.mp4"
+        video="/vids/ophotech-home.mp4"
       />
 
       <main className="bg-white">

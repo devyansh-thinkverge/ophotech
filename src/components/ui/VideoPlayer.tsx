@@ -290,9 +290,8 @@ export function VideoPlayer({
           </div>
         )}
 
-        {/* Play Button Overlay - When paused and not started */}
+        {/* Play Button Overlay - When paused */}
         {!isPlaying &&
-          !hasStarted &&
           (isHovered || isMobile || showMobileControls) && (
             <div className="absolute inset-0 z-20 flex items-center justify-center bg-gray-900/40 transition-opacity">
               <button
