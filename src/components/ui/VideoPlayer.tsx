@@ -237,17 +237,17 @@ export function VideoPlayer({
         onMouseLeave={() => !isMobile && setIsHovered(false)}
         onClick={handleVideoClick}
       >
-        {/* Poster (always) */}
-        <Image
-          src={poster}
-          alt=""
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
-          priority
-          fetchPriority="high"
-          aria-hidden
-        />
+        {/* Poster — dark branded background shown before video loads */}
+        <div className="absolute inset-0 bg-[#0E1010] flex items-center justify-center" aria-hidden>
+          <Image
+            src="/images/logo/Opho logo for dark mode.png"
+            alt=""
+            width={160}
+            height={54}
+            className="w-32 h-auto opacity-50"
+            priority
+          />
+        </div>
 
         {/* Video Element (lazy-enabled) */}
         {isVideoEnabled && (
@@ -259,7 +259,6 @@ export function VideoPlayer({
             playsInline
             preload={shouldDeferVideo ? "none" : "metadata"}
             controls={showControls && hasStarted}
-            poster={poster}
             onPlay={() => {
               setIsPlaying(true);
               setIsLoading(false);
