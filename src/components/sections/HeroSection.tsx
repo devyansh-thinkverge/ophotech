@@ -201,7 +201,7 @@ export function HeroSection() {
                 src="/vids/ophotech-home.mp4"
                 autoplay={true}
                 muted={true}
-                showControls={false}
+                showControls={true}
               />
             </motion.div>
           </motion.div>
